@@ -1,0 +1,23 @@
+body {
+  background: white;
+  color: black;
+  font-family: content;
+  font-size: 17px;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+}
+img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+div {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
