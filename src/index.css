@@ -14,7 +14,7 @@ img {
   object-fit: cover;
   border-radius: 10px;
 }
-div {
+.Profile {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

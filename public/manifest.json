@@ -9,6 +9,8 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "msapplication_navigation_color": "#ffffff",
+  "apple_mobile_web_app_satus_bar_style": "#ffffff"
 }
