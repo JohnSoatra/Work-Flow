@@ -1,7 +1,7 @@
 import React from 'react';
 
 import profile from './img/profile.jpg';
-const fbLink = "https://www.facebook.com/photo/?fbid=2932363803647468&set=a.1492654860951710";
+const fbLink = "https://www.facebook.com/so.phorn.18007218";
 const name = "សុភ័ន្ត";
 const major = "យោធាម្នាក់";
 
