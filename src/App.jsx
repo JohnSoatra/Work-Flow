@@ -11,6 +11,7 @@ const App = () => {
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <div><img src={profile} alt="profile" /></div>
       </div>
+      <small>in develop mode</small>
     </div>
   );
 }
