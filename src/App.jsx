@@ -14,7 +14,7 @@ const App = () => {
         <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <div><a href={fbLink} target="_blank"><img src={profile} alt="profile" /></a></div>
       </div>
-      <a href={ fbLink }><small>Pheareak Nhor</small></a>
+      <a href={ fbLink } target="_blank"><small>Pheareak Nhor</small></a>
       <h3>SEE YOU SOON!!!!</h3>
     </div>
   );
