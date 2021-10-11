@@ -3,8 +3,8 @@
   "name": "Soatra",
   "icons": [
     {
-      "src": "icon.png",
-      "type": "image/png"
+      "src": "icon.ico",
+      "type": "image/x-icon"
     }
   ],
   "start_url": ".",
