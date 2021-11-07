@@ -9,8 +9,6 @@
 /coverage
 test.css
 test.html
-.note.txt
-.env
 
 
 #file
@@ -29,3 +27,8 @@ test.html
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+#custom
+.swift-sfdc.json
+note.txt
+note.txt
+.env
