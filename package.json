@@ -1,0 +1,20 @@
+{
+  "name": "meka-app",
+  "version": "1.0.0",
+  "description": "meka-app contains a lot of apps.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Soatra",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^9.4.0",
+    "firebase-admin": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}
