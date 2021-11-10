@@ -8,12 +8,9 @@ const store = firebase.firestore();
 const release = false;
 
 app.use(cors());
-// app.use((req, res, next) => {
-  
-// });
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
+  res.send("Welocome to Meka app.");
 })
 
 app.get("/:appName/**", (req, res) => {

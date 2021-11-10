@@ -2,3 +2,4 @@ test.js
 note.txt
 node_modules
 .swift-sfdc.json
+.gitignore
