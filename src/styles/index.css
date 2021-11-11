@@ -1,3 +1,11 @@
+@font-face {
+  font-family: "nokora-regular";
+  src: url("./fonts/Nokora/Nokora-Regular.ttf");
+}
+@font-face {
+  font-family: "nokora-bold";
+  src: url("./fonts/Nokora/Nokora-Bold.ttf");
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

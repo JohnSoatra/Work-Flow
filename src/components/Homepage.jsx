@@ -1,5 +1,6 @@
 import { Button, Grid, makeStyles, Typography } from '@material-ui/core';
 import { blue } from '@material-ui/core/colors';
+import { useHistory } from "react-router-dom";
 import clsx from 'clsx';
 import React from 'react';
 import topImage from "../img/home/top-image.jpg";
@@ -17,12 +18,20 @@ const styles = makeStyles(theme => ({
   home: {
     ...ownStyle.width(theme),
     margin: ownStyle.margin,
+
     flex: ownStyle.flex,
     marginBottom: 15,
   },
   topImage: {
+    ...ownStyle.width(theme),
+    margin: ownStyle.margin,
     borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20
+    borderBottomRightRadius: 20,
+    [theme.breakpoints.down("sm")]: {
+      width: "100%",
+      borderBottomLeftRadius: 0,
+      borderBottomRightRadius: 0,
+    },
   },
   divGetStart: {
     width: "fit-content",
@@ -30,9 +39,11 @@ const styles = makeStyles(theme => ({
     marginTop: 30
   },
   getStart: { 
+    fontSize: 16,
     minWidth: 0,
+    fontFamily: "nokora-regular",
     [theme.breakpoints.down("xs")]: {
-      fontSize: 13,
+      fontSize: 15,
       padding: "5px 10px"
     }
   },
@@ -40,6 +51,8 @@ const styles = makeStyles(theme => ({
     marginTop: 30
   },
   titleWhat: {
+    fontSize: 25,
+    fontFamily: "nokora-bold",
     textAlign: "center",
     color: blue[700],
     fontWeight: 400,
@@ -47,7 +60,6 @@ const styles = makeStyles(theme => ({
     paddingTop: 30,
     borderTop: "solid 1px #1e88e5",
     transform: "scale(1 , 0.95)",
-    letterSpacing: -2,
   },
   gridWhat: {
     padding: 20,
@@ -55,6 +67,8 @@ const styles = makeStyles(theme => ({
     borderRadius: 20
   },
   textWhat: {
+    fontSize: 17,
+    fontFamily: "nokora-regular",
     color: "#000e",
     lineHeight: 1.7,
   },
@@ -75,83 +89,84 @@ const styles = makeStyles(theme => ({
 
 const Hompage = () => {
   const classes = styles();
+  const history = useHistory();
+  const handleStart = () => {
+    history.push("/apps");
+  }
 
   return (
-  <div className={classes.home}>
-    <img src={topImage} alt="top-image" width="100%" className={classes.topImage}/>
-    <div className={classes.divGetStart}>
-      <Button size="large" variant="contained" color="secondary" className={classes.getStart}>
-        Get Start
-      </Button>
+  <>
+    <img src={topImage} alt="top-image" width="100%" className={classes.topImage} />
+    <div className={classes.home}>
+      <div className={classes.divGetStart}>
+        <Button size="large" variant="contained" color="secondary" className={classes.getStart} onClick={handleStart}>
+          ចាប់ផ្ដើម
+        </Button>
+      </div>
+      <div className={classes.gWhat}>
+        <Typography variant="h3" className={classes.titleWhat}>
+          អ្វីជា មេកា ?
+        </Typography>
+        <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
+          <Grid item xs={12} md={6}>
+            <Typography variant="body2" className={classes.textWhat}>
+            មេកា គឺជា គេហទំព័រមួយ ដែលអនុញ្ញាតអោយអ្នកអាចធ្វើការ ដាក់បង្ហាញនូវ គេហទំព័ររបស់អ្នក ដោយឥតគិតថ្លៃ ​។ ជាមួយមេកា អ្នកអាច ធ្វើការដាក់បង្ហាញគេហទំព័ររបស់អ្នក ដោយមិនចាំបាច់ មានឈ្មោះដូម៉េន។
+            </Typography>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <img src={whatImage} alt="what-image" width="100%" className={classes.iWhat} />
+          </Grid>
+        </Grid>
+      </div>
+      <div className={classes.gWhat}>
+        <Typography variant="h3" className={classes.titleWhat}>
+          ហេតុអ្វីត្រូវជា មេកា ?
+        </Typography>
+        <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
+          <Grid item xs={12} md={6}>
+            <img src={whyImage} alt="what-image" width="100%" className={classes.iWhat} />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <Typography variant="body2" className={classes.textWhat}>
+            ជាមួយមេកា អ្នកនឹងទទួលបាននូវ ភាពងាយស្រួល ការប្រើប្រាស់ពេលវេលាខ្លី និង ការចំណាយថវិកាតិចបំផុត ។
+            </Typography>
+          </Grid>
+        </Grid>
+      </div>
+      <div className={classes.gWhat}>
+        <Typography variant="h3" className={classes.titleWhat}>
+          អ្នកណាខ្លះប្រើប្រាស់ មេកា ?
+        </Typography>
+        <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={tesla} alt="tesla" className={classes.vector} />
+          </Grid>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={alibaba} alt="tesla" className={classes.vector} />
+          </Grid>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={netflix} alt="tesla" className={classes.vector} />
+          </Grid>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={facebook} alt="tesla" className={classes.vector} />
+          </Grid>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={cisco} alt="tesla" className={classes.vector} />
+          </Grid>
+          <Grid item xs={6} md={4} className={classes.vectorGrid}>
+            <img src={godaday} alt="tesla" className={classes.vector} />
+          </Grid>
+        </Grid>
+      </div>
+      <div className={clsx(classes.gWhat, classes.endP)}>
+        <Typography variant="body2">
+          I Love Meka, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+        </Typography>
+      </div>
     </div>
-    <div className={classes.gWhat}>
-      <Typography variant="h3" className={classes.titleWhat}>
-        What is Meka ?
-      </Typography>
-      <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
-        <Grid item xs={12} md={6}>
-          <Typography variant="body2" className={classes.textWhat}>
-            Waltz,bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox
-          </Typography>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={whatImage} alt="what-image" width="100%" className={classes.iWhat} />
-        </Grid>
-      </Grid>
-    </div>
-    <div className={classes.gWhat}>
-      <Typography variant="h3" className={classes.titleWhat}>
-        Why is Meka ?
-      </Typography>
-      <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
-        <Grid item xs={12} md={6}>
-          <img src={whyImage} alt="what-image" width="100%" className={classes.iWhat} />
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <Typography variant="body2" className={classes.textWhat}>
-            Waltz,bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk TV quiz. How quickly daft jumping zebras vex. Two driven jocks help fax my big quiz. Quick, Baz, get my woven flax jodhpurs! "Now fax quiz Jack!" my brave ghost pled. Five quacking zephyrs jolt my wax bed. Flummoxed by job, kvetching W. zaps Iraq. Cozy sphinx waves quart jug of bad milk. A very bad quack might jinx zippy fowls. Few quips galvanized the mock jury box. Quick brown dogs jump over the lazy fox. The jay, pig, fox
-          </Typography>
-        </Grid>
-      </Grid>
-    </div>
-    <div className={classes.gWhat}>
-      <Typography variant="h3" className={classes.titleWhat}>
-        Who are using Meka ?
-      </Typography>
-      <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={tesla} alt="tesla" className={classes.vector} />
-        </Grid>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={alibaba} alt="tesla" className={classes.vector} />
-        </Grid>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={netflix} alt="tesla" className={classes.vector} />
-        </Grid>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={facebook} alt="tesla" className={classes.vector} />
-        </Grid>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={cisco} alt="tesla" className={classes.vector} />
-        </Grid>
-        <Grid item xs={6} md={4} className={classes.vectorGrid}>
-          <img src={godaday} alt="tesla" className={classes.vector} />
-        </Grid>
-      </Grid>
-    </div>
-    <div className={clsx(classes.gWhat, classes.endP)}>
-      <Typography variant="body2">
-        I Love Meka, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, I hope one day I'll be a professonal programmer consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et.
-      </Typography>
-    </div>
-  </div>);
+  </>);
 }
  
 export default Hompage;

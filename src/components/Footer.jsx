@@ -50,7 +50,7 @@ const styles = makeStyles(theme => ({
   },
   copy: {
     fontSize: 12,
-    color: "#000b"
+    color: "#202020bb"
   }
 }));
 

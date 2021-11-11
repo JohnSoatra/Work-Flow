@@ -1,1 +1,483 @@
 --------------------listen to back press click to set page count = 1;
+import { makeStyles, Typography, Button, IconButton, Link, TextField } from '@material-ui/core';
+import { blue, green, orange, red, yellow } from "@material-ui/core/colors";
+import {React, useEffect} from 'react';
+import ownStyle from "../constants/ownStyle";
+import { Add, FilePresent, Folder, Remove } from '@mui/icons-material';
+import clsx from "clsx";
+import { useState } from 'react';
+import fileIcon from "../img/signin/file.svg";
+import { amber } from '@mui/material/colors';
+import FolderPath from './FolderPath';
+import { useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import $ from "jquery";
+
+const styles = makeStyles(theme => ({
+  AppPage: {
+    ...ownStyle.width(theme),
+    margin: ownStyle.margin,
+    flex: ownStyle.flex,
+    marginTop: 15,
+    marginBottom: 15,
+    minHeight: 300,
+    boxShadow: "0px 0px 3px 2px #aaa",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "stretch",
+    flexWrap: "nowrap"
+  },
+  names: {
+    flex: 1,
+    maxWidth: 200,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start"
+  },
+  header: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    borderBottom: "2px solid #cecece",
+    padding: 5
+  },
+  nameHeader: {
+    
+  },
+  btnOption: {
+    color: "#f9f9f9",
+    transition: "all ease-in-out 50ms",
+    "&:active": {
+      transform: "scale(0.9, 0.9)"
+    }
+  },
+  btnAdd: {
+    marginRight: 10,
+    background: green[300],
+    "&:hover": {
+      background: green[200],
+    }
+  },
+  btnDelete: {
+    marginLeft: 10,
+    background: orange[300],
+    "&:hover": {
+      background: orange[200],
+    }
+  },
+  btnAddDoc: {
+    marginRight: 10,
+    background: green[300],
+    "&:hover": {
+      background: green[200],
+    }
+  },
+  btnDeleteDoc: {
+    marginLeft: 10,
+    background: orange[300],
+    "&:hover": {
+      background: orange[200],
+    }
+  },
+  btnHide: {
+    display: "none"
+  },
+  nameContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    padding: "10px 20px"
+  },
+  nameText: {
+    fontWeight: 500,
+    fontSize: 18,
+    color: green[400],
+    cursor: "default",
+    lineHeight: 2,
+    "&:hover": {
+      opacity: 0.6
+    }
+  },
+  selectedName: {
+    color: blue[500]
+  },
+  documents: {
+    flex: 2,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    borderLeft: "2px solid #cecece"
+  },
+  documentHeader: {
+  },
+
+  documentContent: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    padding: "4px 10px"
+  },
+  wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start"
+  },
+  documentTextWrapper: {
+    display: "flex",
+    justifyContent: "flex-start",
+    alignContent: "center",
+    "&:hover": {
+      opacity: 0.6
+    }
+  },
+  folder:{
+    marginRight: 5,
+    fontSize: 20,
+    color: amber[400]
+  },
+  file: {
+    marginRight: 5
+  },
+  documentText: {
+    color: blue[600],
+    cursor: "default",
+  },
+  appUrl: {
+    alignSelf: "center",
+    width: "fit-content",
+    color: blue[600],
+    textAlign: "center",
+    cursor: "pointer",
+    marginBottom: 20
+  },
+  confirm: {
+    position: "fixed",
+    width: "100%",
+    height: "100%",
+    top: 0,
+    left: 0,
+    background: "#0008",
+    visibility: "hidden",
+  },
+  modalWrapper: {
+    position: "fixed",
+    top: "40%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    visibility: "hidden"
+  },
+  modal: {
+    display: "flex",
+    flexDirection: "column",
+    background: "#f9f9f9",
+    borderRadius: 10,
+    minWidth: 300,
+    minHeight: 150,
+    justifyContent: "space-between",
+    padding: 10
+  },
+  modalTitle: {
+    fontSize: 18,
+    textAlign: "center",
+    color: green[800]
+  },
+  warning: {
+    color: yellow[800]
+  },
+  input: {
+    borderBottom: "1px solid #cecece",
+    caretColor: amber[800],
+    marginTop: -20,
+    marginLeft: 20,
+    marginRight: 20,
+    "&::placeholder": {
+      
+    }
+  },
+  modelContent: {
+    textAlign: "center",
+    color: "#202020",
+    marginTop: -20
+  },
+  modalContenDrag: {
+    border: "2px dotted",
+    borderColor: blue[300],
+    display: "flex",
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 5,
+    borderRadius: 5,
+  },
+  modalAction: {
+    display: "flex",
+    justifyContent: "flex-end",
+  },
+  btnApply: {
+    background: green[400],
+    color: "#f9f9f9",
+    marginRight: 10,
+    minHeight: 0,
+    minWidth: 80,
+    width: "fit-content",
+    height: "fit-content",
+    padding: "1px 5px",
+    "&:hover": {
+      background: green[200],
+    },
+    "&:active": {
+      background: green[100],
+    },
+  },
+  btnCancel: {
+    background: red[400],
+    color: "#f9f9f9",
+    minHeight: 0,
+    minWidth: 80,
+    width: "fit-content",
+    height: "fit-content",
+    padding: "1px 5px",
+    "&:hover": {
+      background: red[200],
+    },
+    "&:active": {
+      background: red[100],
+    }
+  },
+  btnChoose: {
+    background: green[400],
+    color: "#f9f9f9",
+    minHeight: 0,
+    minWidth: 80,
+    width: "fit-content",
+    height: "fit-content",
+    padding: "1px 5px",
+    "&:hover": {
+      background: green[200],
+    },
+    "&:active": {
+      background: green[100],
+    },
+  },
+  inputFile: {
+    display: "none"
+  },
+  show: {
+    visibility: "visible"
+  },
+}));
+
+const appNames = [
+  "Soatra",
+  "Engly",
+  "Pheak"
+];
+const nameContent = {
+  [appNames[0]]: ["lasla", "test.ext"],
+  [appNames[1]]: ["body.jpg", "bou.ff"],
+  [appNames[2]]: ["krou.cc", "test.ff", "dfsf.you"]
+};
+
+const AppPage = () => {
+  const classes = styles();
+  const { path } = useParams();
+  const history = useHistory();
+  const [openedApp, setOpenedApp] = useState(path ? path.split("/")[0] : null);
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [openAskName, setOpenAskName] = useState(false);
+  const [openPanelFile, setOpenPanelFile] = useState(false);
+
+  const handleNameClick = (name) => {
+    setOpenedApp(name);
+    history.push(`/apps/${name}`);
+  }
+  useEffect(() => {
+    path ? setOpenedApp(path.split("/")[0]) : setOpenedApp(null);
+  }, [path]);
+  const handleBtnAdd = () => {
+    setOpenAskName(true);
+  }
+  const handleBtnRemove = () => {
+    setOpenConfirm(true);
+  }
+  const handleAddFile = () => {
+    setOpenPanelFile(true);
+  }
+  const handleRemoveFile = () => {
+    // setOpenPanelFile(true);
+  }
+  const handleApply = () => {
+    setOpenAskName(false);
+  }
+  const handleCancel = () => {
+    if (openAskName) {
+      setOpenAskName(false);
+    }
+    else {
+      setOpenPanelFile(false);
+    }
+  }
+  const handleYes = () => {
+    setOpenConfirm(false);
+  }
+  const handleNo = () => {
+    setOpenConfirm(false);
+  }
+  const handleOK = () => {
+    setOpenPanelFile(false);
+  }
+  const handleChoose = () => {
+    $("#inputFile").trigger("click");
+  }
+  return (
+  <div className={classes.AppPage}>
+    <div className={classes.names}>
+    {
+      path &&
+      <div className={clsx(classes.nameHeader, classes.header)}>
+        <IconButton className={clsx(classes.btnAdd, classes.btnOption)} disableRipple size='small' onClick={handleBtnAdd}>
+          <Add />
+        </IconButton>
+        <IconButton className={clsx(classes.btnDelete, classes.btnOption)} disableRipple size='small' onClick={handleBtnRemove}>
+          <Remove />
+        </IconButton>
+      </div>
+    }
+      <div className={classes.nameContent}>
+        <div className={classes.wrapper}>
+        {
+          appNames.map((name, i) => {
+            return (
+              <Link 
+                underline='none'
+                className={clsx(classes.nameText, openedApp === name && classes.selectedName)}
+                onClick={() => handleNameClick(name)}
+                key={i}>
+                {name}
+              </Link>
+            );
+          })
+        }
+        </div>
+    </div>
+    </div>
+    <div className={classes.documents}>
+    {
+      path &&
+      <div className={clsx(classes.documentHeader, classes.header)}>
+        <IconButton className={clsx(classes.btnAddDoc, classes.btnOption)} disableRipple size='small' onClick={handleAddFile}>
+            <Add />
+        </IconButton>
+        <IconButton className={clsx(classes.btnDeleteDoc, classes.btnOption)} disableRipple size='small' onClick={handleRemoveFile}>
+          <Remove />
+        </IconButton>
+      </div>
+    }
+      <div className={classes.documentContent}>
+      {
+        path && <>
+          <Link
+            className={classes.appUrl}
+            href={`https://meka-apps.soatra.com/${openedApp}`}
+            target="_blank">
+            {`https://meka-apps.soatra.com/${openedApp}`}
+          </Link>
+        </>
+      }
+      {
+        path && null/* <FolderPath /> */
+      }
+      {
+        path &&
+        <div className={classes.wrapper}>
+        {
+          nameContent[openedApp].map((v, i) => {
+            return (
+              <div className={classes.documentTextWrapper} key={i}>
+              {
+                v.indexOf(".") > -1 ?
+                  <img src={fileIcon} alt="file" height={20} className={classes.file} /> :
+                  <Folder className={classes.folder} />
+              }
+                <Link 
+                  underline='none'
+                  className={classes.documentText}>
+                  {v}
+                </Link>
+              </div>
+            );
+          })
+        }
+        </div> 
+      }
+      </div>
+    </div>
+    <div className={clsx(classes.confirm, (openAskName || openConfirm || openPanelFile) && classes.show)} />
+
+    <div className={clsx(classes.modalWrapper, openAskName && classes.btnHide)}>
+      <div className={clsx(classes.modal)}>
+        <Typography className={clsx(classes.modalTitle)}>
+          Please enter app name:
+        </Typography>
+        <TextField
+          placeholder='name:'
+          InputProps={{disableUnderline: true, classes: {input: classes.input}}}
+          autoComplete='off'
+          spellCheck={false} />
+        <div className={clsx(classes.modalAction)}>
+          <Button className={clsx(classes.btnApply)} onClick={handleApply} size='small' disableRipple>Apply</Button>
+          <Button className={clsx(classes.btnCancel)} onClick={handleCancel} size='small' disableRipple>Cancel</Button>
+        </div>
+      </div>
+    </div>
+
+    <div className={clsx(classes.modalWrapper, openConfirm && classes.show)}>
+      <div className={clsx(classes.modal)}>
+        <Typography className={clsx(classes.modalTitle, classes.warning)}>
+          Warning
+        </Typography>
+        <Typography className={clsx(classes.modelContent)}>Are you sure to delete this app?</Typography>
+        <div className={clsx(classes.modalAction)}>
+          <Button className={clsx(classes.btnApply)} onClick={handleYes} size='small' disableRipple>Yes</Button>
+          <Button className={clsx(classes.btnCancel)} onClick={handleNo} size='small' disableRipple>No</Button>
+        </div>
+      </div>
+    </div>
+
+    <div className={clsx(classes.modalWrapper, openPanelFile && classes.show)}>
+      <div className={clsx(classes.modal)}>
+        <Typography className={clsx(classes.modalTitle)}>
+          Choose Files
+        </Typography>
+        <div className={clsx(classes.modalContenDrag)}>
+          <input type={"file"} multiple className={clsx(classes.inputFile)} id='inputFile' />
+          <Button className={clsx(classes.btnChoose)} size="small" disableRipple onClick={handleChoose}>Choose</Button>
+        </div>
+        <div className={clsx(classes.modalAction)}>
+          <Button className={clsx(classes.btnApply)} onClick={handleOK} size='small' disableRipple>OK</Button>
+          <Button className={clsx(classes.btnCancel)} onClick={handleCancel} size='small' disableRipple>Cancel</Button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  );
+}
+ 
+export default AppPage;
+-----
+btnGmail: {
+    color: "#303030ef",
+    background: lightBlue[300],
+    textTransform: "none",
+    translate: "all ease-in-out 250ms",
+    "&:hover": {
+      background: lightBlue[200]
+    },
+    "&:active": {
+      transform: "scale(0.9, 0.9)",
+      background: lightBlue[100]
+    }
+  },
+  -----

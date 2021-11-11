@@ -1,20 +1,16 @@
-import { AppBar, Button, makeStyles, TextField, Toolbar, Typography } from '@material-ui/core';
-import { amber, blue, orange } from '@material-ui/core/colors';
+import { AppBar, Button, makeStyles, TextField, Toolbar } from '@material-ui/core';
 import { Language, Search } from '@material-ui/icons';
 import clsx from 'clsx';
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import M from '../img/M.svg';
-import { setSeletedPage } from '../redux/ducks/selectedPage';
 import ownStyle from "../constants/ownStyle";
-import $ from "jquery";
 import { useLocation } from 'react-router-dom';
 
 const styles = makeStyles(theme => ({
   appBar: {
     backgroundColor: '#fff8e3',
+    zIndex: 1
   },
   toolbar: {
     ...ownStyle.width(theme),
@@ -43,6 +39,7 @@ const styles = makeStyles(theme => ({
   textField: {
     marginLeft: 16,
     "&::placeholder": {
+      fontFamily: "nokora-regular",
       color: "#333a",
       opacity: "100"
     },
@@ -59,33 +56,45 @@ const styles = makeStyles(theme => ({
     }
   },
   item: {
+    fontFamily: "nokora-regular",
     color: "#202020ef",
-    fontSize: 19,
-    padding: "10px 10px",
-    cursor: "pointer",
-    fontWeight: 500,
+    fontSize: 18,
+    transition: "transform ease-in-out 100ms",
+    background: "#fff4d4",
+    outline: "none",
+    border: "none",
     borderRadius: 5,
-    textTransform: "none",
-    transition: "all ease-in-out 200ms",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: 16
+    padding: "10px 10px",
+    fontWeight: 500,
+    margin: 3,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    "&:hover": {
+      opacity: "0.7",
     },
-    [theme.breakpoints.up("sm")]: {
-      "&:hover": {
-        backgroundColor: "#fff4cf"
-      },
+    "&:active": {
+      opacity: "0.5",
+      transform: "scale(0.95, 0.95)"
+    },
+    [theme.breakpoints.down("md")]: {
+      fontSize: 17
+    },
+    [theme.breakpoints.down("sm")]: {
+      fontSize: 16
     }
   },
-  apps: {
-    fontWeight: 600
-  },
   selected: {
-    backgroundColor: amber[100]
+    backgroundColor: "#ffe390"
+  },
+  apps: {
   },
   language: {
+    fontFamily: "nokora-regular",
+    fontWeight: 600,
     color: "#111a",
     margin: "0 20px",
-    fontSize: 17,
+    fontSize: 16,
     padding: "4px 10px",
     [theme.breakpoints.down("sm")]: {
       display: "none"
@@ -93,105 +102,69 @@ const styles = makeStyles(theme => ({
   }
 }));
 
-let pageCount = 1;
 const Header = props => {
   const [page, setPage] = useState(null);
   const classes = styles();
   const history = useHistory();
   const location = useLocation();
-  const { firstPage } = props;
-  const handleHome = () => {
-    if (page !== 0) {
-      if (firstPage === 0) {
-        history.go(-1);
-      } else if (pageCount === 1) {
-        pageCount = 2;
-        history.push("/");
-      } else {
-        console.log("replace");
-        history.replace("/");
-      }
-    }
-  }
-  const handleApps = () => {
-    if (page !== 1) {
-      if (firstPage === 1) {
-        history.go(-1);
-      } else if (pageCount === 1) {
-        pageCount = 2;
-        history.push("/apps");
-      } else {
-        history.replace("/apps");
-      }
-    }
-  }
-  const handleSignIn = () => {
-    if (page !== 2) {
-      if (firstPage === 2) {
-        history.go(-1);
-      } else if (pageCount === 1) {
-        pageCount = 2;
-        history.push("/signin");
-      } else {
-        console.log("replace");
-        history.replace("/signin");
-      }
-    }
-  }
+
   useEffect(() => {
     switch(location.pathname) {
       case "/":
       case "/index.html":
-        if (firstPage === 0) {
-          pageCount = 1;
-        }
         setPage(0);
         break;
       case "/apps":
-        if (firstPage === 1) {
-          pageCount = 1;
-        }
         setPage(1);
         break;
       case "/signin":
-        if (firstPage === 2) {
-          pageCount = 1;
-        }
         setPage(2);
         break;
     }
   }, [location]);
+
+  const handleHome = () => {
+    history.replace("/");
+  }
+  const handleApps = () => {
+    history.replace("/apps");
+  }
+  const handleSignIn = () => {
+    history.replace("/signin");
+  }
+
   return (
   <AppBar position="sticky" className={classes.appBar}>
     <Toolbar className={classes.toolbar}>
       <img src={M} alt="M" height={40} className={classes.M}/>
       <div className={classes.items}>
-        <Button 
+        <button 
           className={clsx(classes.item, classes.home, page === 0 && classes.selected)} 
           onClick={handleHome}>
-          Home
-        </Button>
-        <Button 
+          ទំព័រដើម
+        </button>
+        <button 
           className={clsx(classes.item, classes.apps, page === 1 && classes.selected)} 
           onClick={handleApps}>
-          Apps
-        </Button>
-        <Button 
+          កម្មវិធី
+        </button>
+        <button 
           className={clsx(classes.item, classes.signIn, page === 2 && classes.selected)} 
           onClick={handleSignIn}>
-          SignIn
-        </Button>
+          ចុះចូល
+        </button>
       </div>
       <Button 
+        disableRipple 
         endIcon={<Language />} 
         className={classes.language} 
         variant="outlined">
-        english
+        ខ្មែរ
       </Button>
       <div className={classes.search}>
         <Search />
         <TextField
-          placeholder="search..."
+          placeholder="ស្វែងរក..."
           type="text"
           InputProps={{disableUnderline: true, classes: {input: classes.textField}}} />
       </div>

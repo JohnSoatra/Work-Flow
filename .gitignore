@@ -30,5 +30,5 @@ yarn-error.log*
 #custom
 .swift-sfdc.json
 note.txt
-note.txt
 .env
+test.js
