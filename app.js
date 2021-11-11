@@ -24,11 +24,9 @@ app.use((req, res, next) => {
     }
   }
 });
-
-app.get("/", (req, res) => {
-  res.send("Welocome to Meka app.");
-})
-
+app.get("/", (_, res) => {
+  res.send("Meka app is a sub-website of Meka. Meka app contains a lot of apps hosted by uses.");
+});
 app.get("/:appName/**", (req, res) => {
   let url = req.url.replace("/", "");
   let appName = req.params.appName;
@@ -37,19 +35,11 @@ app.get("/:appName/**", (req, res) => {
   }
   bucket.file(url).download().then(resIn => {
     res.end(resIn[0]);
-  }, error => res.send("There are some problem." + error)).catch(error => res.send("There are some problem." + error));
+  }, error => res.send("There are some problem.")).catch(error => res.send("There are some problem."));
 });
 app.get("/:appName", async (req, res) => {
   res.redirect(`/${req.params.appName}/`);
 });
-app.post("/search", (req, res) => {
-  if (release) {  }
-  else {
-    console.log(req.body);
-    res.send(req.body);
-  }
-});
-
 app.post("/signin", (req, res) => {
   const email = req.query.email;
   const password = req.query.password;
@@ -70,7 +60,6 @@ app.post("/signin", (req, res) => {
     }
   });
 });
-
 app.post("/docs", (req, res) => {
   const email = req.query.email;
   store.collection("users").where("email", "==", email).limit(1).get().then(resIn => {
@@ -80,7 +69,6 @@ app.post("/docs", (req, res) => {
     });
   });
 });
-
 app.post("/addname", (req, res) => {
   const email = req.query.email;
   const name = req.query.name;
@@ -94,7 +82,6 @@ app.post("/addname", (req, res) => {
     });
   });
 });
-
 app.post("/removename", (req, res) => {
   const email = req.query.email;
   const name = req.query.name;
@@ -109,8 +96,7 @@ app.post("/removename", (req, res) => {
     });
   });
 });
-
-app.post("/config", (req, res) => {
+app.post("/config", (_, res) => {
   res.json({
     apiKey: "AIzaSyAl-IGzGVkfZMcaxz7jM4LGfE0lVuL272M",
     authDomain: "meka-356bd.firebaseapp.com",
@@ -120,5 +106,4 @@ app.post("/config", (req, res) => {
     appId: "1:779520340240:web:5cf72dc00cf9e86208b595"
   });
 });
-
-app.listen(port, () => console.log("App is running!" + "http://localhost:8080/"));
+app.listen(port, () => console.log("The app is running!"));
