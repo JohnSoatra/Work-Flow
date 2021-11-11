@@ -5,9 +5,25 @@ const app = express();
 const port = process.env.port || 8080;
 const bucket = firebase.storage().bucket("gs://meka-356bd.appspot.com");
 const store = firebase.firestore();
-const release = false;
+
+// const originName = /localhost:5500$/;
+const originName = /meka\.soatra\.com$/;
 
 app.use(cors());
+app.use((req, res, next) => {
+  const reqOriginName = req.headers.origin;
+  if (originName.test(reqOriginName)) {
+    next();
+  }
+  else {
+    if (req.method === "GET") {
+      next();
+    }
+    else {
+      res.json({msg: "no permission"});
+    }
+  }
+});
 
 app.get("/", (req, res) => {
   res.send("Welocome to Meka app.");
@@ -91,6 +107,17 @@ app.post("/removename", (req, res) => {
         res.json({status: "success"});
       });
     });
+  });
+});
+
+app.post("/config", (req, res) => {
+  res.json({
+    apiKey: "AIzaSyAl-IGzGVkfZMcaxz7jM4LGfE0lVuL272M",
+    authDomain: "meka-356bd.firebaseapp.com",
+    projectId: "meka-356bd",
+    storageBucket: "meka-356bd.appspot.com",
+    messagingSenderId: "779520340240",
+    appId: "1:779520340240:web:5cf72dc00cf9e86208b595"
   });
 });
 
