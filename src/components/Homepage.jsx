@@ -18,7 +18,6 @@ const styles = makeStyles(theme => ({
   home: {
     ...ownStyle.width(theme),
     margin: ownStyle.margin,
-
     flex: ownStyle.flex,
     marginBottom: 15,
   },
@@ -84,7 +83,6 @@ const styles = makeStyles(theme => ({
       width: 150
     }
   },
-  endP: { }
 }));
 
 const Hompage = () => {
@@ -158,7 +156,7 @@ const Hompage = () => {
           </Grid>
         </Grid>
       </div>
-      <div className={clsx(classes.gWhat, classes.endP)}>
+      <div className={clsx(classes.gWhat)}>
         <Typography variant="body2">
           I Love Meka, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.

@@ -33,20 +33,12 @@ const AppPage = () => {
   const [files, setFiles] = useState([]);
   const [nameWarning, setNameWarning] = useState(false);
   const [fileWarning, setFileWarning] = useState(false);
-
   const [inAddProgress, setInAddProgress] = useState(false);
-  // const [inAddProgress, setInAddProgress] = useState(true);
-  
   const [inRemoveProgress, setInRemoveProgress] = useState(false);
-  
   const [isSignIn] = useState(checkCookie("email"));
-  // const [isSignIn] = useState(true);
-  
   const [names, setNames] = useState([]);
   const [nameNotAvailable, setNameNotAvailable] = useState(false);
-  
   const [percentage, setPercentage] = useState(0);
-  // const [percentage, setPercentage] = useState(95);
 
   useEffect(() => {
     if (isSignIn) {
@@ -121,7 +113,6 @@ const AppPage = () => {
       }
     });
   }
-
   const handleNameClick = (index) => {
     if (show !== index) {
       setShow(index);
@@ -241,10 +232,10 @@ const AppPage = () => {
                 {
                   show === null ? <>
                     Add App
-                    <Add className={classes.iconAdd}/>
+                    <Add className={classes.iconAdd} />
                   </> : <>
                     Remove App
-                    <Remove className={classes.iconRemove}/>
+                    <Remove className={classes.iconRemove} />
                   </>
                 }
               </button>
@@ -265,7 +256,6 @@ const AppPage = () => {
             }
           </div>
           <div className={clsx(classes.blackScreen, (openDialogAdd || openDialogRemove || inAddProgress || inRemoveProgress) && classes.showDialog)}></div>
-
           <div className={clsx(classes.model, classes.modelAddApp, (openDialogAdd && !inAddProgress) && classes.showDialog)}>
             <span className={clsx(classes.modelTitle, classes.drag, (nameWarning || nameNotAvailable) && classes.titleWarning)}>
               {
@@ -290,7 +280,6 @@ const AppPage = () => {
               <button className={clsx(classes.btn, classes.btnDaiCencel)} onClick={handleCancel}>Cancel</button>
             </span>
           </div>
-
           <div className={clsx(classes.model, (openDialogRemove && !inRemoveProgress) && classes.showDialog)}>
             <span className={clsx(classes.modelTitle, classes.warning)}>
               Warning <Warning className={classes.iconWarning} />
@@ -303,7 +292,6 @@ const AppPage = () => {
               <button className={clsx(classes.btn, classes.btnNo)} onClick={handleNo}>No</button>
             </span>
           </div>
-
           <div className={clsx(classes.model, classes.modalProgress, inRemoveProgress && classes.showDialog)}>
             <span className={clsx(classes.modelTitle)}/>
             <span className={clsx(classes.modelContent)}>
@@ -311,14 +299,12 @@ const AppPage = () => {
             </span>
             <span className={classes.modelAction}/>
           </div>
-
           <div className={clsx(classes.model, classes.modalProgress, inAddProgress && classes.showDialog)}>
             <span className={clsx(classes.modelContent)}>
               <CircularProgress value={percentage} variant='determinate' size={65} style={{color: blue[500]}}/>
               <p className={classes.percentage}>{percentage + "%"}</p>
             </span>
           </div>
-
         </div>
       </> : <>
         <div className={classes.statusWrapper}>
@@ -331,6 +317,19 @@ const AppPage = () => {
   );
 }
 const styles = makeStyles(theme => ({
+  AppPage: {
+    ...ownStyle.width(theme),
+    margin: ownStyle.margin,
+    flex: ownStyle.flex,
+    marginTop: 15,
+    marginBottom: 15,
+    minHeight: 300,
+    boxShadow: "0px 0px 3px 2px #aaa",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "stretch",
+    flexWrap: "nowrap",
+  },
   statusWrapper: {
     display: "flex",
     flexDirection: "column",
@@ -372,7 +371,6 @@ const styles = makeStyles(theme => ({
   fileString: {
     color: blue[500],
     marginBottom: 5,
-    // visibility: "hidden"
   },
   btnChoose: {
     marginTop: 5,
@@ -480,21 +478,6 @@ const styles = makeStyles(theme => ({
   showDialog: {
     visibility: "visible"
   },
-
-  //above is new
-  AppPage: {
-    ...ownStyle.width(theme),
-    margin: ownStyle.margin,
-    flex: ownStyle.flex,
-    marginTop: 15,
-    marginBottom: 15,
-    minHeight: 300,
-    boxShadow: "0px 0px 3px 2px #aaa",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "stretch",
-    flexWrap: "nowrap",
-  },
   wrapper: {
     display: "flex",
     flexDirection: "column",
@@ -576,6 +559,6 @@ const styles = makeStyles(theme => ({
     height: "fit-content",
     transform: "translate(0, 0)",
   }
-
 }));
+
 export default AppPage;

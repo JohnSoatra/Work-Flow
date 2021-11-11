@@ -481,3 +481,15 @@ btnGmail: {
     }
   },
   -----
+  {/* <Grid item xs={12} sm={6} className={classes.gridItem}>
+            <div className={classes.div}>
+              <Typography variant="h6" className={classes.title}>Subscribe</Typography>
+              <div className={clsx(classes.content, classes.subText)}>
+                <Typography variant="body2">
+                  Choose the plan that suit with your business.
+                  There are always plans you can subscribe.
+                </Typography>
+              </div>
+            </div>
+          </Grid> */}
+------

@@ -136,7 +136,7 @@ const Header = props => {
   return (
   <AppBar position="sticky" className={classes.appBar}>
     <Toolbar className={classes.toolbar}>
-      <img src={M} alt="M" height={40} className={classes.M}/>
+      <img src={M} alt="M" height={40} className={classes.M} onClick={handleHome} />
       <div className={classes.items}>
         <button 
           className={clsx(classes.item, classes.home, page === 0 && classes.selected)} 
