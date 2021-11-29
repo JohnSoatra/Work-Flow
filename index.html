@@ -18,11 +18,133 @@
     <meta property="twitter:description" content="PaperPen is a note app helps you to note you information">
     <title>PaperPen</title>
     <script src="workers/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="fonts/fonts.css">
+    <link rel="stylesheet" href="own-style/element.css">
+    <link rel="stylesheet" href="own-style/util.css">
+    <link rel="stylesheet" href="own-style/color.css">
+    <link rel="stylesheet" href="own-style/responser.css">
+    <link rel="stylesheet" href="own-style/layout-v2.css">
+    
   </head>
   <body>
     <div class="container">
-      <img src="images/paperpen.svg" alt="paperpen" class="img">
-      <span>PaperPen is Window application for noting <a href="file/PaperPen-Setup.exe">install</a>.</span>
+      
+      <div class="header flex content-center">
+        <div class="content fill-height box">
+          <img src="images/paperpen.svg" alt="icon" class="logo to-left-center">
+          <span class="title to-center">PaperPen</span>
+        </div>
+      </div>
+
+      <div class="central content content-start">
+        <div class="xs12 sm10 md8">
+          <img src="images/splash-screen.png" alt="splash-screen" class="xs12">
+        </div>
+        <a href="file/PaperPen-Setup.exe" class="a"><button class="btn btn-download flex content-center items-center br-5">Download</button></a>
+        <p class="desc p-20 br-5">
+          <span class="ff-en">PaperPen</span> គឺជា <span class="ff-en">Software</span> មួយដែលបង្កើតឡើងដើម្បីអោយអ្នកប្រើប្រាស់អាចរក្សាទុកទិន្នន័យ រឺ ព័ត៌មានរបស់ពួកគេបានយ៉ាងងាយស្រួលដោយការ <span class="ff-en">Note</span> ទុកនៅក្នុងកម្មវីធី ។ មិនត្រឹមតែប៉ុណ្ណោះ ពួកគេក៏អាច <span class="ff-en">Add</span>, <span  class="ff-en">Delete</span>, <span class="ff-en">Edit</span>, <span class="ff-en">Search</span> នៅក្នុងនោះផងដែរ ព្រមទាំងអាចកំណត់ <span class="ff-en">Note</span> នោះជា <span class="ff-en">Simple Note</span> ក៏បាន និង <span class="ff-en">Important Note</span> ក៏បាន ។
+        </p>
+        <div class="div-instruc xs12">
+          <h2 class="fw-normal text-align-center h2-instruc">Instuction</h2>
+          
+          <section class="section">
+            <h3 class="fw-normal section-title">1. Home</h3>
+            <div class="ro">
+              <div class="xs12 md6">
+                <img src="images/home-screen.png" alt="home" class="xs12">
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="ff-kh p-10"><en>Home page</en> នៃ <en>PaperPen System</en> មានមុខងារដូចជា៖</p>
+                <ul class="p-10 ul">
+                  <li><p class="ff-kh">– <en>Button Search</en> សម្រាប់ស្វែងរក <en>Note</en> ។</p></li>
+                  <li><p class="ff-kh">– សញ្ញា + តំណាងអោយការ <en>Add Note</en> ។</p></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h3 class="fw-normal section-title">2. Add</h3>
+            <div class="ro">
+              <div class="xs12 md6">
+                <img src="images/add-screen.png" alt="add" class="xs12">
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="ff-kh p-10">ដំណើរការនៃការ <en>Add Note</en> ដំបូងយើងចុចលើសញ្ញា + នោះវានឹងបង្ហាញ <en>Form</en> មួយដែលអាចអោយយើងសរសេរអំពីអ្វីដែលយើងចង់ <en>Note</en> ទុក ដែលក្នុងនោះមានដូចជា៖</p>
+              </div>
+              <ul class="xs12 p-10  ul">
+                <li><p class="ff-kh">– <en>Title</en> : ជាចំណងជើងនៃ <en>Note</en> របស់យើង</p></li>
+                <li><p class="ff-kh">– <en>Content</en> : ជាកម្រងអត្ថបទដែលតម្រូវអោយយើងសរសេររបាយការណ៍ រឺ សំណេរផ្សេងៗដែលយើងចង់ <en>Note</en> ទុក ។</p></li>
+                <li><p class="ff-kh">– <en>Date</en> : ជាថ្ងៃខែ ពេលវេលា សម្រាប់អោយយើងកត់ចំណាំនៅលើ <en>Note</en> របស់យើង ។</p></li>
+                <li><p class="ff-kh">– <en>Important</en> : ជាពាក្យមួយដែលអាចអោយយើងជ្រើសយក ប្រសិនបើយើងចង់បញ្ជាក់ថា <en>Note</en> របស់យើងជា <en>Note Important</en> ។ រាល់ <en>Note</en> ដែល <en>important</en> វានឹងលោតមកនៅខាងមុខ <en>Simple Note</en> ទាំងអស់ ទោះបីជា <en>Important Note</en> បានសរសេរក្រោយគេក៏ដោយ ។ </p></li>
+              </ul>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="p-note ml-10 self-start"><en>Note</en>:</p>
+                <ul class="p-10 ul">
+                  <li><p class="ff-kh">– <en>Important Note</en> បញ្ជាក់ដោយពណ៌បៃតងចាស់</p></li>
+                  <li><p class="ff-kh">– <en>Simple Note</en> បញ្ជាក់ដោយពណ៌ផ្ទៃមេឃ</p></li>
+                </ul>
+              </div>
+              <div class="xs12 md6">
+                <img src="images/add-screen-note.png" alt="add-note" class="xs12">
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h3 class="fw-normal section-title">3. Edit</h3>
+            <div class="ro">
+              <div class="xs12 md6">
+                <img src="images/edit-screen.png" alt="edit" class="xs12">
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="p-10 ff-kh">នៅពេលដែលយើងចង់ <en>Edit Note</en> របស់យើង ដោយហេតុផលចង់កែទិន្នន័យ រឺ ចង់សរសេរបន្ថែមទៀត នោះយើងគ្រាន់តែ <en>Click on Note</en> ហើយយើងអាចកែទិន្នន័យ រឺ សរសេរបន្ថែមបានហើយ ។ បន្ទាប់មក ចុចលើ <en>Button Edit</en> ដើម្បី <en>Save</en> ទិន្នន័យដែលបានកែប្រែរួច ។</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h3 class="fw-normal section-title">4. Delete</h3>
+            <div class="ro">
+              <div class="xs12 md6">
+                <img src="images/delete-screen.png" alt="delete" class="xs12">
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="p-10 ff-kh">ប្រសិនបើ យើងចង់ <en>Delete Note</en> របស់យើងណាមួយ នោះយើងគ្រាន់តែ <en>Long Click on left Mouse</en> អោយយូរ នៅលើ <en>Note</en> នោះ វានឹងបង្ហាញ <en>Message alert</en> មួយដែលសួរយើងបញ្ជាក់ថា ចង់លុប <en>Note</en> នេះដែររឺទេ? </p>
+              </div>
+              <ul class="xs12 p-10 ul">
+                <li><p class="ff-kh">– បើយើងចង់លុប នោះយើងត្រូវចុចលើ <en>Button Yes</en></p></li>
+                <li><p class="ff-kh">– បើយើងមិនចង់លុប នោះយើងត្រួវចុចលើ <en>Button No</en> ។</p></li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section">
+            <h3 class="fw-normal section-title">5. Search</h3>
+            <div class="ro">
+              <div class="xs12 md6">
+                <img src="images/search-screen.png" alt="search" class="xs12">
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="p-10 ff-kh">នៅក្នុងករណីមួយដែលយើងមាន <en>Note</en> ច្រើនពេកដែលធ្វើអោយយើងពិបាកស្វែងរក ដំណោះស្រាយពេលនោះ ដោយយើងគ្រាន់តែចងចាំចំណងជើងរបស់ <en>Note (Title)</en> នោះយើងក៏នឺងអាច <en>Search</en> រក <en>Note</en> ដែលយើងចង់រកបានហើយ  ព្រោះកម្មវិធីនឹង <en>Hide Notes</en> ទាំងអស់ដែលយើងមិនត្រូវការ ដែលបង្ហាញជំនួសវិញដោយ <en>Note</en> ដែលយើងបាន <en>Search</en> ។</p>
+              </div>
+              <div class="xs12 md6 flex column content-center items-center">
+                <p class="ff-kh">ជាលទ្ធផលយើងទទួលបាន៖</p>
+              </div>
+              <div class="xs12 md6">
+                <img src="images/search-screen-result.png" alt="add-note" class="xs12">
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <div class="footer flex content-center items-center">
+        <p class="footer-title">Thank you for using PaperPen</p>
+      </div>
+      
     </div>
     <script src="workers/index.js"></script>
     </body>

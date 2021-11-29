@@ -1,0 +1,234 @@
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-primary-rgb: 13, 110, 253;
+  --bs-secondary-rgb: 108, 117, 125;
+  --bs-success-rgb: 25, 135, 84;
+  --bs-info-rgb: 13, 202, 240;
+  --bs-warning-rgb: 255, 193, 7;
+  --bs-danger-rgb: 220, 53, 69;
+  --bs-light-rgb: 248, 249, 250;
+  --bs-dark-rgb: 33, 37, 41;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-body-color-rgb: 33, 37, 41;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-color: #212529;
+  --bs-body-bg: #fff;
+}
+.fg-blue {
+  color: #0d6efd
+};
+.fg-indigo {
+  color: #6610f2
+};
+.fg-purple {
+  color: #6f42c1;
+}
+.fg-pink {
+  color: #d63384;
+}
+.fg-red {
+  color: #dc3545;
+}
+.fg-orange {
+  color: #fd7e14;
+}
+.fg-yellow {
+  color: #ffc107;
+}
+.fg-green {
+  color: #198754;
+}
+.text-teal {
+  color: #20c997;
+}
+.fg-cyan {
+  color: #0dcaf0;
+}
+.fg-white {
+  color: #fff;
+}
+.fg-gray {
+  color: #6c757d;
+}
+.fg-gray-dark {
+  color: #343a40;
+}
+.fg-gray-100 {
+  color: #f8f9fa;
+}
+.fg-gray-200 {
+  color: #e9ecef;
+}
+.fg-gray-300 {
+  color: #dee2e6;
+}
+.fg-gray-400 {
+  color: #ced4da;
+}
+.fg-gray-500 {
+  color: #adb5bd;
+}
+.fg-gray-600 {
+  color: #6c757d;
+}
+.fg-gray-700 {
+  color: #495057;
+}
+.fg-gray-800 {
+  color: #343a40;
+}
+.fg-gray-900 {
+  color: #212529;
+}
+.fg-primary { 
+  color: #0d6efd;
+}
+.fg-secondary {
+  color: #6c757d;
+}
+.fg-success {
+  color: #198754;
+}
+.fg-info {
+   color: #0dcaf0;
+}
+.fg-warning { 
+  color: #ffc107;
+}
+.fg-danger {
+   color: #dc3545;
+}
+.fg-light {
+  color: #f8f9fa;
+}
+.fg-dark {
+  color: #212529;
+}
+/* background */
+.bg-blue {
+  background-color: #0d6efd
+};
+.bg-indigo {
+  background-color: #6610f2
+};
+.bg-purple {
+  background-color: #6f42c1;
+}
+.bg-pink {
+  background-color: #d63384;
+}
+.bg-red {
+  background-color: #dc3545;
+}
+.bg-orange {
+  background-color: #fd7e14;
+}
+.bg-yellow {
+  background-color: #ffc107;
+}
+.bg-green {
+  background-color: #198754;
+}
+.bg-teal {
+  background-color: #20c997;
+}
+.bg-cyan {
+  background-color: #0dcaf0;
+}
+.bg-white {
+  background-color: #fff;
+}
+.bg-gray {
+  background-color: #6c757d;
+}
+.bg-gray-dark {
+  background-color: #343a40;
+}
+.bg-gray-100 {
+  background-color: #f8f9fa;
+}
+.bg-gray-200 {
+  background-color: #e9ecef;
+}
+.bg-gray-300 {
+  background-color: #dee2e6;
+}
+.bg-gray-400 {
+  background-color: #ced4da;
+}
+.bg-gray-500 {
+  background-color: #adb5bd;
+}
+.bg-gray-600 {
+  background-color: #6c757d;
+}
+.bg-gray-700 {
+  background-color: #495057;
+}
+.bg-gray-800 {
+  background-color: #343a40;
+}
+.bg-gray-900 {
+  background-color: #212529;
+}
+.bg-primary { 
+  background-color: #0d6efd;
+}
+.bg-secondary {
+  background-color: #6c757d;
+}
+.bg-success {
+  background-color: #198754;
+}
+.bg-info {
+  background-color: #0dcaf0;
+}
+.bg-warning { 
+  background-color: #ffc107;
+}
+.bg-danger {
+  background-color: #dc3545;
+}
+.bg-light {
+  background-color: #f8f9fa;
+}
+.bg-dark {
+  background-color: #212529;
+}
