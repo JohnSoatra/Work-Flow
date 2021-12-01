@@ -75,6 +75,6 @@ function backgroundAnimator() {
     i = 1;
     j = 1;
   }
-  setTimeout(backgroundAnimator, 8500);
+  setTimeout(backgroundAnimator, 10000);
 }
 backgroundAnimator();

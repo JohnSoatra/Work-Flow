@@ -16,7 +16,7 @@ body {
   background-size: cover;
   background-image: url(../images/airplan.jpg);
 
-  position: absolute;
+  position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
