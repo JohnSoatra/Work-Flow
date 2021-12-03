@@ -30,16 +30,17 @@ const colors = [
   "#f4b5d4"
 ];
 const nameColors = [
-  "#9a0047",
+  "#9fcde0",
   "#c1aaf6",
-  "#02425f",
-  "#c1217c",
-  "#ff568b"
+  "#a5bed5",
+  "#ff829a",
+  "#f2d45a"
 ]
 
 let firstTime = true;
 let i = 0;
 let j = 1;
+
 function backgroundAnimator() {
   if (!firstTime) {
     const imageUrl = images[i];
@@ -56,16 +57,14 @@ function backgroundAnimator() {
          `url(../images/${imageUrl})`
         );
      });
-     $(".header").css("backgroundColor", color);
-     $(".footer").css("borderColor", color + "73");
-     $(".name").css("color", nameColor);
-     $(".starter").css("color", nameColor);
-     $(".product-name").css("color", nameColor);
+     
+     $(":root").css("--header-color", color + "e6");
+     $(":root").css("--one-color", nameColor);
+     $(".footer").css("borderColor", nameColors[i] + "73");
   }
-  else {
-    firstTime = false;
+  else { 
+    firstTime = false; 
   }
-
   i += j;
   if (i === images.length) {
     i = images.length - 2;
