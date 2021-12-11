@@ -16,9 +16,9 @@ $(".product-img").on("click", function(event) {
   }
 });
 const images = [
-  "airplan.jpg",
+  "airplane.jpg",
   "a-man.jpg",
-  "dimon.jpg",
+  "diamond.jpg",
   "hold-liquid.jpg",
   "carry-color.jpg"
 ];
@@ -35,45 +35,57 @@ const nameColors = [
   "#a5bed5",
   "#ff829a",
   "#f2d45a"
-]
+];
 
-let firstTime = true;
-let i = 0;
-let j = 1;
+let index = null;
+let isFirstTime = true;
+const fetchedImages = {};
 
-function backgroundAnimator() {
-  if (!firstTime) {
-    const imageUrl = images[i];
-    const color = colors[i];
-    const nameColor = nameColors[i];
-
-     $(".div-background-second").css({
-       display: "none",
-       backgroundImage: `url(../images/${imageUrl})`
-     });
-     $(".div-background-second").fadeIn(1000, () => {
-       $(".div-background-first").css(
-         "backgroundImage",
-         `url(../images/${imageUrl})`
-        );
-     });
-     
-     $(":root").css("--header-color", color + "e6");
-     $(":root").css("--one-color", nameColor);
-     $(".footer").css("borderColor", nameColors[i] + "73");
+function randomIndex() {
+  let random;
+  do {
+   random = Math.floor(Math.random() * 5);
+  } while (random === index);
+  return random;
+}
+async function backgroundAnimator() {
+  index = randomIndex();
+  const imageUrl = images[index];
+  const color = colors[index];
+  const nameColor = nameColors[index];
+  let objectUrl = fetchedImages[imageUrl];
+  if (!objectUrl) {
+    const res = await fetch(`images/${imageUrl}`);
+    const arrayBuffer = await res.arrayBuffer();
+    const _objectUrl = URL.createObjectURL(new Blob([arrayBuffer]));
+    fetchedImages[imageUrl] = _objectUrl;
+    objectUrl = _objectUrl;
   }
-  else { 
-    firstTime = false; 
+  if (isFirstTime) {
+    isFirstTime = false;
+    $(".div-background-second").css(
+      "backgroundImage",
+      `url(${objectUrl})`
+    );
+    $(".div-background-first").css(
+      "backgroundImage",
+      `url(${objectUrl})`
+    );
+  } else {
+    $(".div-background-second").css({
+      display: "none",
+      backgroundImage: `url(${objectUrl})`
+    });
+    $(".div-background-second").fadeIn(1000, () => {
+      $(".div-background-first").css(
+        "backgroundImage",
+        `url(${objectUrl})`
+      );
+    });
   }
-  i += j;
-  if (i === images.length) {
-    i = images.length - 2;
-    j = -1;
-  }
-  else if (i === -1) {
-    i = 1;
-    j = 1;
-  }
+  $(":root").css("--header-color", color + "e6");
+  $(":root").css("--one-color", nameColor);
+  $(".footer").css("borderColor", nameColors[index] + "73");
   setTimeout(backgroundAnimator, 10000);
 }
 backgroundAnimator();
