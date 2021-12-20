@@ -1,0 +1,93 @@
+.bs-dashed {
+  border-style: dashed;
+}
+.bs-dotted {
+  border-style: dotted;
+}
+.bs-double {
+  border-style: double;
+}
+.bs-groove {
+  border-style: groove;
+}
+.bs-none {
+  border-style: none;
+}
+.bs-solid {
+  border-style: solid;
+}
+
+.d-i {
+  display: inline;
+}
+.d-b {
+  display: block;
+}
+.d-n {
+  display: none;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+.ff-en {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.ff-kh {
+  font-family: "nokora", "hanuman", content;
+}
+.fw-100 {
+  font-weight: 100;
+}
+.fw-200 {
+  font-weight: 200;
+}
+.fw-300 {
+  font-weight: 300;
+}
+.fw-400 {
+  font-weight: 400;
+}
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+.fw-700 {
+  font-weight: 700;
+}
+.fw-800 {
+  font-weight: 800;
+}
+.fw-900 {
+  font-weight: 900;
+}
+.fw-bold {
+  font-weight: bold;
+}
+.fw-bolder {
+  font-weight: bolder;
+}
+.fw-lighter {
+  font-weight: lighter;
+}
+.fw-normal {
+  font-weight: normal;
+}
+
+.ta-c {
+  text-align: center;
+}
+.ta-e {
+  text-align: end;
+}
+.ta-s {
+  text-align: start;
+}
+.td-n {
+  text-decoration: none;
+}
+.td-u {
+  text-decoration: underline;
+}

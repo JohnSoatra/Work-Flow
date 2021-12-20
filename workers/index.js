@@ -1,4 +1,4 @@
-$(".container").css({
+$(".old-container").css({
   minHeight: $(window).height(),
 });
 $(".product-img").on("click", function(event) {
@@ -71,6 +71,7 @@ async function backgroundAnimator() {
       "backgroundImage",
       `url(${objectUrl})`
     );
+    $(".cover").addClass("d-n");
   } else {
     $(".div-background-second").css({
       display: "none",

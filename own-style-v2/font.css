@@ -1,0 +1,12 @@
+@font-face {
+  font-family: nokora;
+  src: url("khmer-fonts/Nokora/Nokora-Regular.ttf");
+}
+@font-face {
+  font-family: content;
+  src: url("khmer-fonts/Content/Content-Regular.ttf");
+}
+@font-face {
+  font-family: hanuman;
+  src: url("khmer-fonts/Hanuman/Hanuman-Regular.ttf");
+}
