@@ -79,6 +79,7 @@ body {
   font-size: 22px;
   font-weight: 500;
   margin-top: 5px;
+  cursor: default;
 }
 
 .desc {

@@ -12,3 +12,7 @@ $(".product-img").on("click", function(event) {
       break;
   }
 });
+
+$(".profile").on("click", function() {
+  window.open("https://www.facebook.com/Soatra/")
+});
