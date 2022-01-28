@@ -1,7 +1,6 @@
 .flex {
   display: flex;
 }
-
 .fd-r {
   flex-direction: row;
 }
@@ -71,6 +70,7 @@
 /* box */
 .box {
   position: relative;
+  overflow: hidden;
 }
 
 .box > * {

@@ -17,6 +17,98 @@
   border-style: solid;
 }
 
+.bls-dashed {
+  border-left-style: dashed;
+}
+.bls-dotted {
+  border-left-style: dotted;
+}
+.bls-double {
+  border-left-style: double;
+}
+.bls-groove {
+  border-left-style: groove;
+}
+.bls-none {
+  border-left-style: none;
+}
+.bls-solid {
+  border-left-style: solid;
+}
+
+.brs-dashed {
+  border-right-style: dashed;
+}
+.brs-dotted {
+  border-right-style: dotted;
+}
+.brs-double {
+  border-right-style: double;
+}
+.brs-groove {
+  border-right-style: groove;
+}
+.brs-none {
+  border-right-style: none;
+}
+.brs-solid {
+  border-right-style: solid;
+}
+
+.bbs-dashed {
+  border-bottom-style: dashed;
+}
+.bbs-dotted {
+  border-bottom-style: dotted;
+}
+.bbs-double {
+  border-bottom-style: double;
+}
+.bbs-groove {
+  border-bottom-style: groove;
+}
+.bbs-none {
+  border-bottom-style: none;
+}
+.bbs-solid {
+  border-bottom-style: solid;
+}
+
+.bts-dashed {
+  border-top-style: dashed;
+}
+.bts-dotted {
+  border-top-style: dotted;
+}
+.bts-double {
+  border-top-style: double;
+}
+.bts-groove {
+  border-top-style: groove;
+}
+.bts-none {
+  border-top-style: none;
+}
+.bts-solid {
+  border-top-style: solid;
+}
+
+.cs-pointer {
+  cursor: pointer;
+}
+.cs-text {
+  cursor: text;
+}
+.cs-none {
+  cursor: none;
+}
+.cs-default {
+  cursor: default;
+}
+
+.d-f {
+  display: flex;
+}
 .d-i {
   display: inline;
 }
@@ -35,6 +127,9 @@
 }
 .ff-kh {
   font-family: "nokora", "hanuman", content;
+}
+.ff-fas {
+  font-family: "FontAwesome";
 }
 .fw-100 {
   font-weight: 100;
@@ -76,6 +171,71 @@
   font-weight: normal;
 }
 
+.ls-n {
+  list-style: none;
+}
+.ls-d {
+  list-style: disc;
+}
+.ls-c {
+  list-style: circle;
+}
+
+.ovf-a {
+  overflow: auto;
+}
+.ovf-s {
+  overflow: scroll;
+}
+.ovf-h {
+  overflow: hidden;
+}
+.ovf-v {
+  overflow: visible;
+}
+
+.ofx-a {
+  overflow-x: auto;
+}
+.ofx-s {
+  overflow-x: scroll;
+}
+.ofx-h {
+  overflow-x: hidden;
+}
+.ofx-v {
+  overflow-x: visible;
+}
+
+.ofy-a {
+  overflow-y: auto;
+}
+.ofy-s {
+  overflow-y: scroll;
+}
+.ofy-h {
+  overflow-y: hidden;
+}
+.ofy-v {
+  overflow-y: visible;
+}
+
+.pos-abs {
+  position: absolute;
+}
+.pos-fix {
+  position: fixed;
+}
+.pos-rel {
+  position: relative;
+}
+.pos-sta {
+  position: static;
+}
+.pos-sti {
+  position: sticky;
+}
+
 .ta-c {
   text-align: center;
 }
@@ -90,4 +250,25 @@
 }
 .td-u {
   text-decoration: underline;
+}
+.tt-c {
+  text-transform: capitalize;
+}
+.tt-u {
+  text-transform: uppercase;
+}
+.tt-l {
+  text-transform: lowercase;
+}
+.tt-n {
+  text-transform: none;
+}
+.v-h {
+  visibility: hidden;
+}
+.v-v {
+  visibility: visible;
+}
+.v-c {
+  visibility: collapse;
 }
