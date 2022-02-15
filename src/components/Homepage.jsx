@@ -6,12 +6,6 @@ import React from 'react';
 import topImage from "../img/home/top-image.jpg";
 import whatImage from "../img/home/what.png";
 import whyImage from "../img/home/why.jpg";
-import tesla from "../img/home/tesla.svg";
-import alibaba from "../img/home/alibaba.svg";
-import netflix from "../img/home/netflix.svg";
-import facebook from "../img/home/facebook.svg";
-import cisco from "../img/home/cisco.svg";
-import godaday from "../img/home/godady.svg";
 import ownStyle from "../constants/ownStyle";
 
 const styles = makeStyles(theme => ({
@@ -40,7 +34,6 @@ const styles = makeStyles(theme => ({
   getStart: { 
     fontSize: 16,
     minWidth: 0,
-    fontFamily: "nokora-regular",
     [theme.breakpoints.down("xs")]: {
       fontSize: 15,
       padding: "5px 10px"
@@ -67,7 +60,6 @@ const styles = makeStyles(theme => ({
   },
   textWhat: {
     fontSize: 17,
-    fontFamily: "nokora-regular",
     color: "#000e",
     lineHeight: 1.7,
   },
@@ -98,17 +90,17 @@ const Hompage = () => {
     <div className={classes.home}>
       <div className={classes.divGetStart}>
         <Button size="large" variant="contained" color="secondary" className={classes.getStart} onClick={handleStart}>
-          ចាប់ផ្ដើម
+          Start
         </Button>
       </div>
       <div className={classes.gWhat}>
         <Typography variant="h3" className={classes.titleWhat}>
-          អ្វីជា មេកា ?
+          What is Meka ?
         </Typography>
         <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
           <Grid item xs={12} md={6}>
             <Typography variant="body2" className={classes.textWhat}>
-            មេកា គឺជា គេហទំព័រមួយ ដែលអនុញ្ញាតអោយអ្នកអាចធ្វើការ ដាក់បង្ហាញនូវ គេហទំព័ររបស់អ្នក ដោយឥតគិតថ្លៃ ​។ ជាមួយមេកា អ្នកអាច ធ្វើការដាក់បង្ហាញគេហទំព័ររបស់អ្នក ដោយមិនចាំបាច់ មានឈ្មោះដូម៉េន។
+            Meka is a website that lets you to host your websites for free. With Meka you can host your websites without having any domain names.
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>
@@ -118,7 +110,7 @@ const Hompage = () => {
       </div>
       <div className={classes.gWhat}>
         <Typography variant="h3" className={classes.titleWhat}>
-          ហេតុអ្វីត្រូវជា មេកា ?
+          Why is Meka ?
         </Typography>
         <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
           <Grid item xs={12} md={6}>
@@ -126,7 +118,7 @@ const Hompage = () => {
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="body2" className={classes.textWhat}>
-            ជាមួយមេកា អ្នកនឹងទទួលបាននូវ ភាពងាយស្រួល ការប្រើប្រាស់ពេលវេលាខ្លី និង ការចំណាយថវិកាតិចបំផុត ។
+            With Meka you will have convenience, use short time and spend less money.
             </Typography>
           </Grid>
         </Grid>

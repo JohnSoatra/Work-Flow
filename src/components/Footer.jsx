@@ -25,7 +25,6 @@ const styles = makeStyles(theme => ({
     textAlign: "center"
   },
   title: {
-    fontFamily: "nokora-regular",
     textDecoration: "underline",
     textDecorationColor: "#1976d2",
     textTransform: "uppercase",
@@ -41,7 +40,6 @@ const styles = makeStyles(theme => ({
     textAlign: "center"
   },
   text: {
-    fontFamily: "nokora-regular",
     lineHeight: 1.6,
     cursor: "default"
   },
@@ -55,7 +53,6 @@ const styles = makeStyles(theme => ({
     }
   },
   lastText: {
-    fontFamily: "nokora-regular",
     textDecoration: "underline",
     textDecorationColor: "#1976d2",
     cursor: "default"
@@ -79,28 +76,28 @@ const Footer = () => {
         <Grid container className={classes.grid} justifyContent='center'>
           <Grid item xs={12} sm={4} className={classes.gridItem}>
             <div className={classes.div}>
-              <Typography variant="h6" className={classes.title}>ទំនាក់ទំនង</Typography>
+              <Typography variant="h6" className={classes.title}>Contact</Typography>
               <div className={classes.content}>
-                <Typography variant="body2" className={classes.text}>ទាក់ទង ពួកយើង</Typography>
-                <Typography variant="body2" className={classes.text}>ការបង់ប្រាក់</Typography>
+                <Typography variant="body2" className={classes.text}>Contact us</Typography>
+                <Typography variant="body2" className={classes.text}>Payment</Typography>
               </div>
             </div>
           </Grid>
           <Grid item xs={12} sm ={4} className={classes.gridItem}>
             <div className={classes.div}>
-              <Typography variant="h6" className={classes.title}>ព័ត៌មាន</Typography>
+              <Typography variant="h6" className={classes.title}>Information</Typography>
               <div className={classes.content}>
-                <Typography variant="body2" className={classes.text}>ការងាររបស់ពួកយើង</Typography>
-                <Typography variant="body2" className={classes.text}>គោលការណ៍</Typography>
+                <Typography variant="body2" className={classes.text}>Our works</Typography>
+                <Typography variant="body2" className={classes.text}>Privacy</Typography>
               </div>
             </div>
           </Grid>
           <Grid item sm={4} className={clsx(classes.gridItem, classes.lastPart)}>
             <div className={classes.div}>
-              <Typography variant="h6" className={classes.title}>ការជាវ</Typography>
+              <Typography variant="h6" className={classes.title}>Subscribe</Typography>
               <div className={clsx(classes.content, classes.subText)}>
                 <Typography variant="body2" className={classes.lastText}>
-                  ជ្រើសរើសគម្រោងដែលត្រូវនឹងអ្នក
+                  Choose the plan that fits to your need.
                 </Typography>
               </div>
             </div>

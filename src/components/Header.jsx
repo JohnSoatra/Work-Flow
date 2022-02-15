@@ -39,7 +39,6 @@ const styles = makeStyles(theme => ({
   textField: {
     marginLeft: 16,
     "&::placeholder": {
-      fontFamily: "nokora-regular",
       color: "#333a",
       opacity: "100"
     },
@@ -56,7 +55,6 @@ const styles = makeStyles(theme => ({
     }
   },
   item: {
-    fontFamily: "nokora-regular",
     color: "#202020ef",
     fontSize: 18,
     transition: "transform ease-in-out 100ms",
@@ -90,7 +88,6 @@ const styles = makeStyles(theme => ({
   apps: {
   },
   language: {
-    fontFamily: "nokora-regular",
     fontWeight: 600,
     color: "#111a",
     margin: "0 20px",
@@ -141,17 +138,17 @@ const Header = props => {
         <button 
           className={clsx(classes.item, classes.home, page === 0 && classes.selected)} 
           onClick={handleHome}>
-          ទំព័រដើម
+          Home
         </button>
         <button 
           className={clsx(classes.item, classes.apps, page === 1 && classes.selected)} 
           onClick={handleApps}>
-          កម្មវិធី
+          Apps
         </button>
         <button 
           className={clsx(classes.item, classes.signIn, page === 2 && classes.selected)} 
           onClick={handleSignIn}>
-          ចុះចូល
+          Login
         </button>
       </div>
       <Button 
@@ -159,12 +156,12 @@ const Header = props => {
         endIcon={<Language />} 
         className={classes.language} 
         variant="outlined">
-        ខ្មែរ
+        ENG
       </Button>
       <div className={classes.search}>
         <Search />
         <TextField
-          placeholder="ស្វែងរក..."
+          placeholder="search..."
           type="text"
           InputProps={{disableUnderline: true, classes: {input: classes.textField}}} />
       </div>
