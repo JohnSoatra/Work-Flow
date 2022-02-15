@@ -44,7 +44,6 @@ const styles = makeStyles(theme => ({
   },
   titleWhat: {
     fontSize: 25,
-    fontFamily: "nokora-bold",
     textAlign: "center",
     color: blue[700],
     fontWeight: 400,
