@@ -131,31 +131,6 @@ const Hompage = () => {
           </Grid>
         </Grid>
       </div>
-      <div className={classes.gWhat}>
-        <Typography variant="h3" className={classes.titleWhat}>
-          អ្នកណាខ្លះប្រើប្រាស់ មេកា ?
-        </Typography>
-        <Grid container spacing={4} alignItems="center" className={classes.gridWhat}>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={tesla} alt="tesla" className={classes.vector} />
-          </Grid>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={alibaba} alt="tesla" className={classes.vector} />
-          </Grid>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={netflix} alt="tesla" className={classes.vector} />
-          </Grid>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={facebook} alt="tesla" className={classes.vector} />
-          </Grid>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={cisco} alt="tesla" className={classes.vector} />
-          </Grid>
-          <Grid item xs={6} md={4} className={classes.vectorGrid}>
-            <img src={godaday} alt="tesla" className={classes.vector} />
-          </Grid>
-        </Grid>
-      </div>
       <div className={clsx(classes.gWhat)}>
         <Typography variant="body2">
           I Love Meka, Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
