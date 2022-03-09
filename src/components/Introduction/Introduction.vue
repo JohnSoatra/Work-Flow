@@ -1,5 +1,5 @@
 <template>
-    <h2 class="ta-c pb-20 title">Introduction</h2>
+    <h2 class="ta-c pb-20 pt-20 title">Introduction</h2>
     <div class="container bgc-fbfbfb p-20 ta-c des fs-18 fw-400">
         <p>Welcome to lab website. This website was made to serve you storing and accessing your data remotely.</p>
         <p>You can upload your documents in this website from where anywhere anytime and when you want to download it, you can download it from anywhere anytime too.</p>

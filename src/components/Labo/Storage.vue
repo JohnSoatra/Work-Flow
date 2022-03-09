@@ -36,6 +36,12 @@
                         class="btn-icon btn-option ta-s">
                         Delete
                     </button>
+                    <div class="divider"></div>
+                    <button
+                        @mousedown="onChooseDownload"
+                        class="btn-icon btn-option ta-s">
+                        Download
+                    </button>
                 </div>
             </div>
             <Input
@@ -160,12 +166,15 @@ export default {
         onChooseDelete() {
             this.chooseDelete = true;
         },
+        onChooseDownload() {
+            alert("choose download");
+        },
         onBtnRenameClicked() {
             this.onCancel();
         },
         onBtnDeleteClicked() {
             this.onCancel();
-        }
+        },
     },
     watch: {
         $route(to) {

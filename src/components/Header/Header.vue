@@ -8,7 +8,7 @@
             <TopBarItem 
                 v-for="item in items"
                 :key="item"
-                :item="item">
+                :item="item != 'Last' ? item : (state.hasUsername && state.hasPassword) ? 'Profile' : 'Login'">
             </TopBarItem>
         </div>
     </div>
@@ -16,22 +16,35 @@
 
 <script>
 import TopBarItem from "./TopBarItem.vue";
+import cookie from "../../helpers/cookie";
+import state, {always, checkProp} from "../../state";
 
 export default {
+    components: {
+        TopBarItem
+    },
     data: function () {
+        // const hasUsername = cookie.checkCookie("username");
+        // const hasPassword = cookie.checkCookie("password");
         return {
             items: [
                 "Home",
                 "Docs",
                 "Labo",
-                "Login"
-            ]
+                "Last",
+            ],
+            state
         }
     },
-    components: {
-        TopBarItem
+    created() {
+        always(() => {
+            checkProp(
+                this.state,
+                "hasUsername",
+                "hasPassword"
+            );
+        });
     }
-
 }
 </script>
 <style scoped>

@@ -1,23 +1,17 @@
 <template>
-    <input
-        :type="type"
-        :placeholder="placeholder"
-        :block="block || null">
+    <input :block="block || null">
 </template>
 <script>
 export default {
     props: {
-        type: {
-            type: String,
-            default: "text"
-        },
-        placeholder: {
-            type: String,
-            default: ""
-        },
         block: {
             type: Boolean,
             default: true
+        },
+    },
+    methods: {
+        updateValue() {
+            this.$emit('input', this.value);
         }
     }
 }
@@ -38,6 +32,10 @@ export default {
     input[login]:focus {
         border-color: transparent;
         box-shadow: 0px 0px 0px 2.5px #2fce64a6;
+    }
+    input[invalid]:focus {
+        border-color: transparent;
+        box-shadow: 0px 0px 0px 2.5px #da5555;
     }
     
 </style>

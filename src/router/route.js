@@ -1,10 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from "../views/Home";
+import HomePage from "../views/HomePage";
 import LoginPage from "../views/LoginPage";
 import CreatePage from "../views/CreatePage";
 import ResetPage from "../views/ResetPage";
 import LaboPage from "../views/LaboPage";
 import DocumentPage from "../views/DocumentPage";
+import WelcomePage from "../views/WelcomePage";
+import TestPage from "../views/TestPage";
 import Notfound from "../views/Notfound";
 
 const routes = [
@@ -42,6 +44,16 @@ const routes = [
         path: "/labo/:folder",
         name: "Labo folder",
         component: LaboPage
+    },
+    {
+        path: "/profile",
+        name: "Profile",
+        component: WelcomePage
+    },
+    {
+        path: "/test",
+        name: "Test",
+        component: TestPage
     },
     {
         path: "/:pathMatch(.*)*",

@@ -1,14 +1,16 @@
 <template>
     <Header />
-    <Cover />
-    <div class="pt-20">
-        <Introduction />
-        <IntroLogin />
-        <IntroUpload />
-        <IntroDownload />
-        <Sponsor />
+    <div class="f-1">
+        <Cover @cover-loaded="onCoverLoaded" />
+        <div v-if="coverLoaded">
+            <Introduction />
+            <IntroLogin />
+            <IntroUpload />
+            <IntroDownload />
+            <Sponsor />
+            <Footer />
+        </div>
     </div>
-    <Footer />
 </template>
 <script>
 import Header from "../components/Header/Header.vue";
@@ -21,12 +23,6 @@ import Sponsor from "../components/Sponsor/Sponsor.vue";
 import Footer from "../components/Footer/Footer.vue";
 
 export default {
-    name: "Home",
-    data: function() {
-        return {
-
-        };
-    },
     components: {
         Header,
         Cover,
@@ -36,6 +32,16 @@ export default {
         IntroDownload,
         Sponsor,
         Footer
+    },
+    data: function() {
+        return {
+            coverLoaded: false
+        };
+    },
+    methods: {
+        onCoverLoaded() {
+            this.coverLoaded = true;
+        }
     }
 }
 </script>

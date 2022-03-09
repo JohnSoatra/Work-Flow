@@ -1,27 +1,71 @@
 <template>
-    <div class="panel">
-        <h2 class="ta-c title-login">Reset password</h2>
-        <div class="input">
-            <Label name="email" text="Email"/>
-            <Input login/>
+    <form class="panel" id="form_reset" @submit="onSubmit">
+        <h2 class="ta-c title-login" v-if="!sent">Reset password</h2>
+        <div v-if="!sent">
+            <div class="input">
+                <Label name="email" text="Email"/>
+                <Input
+                    name="email"
+                    type="email"
+                    :login="!invalidEmail || null"
+                    :invalid="invalidEmail || null"
+                    :value="email" @input="evt => email = evt.target.value" />
+                <div class="invalid" v-if="invalidEmail">
+                    <p>Invalid email ! Must contains your name, symbol @ and e-mail server name.</p>
+                    <p>Example: <span class="em">johnsoatra@github.com</span></p>
+                </div>
+            </div>
+            <p class="reason" v-if="!invalidEmail">Please enter your email here and we'll send you the reset-password link.</p>
+            <Button
+                class="w-100p mt-15"
+                content="Send"
+                background="2aa052fc" />
         </div>
-        <p>Please enter your email here and we'll send you the reset-password link.</p>
-        <Button
-            class="w-100p mt-15"
-            content="Send"
-            background="2aa052fc" />
-    </div>
+        <div v-else class="p-30 pt-15 fs-19">
+            <span>
+                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M33.072 160c6.4 0.672 12.816 1.216 19.2 1.216 306.48 0.192 612.96 0.192 919.44 0 6.384 0 12.784-0.544 19.2-1.216C1000.896 163.824 1008 173.488 1008 184.832l0 2.768c-13.76 9.328-28.864 17.104-41.04 28.16-124.736 113.488-249.072 227.408-373.392 341.36-60.016 55.024-102.848 55.072-163.072-0.08-123.488-113.04-246.896-226.16-370.768-338.768C46.656 206.368 32 197.744 16 187.584l0-2.768C16 173.488 23.088 163.824 33.072 160"  /><path d="M309.008 560.144c17.472-15.36 30.336-15.216 46.288 1.856 15.824 16.928 34.064 31.6 51.504 46.992 68.064 59.92 143.104 59.648 211.232-0.784 22.768-20.192 45.312-40.608 70.8-63.488 70.048 57.936 138.432 114.896 207.312 171.264C932.992 746.144 976 775.264 1008 804.848l0 39.504C1008 859.072 996.08 864 981.36 864L42.64 864C27.92 864 16 859.072 16 844.352l0-46.848c61.072-48.496 122.352-96.704 183.104-145.6C236.272 621.968 273.2 591.648 309.008 560.144"  /><path d="M1008 256l0 482.704c-91.616-76.384-183.216-152.768-278.752-232.448C825.264 419.28 916.624 337.648 1008 254.864"  /><path d="M16 720 16 253.744c91.168 82.608 182.32 165.232 276.528 250.608C197.2 582.608 106.608 651.312 16 725.68"  /></svg>
+            </span>
+            <p class="c-4e6a86">Well, now you can reset your password with the link we sent to you.</p>
+        </div>
+    </form>
 </template>
 <script>
 import Input from "../Items/Input.vue";
 import Button from "../Items/Button.vue";
 import Label from "../Items/Label.vue";
+import { regEmail } from "../../constants/reg";
 
 export default {
     components: {
         Input,
         Button,
         Label
+    },
+    data: function() {
+        return {
+            email: "",
+            invalidEmail: false,
+            sent: false
+        }
+    },
+    methods: {
+        resetInvalidData() {
+            this.invalidEmail = false;
+            this.sent = false;
+        },
+        onSend(evt) {
+            this.onSubmit(evt);
+        },
+        onSubmit(evt) {
+            evt.preventDefault();
+            this.resetInvalidData();
+            if (!regEmail.test(this.email)) {
+                this.invalidEmail = true;
+                document.getElementById("form_reset").email.focus();
+            } else {
+                this.sent = true;
+            }
+        }
     }
 }
 </script>
@@ -43,12 +87,28 @@ export default {
         margin-top: 40px;
         box-shadow: 0px 0px 4px 2px rgba(100, 100, 100, 0.418);
         border-radius: 5px;
-        max-width: 300px;
+        width: 320;
     }
     .title-login {
         font-weight: 400;
     }
-    p {
+    .reason {
         color: #3e5c7a
+    }
+    .invalid {
+        color: #c92929;
+    }
+    .em {
+        font-weight: 500;
+    }
+    .svg-icon {
+        width: 30px;
+        fill: #557594;
+    }
+    .svg-icon:hover {
+        filter: brightness(1);
+    }
+    .svg-icon:active {
+        transform: scale(1, 1);
     }
 </style>

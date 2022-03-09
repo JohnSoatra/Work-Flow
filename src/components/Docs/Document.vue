@@ -50,7 +50,7 @@
         <div class="ta-s doc-home pb-20">
             <p>Login page lets you sign in to identify who you are and we can provide the data of you.</p>
             <p>If you don't have any account yet, you can create new one by clicking create new button.</p>
-            <p>And if you forget your password, you also can reset it as well by clicking on forgot password button.</p>
+            <p>And if you forget your password, you also can reset it as well by clicking on reset password button.</p>
             <p>After you logged in in 24 hours inactive, we will log you out automatically because of security reason.</p>
             <p>To work with Lab start login first.</p>
         </div>
