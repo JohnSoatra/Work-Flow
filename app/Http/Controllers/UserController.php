@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Response;
@@ -12,7 +13,6 @@ class UserController extends Controller
     public function get() {
         $query = Request::query();
         if (sizeof($query) > 0) {
-            $username = hash;
             $users = User::where("username", $query["username"])
                 ->where(DB::raw("BINARY `password`"), $query["password"])
                 ->first();
@@ -26,7 +26,7 @@ class UserController extends Controller
         }
         return User::all();
     }
-    public function add() {
+    public function create() {
         $username = Request::post("username", "");
         $email = Request::post("email", "");
         $password = Request::post("password");
@@ -75,6 +75,29 @@ class UserController extends Controller
                 "msg" => "could not find that user."
             ], 400);
         }
+    }
+    public function upload($id) {
+        $user = User::find($id);
+        if ($user) {
+            $file = Request::file("profile");
+            if ($file)  {
+                $slices = explode("/", $user->image);
+                $prevImage = $slices[sizeof($slices) - 2]."/".$slices[sizeof($slices) - 1];
+                $path = $file->path();
+                $name = $file->getClientOriginalName();
+                if (!str_contains($prevImage, "images/default.svg")) {
+                    try {unlink($prevImage);} catch(Exception){}
+                }
+                rename($path, "images/$id-$name");
+                return asset("images/$id-$name");
+            }
+            return Response::json([
+                "msg" => "No file sent."
+            ], 400);
+        }
+        return Response::json([
+            "msg" => "could not find that user."
+        ], 400);
     }
     public function delete($id) {
         $user = User::find($id);
