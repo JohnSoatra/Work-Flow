@@ -81,15 +81,13 @@ class UserController extends Controller
         if ($user) {
             $file = Request::file("profile");
             if ($file)  {
-                $slices = explode("/", $user->image);
-                $prevImage = $slices[sizeof($slices) - 2]."/".$slices[sizeof($slices) - 1];
                 $path = $file->path();
                 $name = $file->getClientOriginalName();
-                if (!str_contains($prevImage, "images/default.svg")) {
-                    try {unlink($prevImage);} catch(Exception){}
+                if (!str_contains($user->image, "images/default.svg")) {
+                    try {unlink($user->image);} catch(Exception){}
                 }
                 rename($path, "images/$id-$name");
-                return asset("images/$id-$name");
+                return "images/$id-$name";
             }
             return Response::json([
                 "msg" => "No file sent."

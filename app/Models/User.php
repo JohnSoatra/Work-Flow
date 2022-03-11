@@ -21,6 +21,6 @@ class User extends Model
         $this->password = $password ? $password : "password";
         $this->gender = $gender ? $gender : "male";
         $this->contact_info = $contact_info ? $contact_info : "no contact information";
-        $this->image = $image ? $image : asset("/images/default.svg");
+        $this->image = $image ? $image : "images/default.svg";
     }
 }

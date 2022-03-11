@@ -1,11 +1,13 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 $hc = HomeController::class;
 $uc = UserController::class;
+$ic = ImageController::class;
 
 Route::get("/", [$hc, "index"]);
 
@@ -15,3 +17,4 @@ Route::delete("users/{id}", [$uc, "delete"]);
 Route::post("/users", [$uc, "create"]);
 Route::put("/users/{id}", [$uc, "put"]);
 Route::post("/users/{id}", [$uc, "upload"]);
+Route::get("/storage/images/{name}", [$ic, "get"]);
