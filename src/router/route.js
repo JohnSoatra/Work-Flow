@@ -8,6 +8,7 @@ import DocumentPage from "../views/DocumentPage";
 import WelcomePage from "../views/WelcomePage";
 import TestPage from "../views/TestPage";
 import Notfound from "../views/Notfound";
+import { checkCookie } from "../helpers/cookie";
 
 const routes = [
     {

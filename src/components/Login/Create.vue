@@ -47,10 +47,12 @@
             </div>
         </div>
         <Button
-            @click="onCreate"
-            class="w-100p mt-15"
-            content="Create"
-            background="2aa052fc" />
+            class="xs-12 mt-15 flex jc-c ai-c"
+            :disabled="btnCreateClicked"
+            @click="onCreate">
+            {{btnCreateClicked ? 'Creating' : 'Create'}}
+            <svg v-if="btnCreateClicked" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
+        </Button>
     </form>
 </template>
 <script>
@@ -62,7 +64,7 @@ import url from "../../constants/url";
 import reg from "../../constants/reg";
 import { sha256 } from "../../helpers/hash";
 import { setCookie } from '../../helpers/cookie';
-
+import { refreshState } from "../../state";
 
 export default {
     components: {
@@ -79,7 +81,8 @@ export default {
             invalidEmail: false,
             invalidPassword: false,
             tokenUsername: false,
-            usedEmail: false
+            usedEmail: false,
+            btnCreateClicked: false
         }
     },
     methods: {
@@ -96,6 +99,7 @@ export default {
         async formSubmit(evt) {
             evt.preventDefault();
             this.resetInvalidData();
+            this.btnCreateClicked = true;
             if (!reg.username.test(this.username)) {
                 document.getElementById("form_create").username.focus();
                 this.invalidUsername = true;
@@ -118,18 +122,20 @@ export default {
                 if (!result.ok) {
                     const json = await result.json();
                     if (json.error == "username") {
-                        document.getElementById("form_create").input_username.focus();
+                        document.getElementById("form_create").username.focus();
                         this.tokenUsername = true;
                     } else {
-                        document.getElementById("form_create").input_email.focus();
+                        document.getElementById("form_create").email.focus();
                         this.usedEmail = true;
                     }
                 } else {
                     setCookie("username", this.username);
                     setCookie("password", password);
+                    refreshState();
                     this.$router.push({ name: "Profile" });
                 }
             }
+            this.btnCreateClicked = false;
         }
     }
 }
@@ -162,5 +168,18 @@ export default {
     }
     .em {
         font-weight: 500;
+    }
+    .svg-icon {
+        width: 18px;
+        fill: #fff;
+    }
+    .svg-icon:hover {
+        filter: brightness(1);
+    }
+    .svg-icon:active {
+        transform: scale(1, 1);
+    }
+    .process-icon {
+        animation: rotate 2000ms linear 0ms infinite normal both;
     }
 </style>

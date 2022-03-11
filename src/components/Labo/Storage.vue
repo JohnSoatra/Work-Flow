@@ -1,5 +1,7 @@
 <template>
-    <div class="container bgc-fff h-500 mt-30 p-20 box">
+    <div
+        v-if="checkCookie('username') && checkCookie('password')"
+        class="container bgc-fff h-500 mt-30 p-20 box">
         <div class="flex ai-c bgc-eee title-bar">
             <button @click="onBack" class="btn-icon">
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M333.436236 512.002048l363.098222-362.900598c18.226434-18.226434 18.226434-47.770666 0-65.998124s-47.770666-18.226434-65.998124 0L234.422666 479.000938c-18.226434 18.226434-18.226434 47.770666 0 65.998124l396.112643 395.942666c18.227458 18.18138 47.77169 18.18138 65.998124 0 18.226434-18.227458 18.226434-47.77169 0-65.998124L333.436236 512.002048z"/></svg>
@@ -96,6 +98,12 @@
         </div>
 
     </div>
+    <div
+        v-else
+        class="not-login title-welcome flex fd-c ai-c jc-c xs-12">
+        <span>You are currently logout.</span>
+        <span>Please login again. <span class="im" @click="onLoginClicked">Login</span>.</span>
+    </div>  
 </template>
 <script>
 import Input from "../Items/Input.vue";
@@ -104,6 +112,8 @@ import packs from "../../assets/data/packs";
 import movies from "../../assets/data/movies";
 import Label from "../Items/Label.vue";
 import Button from "../Items/Button.vue";
+import { checkCookie } from "../../helpers/cookie";
+
 
 export default {
     components: {
@@ -118,6 +128,7 @@ export default {
             folder: folder ? `/${folder}/` : '/',
             selectedIndex: -1,
             json: folder ? movies : packs,
+            checkCookie,
             showOptions: false,
             selectedName: "",
             chooseRename: false,
@@ -160,6 +171,12 @@ export default {
             this.chooseRename = false;
             this.chooseDelete = false;
         },
+        onBtnRenameClicked() {
+            this.onCancel();
+        },
+        onBtnDeleteClicked() {
+            this.onCancel();
+        },
         onChooseRename() {
             this.chooseRename = true;
         },
@@ -169,12 +186,9 @@ export default {
         onChooseDownload() {
             alert("choose download");
         },
-        onBtnRenameClicked() {
-            this.onCancel();
-        },
-        onBtnDeleteClicked() {
-            this.onCancel();
-        },
+        onLoginClicked() {
+            this.$router.push({ name: "Login" });
+        }
     },
     watch: {
         $route(to) {
@@ -240,5 +254,17 @@ export default {
     .more {
         fill: #182533;
         width: 28px;
+    }
+    .not-login {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .title-welcome {
+        font-size: 24px;
+        padding-bottom: 10px;
+    }
+    .im {
+        cursor: default
     }
 </style>

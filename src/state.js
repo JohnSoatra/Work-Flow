@@ -1,7 +1,11 @@
+import cookie from "./helpers/cookie";
+
 const temper = [];
-const state = {
-    hasUsername: false,
-    hasPassword: false
+const state = {}
+
+function refreshState() {
+    state["hasUsername"] = cookie.checkCookie("username");
+    state["hasPassword"] = cookie.checkCookie("password");
 }
 
 function checkProp(
@@ -29,8 +33,11 @@ function always(action = () => {}) {
     setTimeout(() => always(action), 0);
 }
 
+refreshState();
+
 export default state;
 export {
     checkProp,
-    always
+    always,
+    refreshState
 }

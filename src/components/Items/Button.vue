@@ -1,8 +1,13 @@
 <template>
-    <button :class="{
-        ['c-'+color]: true,
-        ['bgc-'+background]: true
-    }">{{content}}</button>
+    <button
+        :class="{
+            [disabled ? '' : 'c-'+color]: true,
+            [disabled ? '' : 'bgc-'+background]: true
+        }"
+        :disabled="disabled || null"
+        @click="onClicked">
+        <slot></slot>
+    </button>
 </template>
 <script>
 export default {
@@ -15,9 +20,16 @@ export default {
             type: String,
             default: "2aa052fc"
         },
-        content: {
-            type: String,
-            default: "Button"
+        disabled: {
+            type: Boolean,
+            default: false
+        }
+    },
+    methods: {
+        onClick() {
+            if (!this.disabled) {
+                this.$emit("click");
+            }
         }
     }
 }
@@ -25,5 +37,9 @@ export default {
 <style scoped>
     button {
         border-radius: 5px;
+    }
+    button[disabled] {
+        border-radius: 5px;
+        background-color: gray;
     }
 </style>

@@ -16,7 +16,6 @@
 
 <script>
 import TopBarItem from "./TopBarItem.vue";
-import cookie from "../../helpers/cookie";
 import state, {always, checkProp} from "../../state";
 
 export default {
@@ -24,8 +23,6 @@ export default {
         TopBarItem
     },
     data: function () {
-        // const hasUsername = cookie.checkCookie("username");
-        // const hasPassword = cookie.checkCookie("password");
         return {
             items: [
                 "Home",

@@ -266,6 +266,14 @@
 .tt-n {
   text-transform: none;
 }
+
+.tof-e {
+  text-overflow: ellipsis;
+}
+.tof-c {
+  text-overflow: clip;
+}
+
 .v-h {
   visibility: hidden;
 }
@@ -274,4 +282,11 @@
 }
 .v-c {
   visibility: collapse;
+}
+
+.ws-nw {
+  white-space: nowrap;
+}
+.ws-nm {
+  white-space: normal;
 }

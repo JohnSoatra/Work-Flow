@@ -18,8 +18,9 @@
             <p class="reason" v-if="!invalidEmail">Please enter your email here and we'll send you the reset-password link.</p>
             <Button
                 class="w-100p mt-15"
-                content="Send"
-                background="2aa052fc" />
+                background="2aa052fc">
+                Send
+            </Button>
         </div>
         <div v-else class="p-30 pt-15 fs-19">
             <span>
