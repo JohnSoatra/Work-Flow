@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+@include_once "Helpers/s3.php";
+
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -10,7 +12,7 @@ use Illuminate\Support\Facades\Response;
 
 class UserController extends Controller
 {
-    public function get() {
+    public function getUser() {
         $query = Request::query();
         if (sizeof($query) > 0) {
             $users = User::where("username", $query["username"])
@@ -26,7 +28,7 @@ class UserController extends Controller
         }
         return User::all();
     }
-    public function create() {
+    public function createUser() {
         $username = Request::post("username", "");
         $email = Request::post("email", "");
         $password = Request::post("password");
@@ -53,7 +55,7 @@ class UserController extends Controller
         $user->save();
         return $user;
     }
-    public function put($id) {
+    public function putUserInfo($id) {
         $user = User::find($id);
         if ($user) {
             $username = Request::post("username");
@@ -70,24 +72,20 @@ class UserController extends Controller
             if ($image) $user->image = $image;
             $user->save();
             return $user;
-        } else {
-            return Response::json([
-                "msg" => "could not find that user."
-            ], 400);
         }
+        return Response::json([
+            "msg" => "could not find that user."
+        ], 400);
     }
-    public function upload($id) {
+    public function uploadUserImage($id) {
         $user = User::find($id);
         if ($user) {
             $file = Request::file("profile");
             if ($file)  {
-                $path = $file->path();
-                $name = $file->getClientOriginalName();
-                if (!str_contains($user->image, "images/default.svg")) {
-                    try {unlink($user->image);} catch(Exception){}
+                if ($user->image != "default.svg") {
+                    s3Delete($user->image);
                 }
-                rename($path, "images/$id-$name");
-                return "images/$id-$name";
+                return s3Upload($file, "images", "$id-");
             }
             return Response::json([
                 "msg" => "No file sent."
@@ -97,25 +95,32 @@ class UserController extends Controller
             "msg" => "could not find that user."
         ], 400);
     }
-    public function delete($id) {
+    public function getUserId($username, $password) {
+        $users = User::where("username", $username)
+            ->where(DB::raw("BINARY `password`"), $password)
+            ->first();
+        if ($users) {
+            return $users->id;
+        }
+        return -1;
+    }
+    public function deleteUser($id) {
         $user = User::find($id);
         if ($user) {
             $user->delete();
             return $user;
-        } else {
-            return Response::json([
-                "msg" => "could not find that user."
-            ], 400);
         }
+        return Response::json([
+            "msg" => "could not find that user."
+        ], 400);
     }
-    public function find($id) {
+    public function findUser($id) {
         $user = User::find($id);
         if ($user) {
             return $user;
-        } else {
-            return Response::json([
-                "msg" => "could not find that user."
-            ], 400);
         }
+        return Response::json([
+            "msg" => "could not find that user."
+        ], 400);
     }
 }

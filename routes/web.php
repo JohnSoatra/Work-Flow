@@ -1,20 +1,27 @@
 <?php
 
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-$hc = HomeController::class;
-$uc = UserController::class;
-$ic = ImageController::class;
+$userController = UserController::class;
+$fileController = FileController::class;
 
-Route::get("/", [$hc, "index"]);
+Route::get("/files/{id}/{name}", [$fileController, "getFile"]);
 
-Route::get("/users", [$uc, "get"]);
-Route::get("/users/{id}", [$uc, "find"]);
-Route::delete("users/{id}", [$uc, "delete"]);
-Route::post("/users", [$uc, "create"]);
-Route::put("/users/{id}", [$uc, "put"]);
-Route::post("/users/{id}", [$uc, "upload"]);
-Route::get("/storage/images/{name}", [$ic, "get"]);
+Route::get("/images/{name}", [$fileController, "getImage"]);
+
+Route::get("/users", [$userController, "getUser"]);
+Route::post("/users", [$userController, "createUser"]);
+
+Route::get("/users/{id}", [$userController, "findUser"]);
+Route::delete("users/{id}", [$userController, "deleteUser"]);
+Route::put("/users/{id}", [$userController, "putUserInfo"]);
+Route::post("/users/{id}", [$userController, "uploadUserImage"]);
+
+Route::get("/users/{id}/files", [$fileController, "listFiles"]);
+Route::post("/users/{id}/files", [$fileController, "uploadFile"]);
+Route::get("/users/{username}/{password}", [$userController, "getUserId"]);
+
+Route::delete("/users/{id}/files/{name}", [$fileController, "deleteFile"]);
+Route::put("/users/{id}/files/{oldName}", [$fileController, "renameFile"]);
