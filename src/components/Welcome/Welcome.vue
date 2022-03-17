@@ -11,7 +11,15 @@
         <p>You are currently logout.</p>
         <p>Please login again. <span class="im" @click="loginClicked">Login</span>.</p>
     </div>
-    <div v-else class="flex fd-c ai-c wrapper">
+    <div v-else class="
+        flex fd-c ai-c wrapper
+        xs-mt-10
+        xs-mb-10
+        sm-mt-15
+        sm-mb-15
+        md-mt-20
+        md-mb-20 
+    ">
         <p v-if="invalid" class="invalid">New <span class="fw-500">{{invalid}}</span> is invalid.</p>
         <p class="
             title-welcome
@@ -242,6 +250,7 @@ export default {
                 if(reg.username.test(this.username)) {
                     changes["username"] = this.username;
                 } else {
+                    this.btnSaveClicked = false;
                     this.invalid = "username";
                     return;
                 }
@@ -250,6 +259,7 @@ export default {
                 if (reg.email.test(this.email)) {
                     changes["email"] = this.email;
                 } else {
+                    this.btnSaveClicked = false;
                     this.invalid = "email";
                     return;
                 }
@@ -258,6 +268,7 @@ export default {
                 if (reg.password.test(this.password)) {
                     changes["password"] = password;
                 } else {
+                    this.btnSaveClicked = false;
                     this.invalid = "password";
                     return;
                 }
@@ -266,6 +277,7 @@ export default {
                 if(reg.gender.test(this.gender)) {
                     changes["gender"] = this.gender;
                 } else {
+                    this.btnSaveClicked = false;
                     this.invalid = "gender";
                     return;
                 }
@@ -364,9 +376,8 @@ export default {
     .wrapper {
         box-shadow: 0px 0px 3px 1px rgba(138, 138, 138, 0.493);
         border-radius: 10px;
-        margin-top: 10px;
-        margin-bottom: 10px;
         background-color: #f4f4f4;
+        max-width: 91.6666%;
     }
     .btns {
         width: 300px;
