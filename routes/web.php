@@ -8,6 +8,7 @@ $userController = UserController::class;
 $fileController = FileController::class;
 
 Route::get("/files/{id}/{name}", [$fileController, "getFile"]);
+Route::get("/files/download/{id}/{name}", [$fileController, "downloadFile"]);
 
 Route::get("/images/{name}", [$fileController, "getImage"]);
 

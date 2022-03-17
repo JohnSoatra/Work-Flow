@@ -28,9 +28,12 @@ class FileController extends Controller
         return s3Rename($oldName, $newName, "files/$id");
     }
     public function getFile($id, $name) {
-        return s3Download("files/$id/$name");
+        return s3Response("files/$id/$name");
     }
     public function getImage($name) {
-        return s3Download("images/$name");
+        return s3Response("images/$name");
+    }
+    public function downloadFile($id, $name) {
+        return s3Download("files/$id/$name");
     }
 }
