@@ -1,7 +1,18 @@
 <template>
     <div
         v-if="hasCredential"
-        class="container wrapper f-1 xs-10">
+        class="
+            container wrapper f-1
+            xs-mt-10
+            xs-mb-10
+            sm-mt-15
+            sm-mb-15
+            md-mt-20
+            md-mb-20
+            xs-p-10
+            sm-p-15
+            md-p-20
+        ">
         <div class="flex ai-c bgc-eee title-bar">
             <button @click="onBack" class="btn-icon">
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M333.436236 512.002048l363.098222-362.900598c18.226434-18.226434 18.226434-47.770666 0-65.998124s-47.770666-18.226434-65.998124 0L234.422666 479.000938c-18.226434 18.226434-18.226434 47.770666 0 65.998124l396.112643 395.942666c18.227458 18.18138 47.77169 18.18138 65.998124 0 18.226434-18.227458 18.226434-47.77169 0-65.998124L333.436236 512.002048z"/></svg>
@@ -370,9 +381,11 @@ export default {
         font-weight: normal;
     }
     .wrapper {
+        line-height: 1.5;
+        border-radius: 5px;
         background-color: #fff;
-        margin-top: 20px;
-        padding: 20px
+        box-shadow: 0px 0px 4px 2px rgba(148, 148, 148, 0.288);
+        max-width: 91.6666%;
     }
     .input-search {
         max-width: 250px;
@@ -417,11 +430,6 @@ export default {
         border: 1px solid rgb(194, 194, 194);
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
-    }
-    .container {
-        box-shadow: 0px 0px 4px 2px rgba(119, 119, 119, 0.288);
-        line-height: 1.5;
-        border-radius: 5px;
     }
     .name {
         font-weight: 500;
