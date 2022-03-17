@@ -6,8 +6,20 @@
             class="cover"
             @load="onCoverLoaded">
         <div class="cover-desc" v-if="coverLoaded">
-            <h1>Lab</h1>
-            <h3>The greatest server for your documents.</h3>
+            <p class="
+                fw-bold
+                xs-fs-25
+                sm-fs-30
+            ">
+                Lab
+            </p>
+            <p class="
+                xs-fs-18
+                sm-fs-20
+                fw-500
+            ">
+                The greatest server for your documents.
+            </p>
         </div>
     </div>
 </template>

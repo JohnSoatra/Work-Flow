@@ -1,15 +1,36 @@
 <template>
     <div
         v-if="notLogin && worked"
-        class="not-login title-welcome flex fd-c ai-c jc-c xs-12">
+        class="
+            not-login title-welcome flex fd-c jc-c
+            xs-fs-18
+            sm-fs-20
+            md-fs-24
+        ">
         <p>You are currently logout.</p>
         <p>Please login again. <span class="im" @click="loginClicked">Login</span>.</p>
     </div>  
-    <div v-else-if="worked" class="flex fd-c ai-c xs-12 mt-30">
+    <div v-else-if="worked" class="flex fd-c ai-c wrapper">
         <p v-if="invalid" class="invalid">New <span class="fw-500">{{invalid}}</span> is invalid.</p>
-        <p class="title-welcome">Nice to see you again, <span class="em">{{user.username}}</span>.</p>
+        <p class="
+            title-welcome
+            xs-fs-20
+            sm-fs-22
+            md-fs-24
+        ">Nice to see you again, 
+            <span class="
+                em
+                xs-fs-22
+                sm-fs-24
+                md-fs-26
+            ">{{user.username}}</span>.</p>
         <div class="box">
-            <img :src="image" alt="profile" class="image-profile">
+            <img :src="image" alt="profile" class="
+                image-profile
+                xs-mxw-100
+                sm-mxw-130
+                md-mxw-160
+            ">
             <input
                 type="file"
                 class="d-n"
@@ -19,7 +40,10 @@
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M788.864 995.776H181.312A181.504 181.504 0 0 1 0 814.464V204.224A178.88 178.88 0 0 1 178.752 25.536h587.264a25.472 25.472 0 1 1 0 50.944H178.752A127.808 127.808 0 0 0 51.072 204.16v610.24c0 71.808 58.496 130.176 130.304 130.176h607.552a130.368 130.368 0 0 0 130.368-130.176v-456.96a25.472 25.472 0 0 1 50.88 0v457.024a181.44 181.44 0 0 1-181.312 181.312z" /><path d="M408.512 638.336a25.472 25.472 0 0 1-18.048-43.52L977.728 7.552a25.536 25.536 0 0 1 36.032 36.096L426.624 630.784a25.408 25.408 0 0 1-18.112 7.552z" /></svg>
             </span>
         </div>
-        <div class="profile-info flex ta-s ml-50 mt-20px">
+        <div class="
+            profile-info flex ta-s
+            md-fs-18
+        ">
             <div class="key">
                 <span class="key-text">
                     <p>Name</p>
@@ -120,8 +144,11 @@
             <Button
                 v-if="userChanged"
                 background="218bc9"
+                class="flex jc-c ai-c"
+                :disabled="btnSaveClicked"
                 @click="onSaveClicked">
-                Save
+                {{btnSaveClicked ? "Saving" : "Save"}}
+                <svg v-if="btnSaveClicked" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
             </Button>
         </div>
         <Button
@@ -134,7 +161,7 @@
     </div>
 </template>
 <script>
-import cookie, { setCookie } from "../../helpers/cookie";
+import { setCookie, getCookie, checkCookie } from "../../helpers/cookie";
 import { get, postFile, put } from "../../helpers/fetch_php";
 import url from "../../constants/url";
 import Button from "../Items/Button.vue";
@@ -151,6 +178,7 @@ export default {
     },
     data: function() {
         return {
+            aborter: null,
             worked: false,
             notLogin: false,
             user: {},
@@ -167,6 +195,7 @@ export default {
             btnPasswordClicked: false,
             btnGenderClicked: false,
             btnContactInfoClicked: false,
+            btnSaveClicked: false,
             userChanged: false,
         }
     },
@@ -184,10 +213,14 @@ export default {
         },
         onCancelClicked() {
             this.resetData();
+            if (this.aborter) {
+                this.aborter.abort();
+            }
             this.userChanged = false;
+            this.btnSaveClicked = false;
         },
         onBtnImageClicked() {
-            //document.getElementById("input_file").click();
+            document.getElementById("input_file").click();
         },
         async onFileInput(evt) {
             const file = evt.target.files[0];
@@ -202,7 +235,8 @@ export default {
             evt.preventDefault();
             const password = this.password ? await sha256(this.password) : false;
             const changes = {}
-
+            this.btnSaveClicked = true;
+            this.aborter = new AbortController();
             if (this.username != this.user.username) {
                 if(reg.username.test(this.username)) {
                     changes["username"] = this.username;
@@ -238,27 +272,36 @@ export default {
             if (this.contact_info != this.user.contact_info) {
                 changes["contact_info"] = this.contact_info;
             }
-            if (this.image != url.base + "/" + this.user.image) {
+            if (this.image != url.base + "/images/" + this.user.image) {
                 const endPoint = url.base + "/users/" + this.user.id;
-                const result = await postFile(
-                    endPoint,
-                    {
-                        "profile": this.file
-                    }
-                );
-                changes["image"] = await result.text();
+                try {
+                    const result = await postFile(
+                        endPoint,
+                        { "profile": this.file },
+                        {},
+                        { signal: this.aborter.signal }
+                    );
+                    changes["image"] = await result.text();
+                } catch(ex) { return; }
             }
             if (Object.keys(changes).length > 0) {
                 let endPoint = url.base + "/users/" + this.user.id;
-                const result = await put(endPoint, changes);
-                console.log(result);
-                const json = await result.json();
-                this.user = json;
-                setCookie("username", json.username);
-                setCookie("password", json.password);
-                sessionStorage.setItem("image", this.image);
+                try {
+                    const result = await put(
+                        endPoint,
+                        changes,
+                        { signal: this.aborter.signal }
+                    );
+                    const json = await result.json();
+                    this.user = json;
+                    setCookie("username", json.username);
+                    setCookie("password", json.password);
+                    sessionStorage.setItem("image", this.image);
+                    if (changes["image"]) { this.$router.go(); }
+                } catch(ex) { return; }
             }
             this.userChanged = false;
+            this.btnSaveClicked = false;
         },
         resetData() {
             this.username = this.user.username;
@@ -266,28 +309,28 @@ export default {
             this.password = "";
             this.gender = this.user.gender;
             this.contact_info = this.user.contact_info;
-            this.image = url.base + "/" + this.user.image;
+            this.image = url.base + "/images/" + this.user.image;
             this.file = "";
         },
         removeCookie() {
-            cookie.setCookie("username", "", 0);
-            cookie.setCookie("password", "", 0);
+            setCookie("username", "", 0);
+            setCookie("password", "", 0);
             refreshState();
         }
     },
     beforeMount: async function() {
-        const hasUsername = cookie.checkCookie("username");
-        const hasPassword = cookie.checkCookie("password");
+        const hasUsername = checkCookie("username");
+        const hasPassword = checkCookie("password");
         if (hasUsername && hasPassword) {
-            const username = cookie.getCookie("username");
-            const password = cookie.getCookie("password");
+            const username = getCookie("username");
+            const password = getCookie("password");
             const endpoint = url.base + `/users?username=${username}&password=${password}`;
             const result = await get(endpoint);
-            if (!result.ok) {
-                this.notLogin = true;
-            } else {
+            if (result.ok) {
                 this.user = await result.json();
                 this.resetData();
+            } else {
+                this.notLogin = true;
             }
         } else {
             this.notLogin = true;
@@ -315,6 +358,13 @@ export default {
 }
 </script>
 <style scoped>
+    .wrapper {
+        box-shadow: 0px 0px 3px 1px rgba(138, 138, 138, 0.493);
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #f4f4f4;
+    }
     .btns {
         width: 300px;
     }
@@ -339,15 +389,14 @@ export default {
         justify-content: space-between;
     }
     .profile-info {
-        font-size: 18px;
+        margin-left: 50px;
+        margin-top: 20px;
     }
     .image-profile {
         width: 100%;
-        min-width: 65px;
-        max-width: 170px;
         aspect-ratio: 1 / 1;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 10px;
         box-shadow: 0px 0px 3px 1px #8686866b;
     }
     .key {
@@ -363,11 +412,10 @@ export default {
         justify-content: space-evenly;
     }
     .title-welcome {
-        font-size: 24px;
-        padding-bottom: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
     }
     .em {
-        font-size: 26px;
         font-weight: 500;
     }
     .not-login {
@@ -383,5 +431,15 @@ export default {
     }
     .invalid {
         color: #c92929;
+    }
+    .process-icon {
+        fill: #fff;
+        animation: rotate 2000ms linear 0ms infinite normal both;
+    }
+    .process-icon:hover {
+        filter: brightness(1);
+    }
+    .process-icon:active {
+        transform: scale(1, 1);
     }
 </style>

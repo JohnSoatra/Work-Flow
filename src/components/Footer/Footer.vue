@@ -1,9 +1,16 @@
 <template>
     <div class="line"></div>
-    <div class="bgc-fbfbfb footer pt-20" v-if="logos.length">
+    <div class="footer" v-if="logos.length">
         <div class="container">
-            <h3 class="ta-c follow">Follow us.</h3>
-            <div class="flex jc-c ai-c pt-10 pb-20">
+            <p class="
+                follow
+                xs-fs-18
+                sm-fs-20
+                md-fs-22
+            ">
+                Follow us.
+            </p>
+            <div class="flex jc-c ai-c logos">
                 <Logo
                     v-for="logo in logos"
                     :key="logo.alt"
@@ -60,5 +67,15 @@ export default {
 <style scoped>
     .follow {
         color: #4f6377;
+        text-align: center;
+        font-weight: bold;
+    }
+    .footer {
+        background-color: #fbfbfb;
+        padding-top: 10px;
+    }
+    .logos {
+        padding-top: 10px;
+        padding-bottom: 20px;
     }
 </style>

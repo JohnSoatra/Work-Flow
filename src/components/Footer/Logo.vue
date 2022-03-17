@@ -1,6 +1,11 @@
 <template>
-    <a :href="website" class="logo">
-        <img :src="src" :alt="alt" class="w-100p">
+    <a :href="website" class="f-1">
+        <img :src="src" :alt="alt" class="
+            image
+            xs-mxw-60
+            sm-mxw-80
+            md-mxw-100
+        ">
     </a>
 </template>
 <script>
@@ -13,8 +18,7 @@ export default {
 }
 </script>
 <style scoped>
-    .logo {
-        width: 25%;
-        max-width: 100px;
+    .image {
+        width: 100%
     }
 </style>

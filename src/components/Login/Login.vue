@@ -2,11 +2,16 @@
     <div
         class="mt-30"
         v-if="checkCookie('username') && checkCookie('password')">
-        <p class="fs-25 fw-500">You already Logged in.</p>
+        <p class="
+            fw-400
+            xs-fs-18
+            sm-fs-22
+            md-fs-25
+        ">You already Logged in.</p>
     </div>
     <form 
         v-else
-        class="panel"
+        class="panel xs-11"
         id="form_login"
         @submit="formSubmit">
         <h2 class="ta-c title-login">Login to Lab</h2>
@@ -19,6 +24,7 @@
             <Label name="username" text="Username" />
             <Input
                 name="username"
+                class="d-b"
                 :login="!invalidUsername || null"
                 :invalid="invalidUsername || null"
                 :value="username" @input="evt => username = evt.target.value" />
@@ -32,6 +38,7 @@
             <Input
                 name="password"
                 type="password"
+                class="d-b"
                 :login="!invalidPassword || null"
                 :invalid="invalidPassword || null"
                 :value="password" @input="evt => password = evt.target.value" />
@@ -139,7 +146,7 @@ export default {
         padding-left: 10px;
         padding-right: 10px;
         margin-top: 40px;
-        width: 320px;
+        max-width: 320px;
         box-shadow: 0px 0px 4px 2px rgba(100, 100, 100, 0.418);
         border-radius: 5px;
     }

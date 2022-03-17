@@ -1,5 +1,5 @@
 <template>
-    <input :block="block || null">
+    <input>
 </template>
 <script>
 export default {
@@ -22,9 +22,6 @@ export default {
         font-size: 15px;
         color: #213a51;
     }
-    input[block] {
-        display: block;
-    }
     input:focus {
         border-color: transparent;
         box-shadow: 0px 0px 0px 2.5px #b0b0b0ab;
@@ -37,5 +34,4 @@ export default {
         border-color: transparent;
         box-shadow: 0px 0px 0px 2.5px #da5555;
     }
-    
 </style>

@@ -77,6 +77,122 @@ const classPairsCss = {
   "z-": ["z-index", ""]
 };
 
+const pairSize = {
+  //font-size
+  "xs-fs-": ["font-size", "px"],
+  "sm-fs-": ["font-size", "px"],
+  "md-fs-": ["font-size", "px"],
+  "lg-fs-": ["font-size", "px"],
+  "xl-fs-": ["font-size", "px"],
+
+  // size
+  "xs-w-": ["width", "px"],
+  "sm-w-": ["width", "px"],
+  "md-w-": ["width", "px"],
+  "lg-w-": ["width", "px"],
+  "xl-w-": ["width", "px"],
+  
+  "xs-h-": ["height", "px"],
+  "sm-h-": ["height", "px"],
+  "md-h-": ["height", "px"],
+  "lg-h-": ["height", "px"],
+  "xl-h-": ["height", "px"],
+
+  // padding
+  "xs-p-": ["padding", "px"],
+  "xs-pl-": ["padding-left", "px"],
+  "xs-pr-": ["padding-right", "px"],
+  "xs-pt-": ["padding-top", "px"],
+  "xs-pb-": ["padding-bottom", "px"],
+
+  "sm-p-": ["padding", "px"],
+  "sm-pl-": ["padding-left", "px"],
+  "sm-pr-": ["padding-right", "px"],
+  "sm-pt-": ["padding-top", "px"],
+  "sm-pb-": ["padding-bottom", "px"],
+
+  "md-p-": ["padding", "px"],
+  "md-pl-": ["padding-left", "px"],
+  "md-pr-": ["padding-right", "px"],
+  "md-pt-": ["padding-top", "px"],
+  "md-pb-": ["padding-bottom", "px"],
+
+  "lg-p-": ["padding", "px"],
+  "lg-pl-": ["padding-left", "px"],
+  "lg-pr-": ["padding-right", "px"],
+  "lg-pt-": ["padding-top", "px"],
+  "lg-pb-": ["padding-bottom", "px"],
+  
+  "xl-p-": ["padding", "px"],
+  "xl-pl-": ["padding-left", "px"],
+  "xl-pr-": ["padding-right", "px"],
+  "xl-pt-": ["padding-top", "px"],
+  "xl-pb-": ["padding-bottom", "px"],
+  
+  // margin
+  "xs-m-": ["margin", "px"],
+  "xs-ml-": ["margin-left", "px"],
+  "xs-mr-": ["margin-right", "px"],
+  "xs-mt-": ["margin-top", "px"],
+  "xs-mb-": ["margin-bottom", "px"],
+
+  "sm-m-": ["margin", "px"],
+  "sm-ml-": ["margin-left", "px"],
+  "sm-mr-": ["margin-right", "px"],
+  "sm-mt-": ["margin-top", "px"],
+  "sm-mb-": ["margin-bottom", "px"],
+  
+  "md-m-": ["margin", "px"],
+  "md-ml-": ["margin-left", "px"],
+  "md-mr-": ["margin-right", "px"],
+  "md-mt-": ["margin-top", "px"],
+  "md-mb-": ["margin-bottom", "px"],
+  
+  "lg-m-": ["margin", "px"],
+  "lg-ml-": ["margin-left", "px"],
+  "lg-mr-": ["margin-right", "px"],
+  "lg-mt-": ["margin-top", "px"],
+  "lg-mb-": ["margin-bottom", "px"],
+  
+  "xl-m-": ["margin", "px"],
+  "xl-ml-": ["margin-left", "px"],
+  "xl-mr-": ["margin-right", "px"],
+  "xl-mt-": ["margin-top", "px"],
+  "xl-mb-": ["margin-bottom", "px"],
+
+  // min-width, min-height
+  "xs-mnw-": ["min-width", "px"],
+  "xs-mnh-": ["min-height", "px"],
+
+  "sm-mnw-": ["min-width", "px"],
+  "sm-mnh-": ["min-height", "px"],
+
+  "md-mnw-": ["min-width", "px"],
+  "md-mnh-": ["min-height", "px"],
+
+  "lg-mnw-": ["min-width", "px"],
+  "lg-mnh-": ["min-height", "px"],
+
+  "xl-mnw-": ["min-width", "px"],
+  "xl-mnh-": ["min-height", "px"],
+
+  // max-width, max-height
+  "xs-mxw-": ["max-width", "px"],
+  "xs-mxh-": ["max-height", "px"],
+
+  "sm-mxw-": ["max-width", "px"],
+  "sm-mxh-": ["max-height", "px"],
+  
+  "md-mxw-": ["max-width", "px"],
+  "md-mxh-": ["max-height", "px"],
+  
+  "lg-mxw-": ["max-width", "px"],
+  "lg-mxh-": ["max-height", "px"],
+  
+  "xl-mxw-": ["max-width", "px"],
+  "xl-mxh-": ["max-height", "px"],
+}
+
 function extractValue(string) {
   let result = "";
   for (const char of string.toString()) {
@@ -179,22 +295,22 @@ function applyAllCss() {
     );
   }
   const newStyle = arrayToString(styles);
-  if (oldStyles() != newStyle) {
-    styleTag().innerHTML = newStyle;
+  if (JSON.stringify(oldStyles("modifier")) != JSON.stringify(newStyle)) {
+    styleTag("modifier").innerHTML = newStyle;
   }
 }
 
-function styleTag() {
-  let style = $("head style[id='init']");
+function styleTag(id) {
+  let style = $(`head style[id='${id}']`);
   if (style.length == 0) {
-    $("head").append("<style type='text/css' id='init'></style>");
-    style = $("head style[id='init']");
+    $("head").append(`<style type='text/css' id='${id}'></style>`);
+    style = $(`head style[id='${id}']`);
   }
   return style[0];
 }
 
-function oldStyles() {
-  return styleTag().innerHTML;
+function oldStyles(id) {
+  return styleTag(id).innerHTML;
 }
 
 function arrayToString(array) {
@@ -217,9 +333,53 @@ function combine(selector, pairs) {
   return selector + objectToString(pairs);
 }
 
+function getSize() {
+  let size = ["xs"];
+  const width = window.innerWidth;
+  if (width > 1200) size.push("xl");
+  if (width > 992) size.push("lg");
+  if (width > 768) size.push("md");
+  if (width > 576) size.push("sm");
+  return size;
+}
+
+function applyCssResponser(styles, short, nameDimen) {
+  if (getSize().includes(short.split("-")[0])) {
+    $(`[class*='${short}']`).map((_, _e) => {
+      const e = $(_e);
+      const value = getClassValue(` ${e.attr("class")} `, ` ${short}`);
+      if (value) {
+        const style = combine(
+          "." + short + value,
+          { [nameDimen[0]]: validValue(short, value.trim(), nameDimen[1]) }
+        );
+        if (!styles.includes(style)) {
+          styles.push(style);
+        }
+      }
+    });
+  }
+}
+
+function applyAllCssResponser() {
+  const styles = [];
+  for (const short in pairSize) {
+    applyCssResponser(
+      styles,
+      short,
+      pairSize[short]
+    );
+  }
+  const newStyle = arrayToString(styles);
+  if (JSON.stringify(oldStyles("responser")) != JSON.stringify(newStyle)) {
+    styleTag("responser").innerHTML = newStyle;
+  }
+}
+
 function initializer() {
   setRootHeight();
   applyAllCss();
+  applyAllCssResponser();
   setTimeout(initializer, 0);
 }
 initializer();

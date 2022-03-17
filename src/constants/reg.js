@@ -13,5 +13,5 @@ export {
     password as regPassword,
     email as regEmail,
     username as regUsername,
-    gender
+    gender as regGender
 };

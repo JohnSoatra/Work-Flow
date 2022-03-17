@@ -1,14 +1,22 @@
 <template>
-    <div class="container bgc-fbfbfb p-20 flex ai-c mt-20 des">
-        <img 
-            src="../../assets/login.png"
-            alt="login"
-            class="w-50% mxw-400 mb--30" />
-        <p class="fs-23 fw-500">At first you need to <span class="im" @click="onLoginClicked">login</span> to identify who you are.</p>
-    </div>
+    <Intro :src="image_src">
+        At first you need to
+        <span class="im" @click="onLoginClicked">login</span>
+        to identify who you are.
+    </Intro>
 </template>
 <script>
+import Intro from "./Intro.vue";
+
 export default {
+    components: {
+        Intro
+    },
+    data() {
+        return {
+            image_src: require("../../assets/login.png")
+        }
+    },
     methods: {
         onLoginClicked() {
             this.$router.push({ name: "Login" });

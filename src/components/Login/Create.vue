@@ -1,11 +1,12 @@
 <template>
-    <form class="panel" @submit="formSubmit" id="form_create">
+    <form class="panel xs-11" @submit="formSubmit" id="form_create">
         <h2 class="ta-c title-login">Create account</h2>
         <div class="input">
             <Label name="username" text="Username" />
             <Input
                 type="text"
                 name="username"
+                class="d-b"
                 :login="!(invalidUsername || tokenUsername) || null"
                 :invalid="(invalidUsername || tokenUsername) || null"
                 :value="username" @input="evt => username = evt.target.value" />
@@ -22,6 +23,7 @@
             <Input
                 name="email"
                 type="email"
+                class="d-b"
                 :login="!(invalidEmail || usedEmail) || null"
                 :invalid="(invalidEmail || usedEmail) || null"
                 :value="email" @input="evt => email = evt.target.value" />
@@ -38,6 +40,7 @@
             <Input
                 name="password"
                 type="password"
+                class="d-b"
                 :login="!invalidPassword || null"
                 :invalid="invalidPassword || null"
                 :value="password" @input="evt => password = evt.target.value" />
@@ -156,7 +159,7 @@ export default {
         padding-left: 10px;
         padding-right: 10px;
         margin-top: 40px;
-        width: 320px;
+        max-width: 320px;
         box-shadow: 0px 0px 4px 2px rgba(100, 100, 100, 0.418);
         border-radius: 5px;
     }

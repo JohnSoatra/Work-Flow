@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <div class="f-1 flex">
+    <div class="f-1 flex fd-c jc-c">
         <Storage />
     </div>
     <Copyright />

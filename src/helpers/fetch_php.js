@@ -4,6 +4,7 @@ export default {
     post,
     postFile,
     put,
+    createQueryString
 };
 export {
     delete_,
@@ -11,45 +12,52 @@ export {
     post,
     postFile,
     put,
+    createQueryString
 };
 
-function get(url) {
-    return fetch(url);
+function get(url, options = {}) {
+    return fetch(url, options);
 }
 
-function post(url, body) {
+function post(url, body, options = {}) {
     const queryString = createQueryString(body);
     const response = fetch(url, {
         method: "post",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: queryString
+        body: queryString,
+        ...options
     });
     return response;
 }
 
-function put(url, body) {
+function put(url, body, options = {}) {
     const queryString = createQueryString(body);
     const response = fetch(url, {
         method: "put",
         headers: {
             "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: queryString
+        body: queryString,
+        ...options
     });
     return response;
 }
 
-function delete_(url) {
-    return fetch(url, { method: "delete" });
+function delete_(url, options = {}) {
+    return fetch(url, {
+        method: "delete",
+        ...options
+    });
 }
 
-function postFile(url, files, data = []) {
+function postFile(url, files, data = {}, options = {}) {
     const formData = createFormData(files, data);
     const response = fetch(url, {
         method: "post",
-        body: formData
+        body: formData,
+        ...options
     });
     return response;
 }

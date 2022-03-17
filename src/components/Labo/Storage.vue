@@ -1,20 +1,20 @@
 <template>
     <div
-        v-if="checkCookie('username') && checkCookie('password')"
-        class="container bgc-fff h-500 mt-30 p-20 box">
+        v-if="hasCredential"
+        class="container wrapper f-1 xs-10">
         <div class="flex ai-c bgc-eee title-bar">
             <button @click="onBack" class="btn-icon">
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M333.436236 512.002048l363.098222-362.900598c18.226434-18.226434 18.226434-47.770666 0-65.998124s-47.770666-18.226434-65.998124 0L234.422666 479.000938c-18.226434 18.226434-18.226434 47.770666 0 65.998124l396.112643 395.942666c18.227458 18.18138 47.77169 18.18138 65.998124 0 18.226434-18.227458 18.226434-47.77169 0-65.998124L333.436236 512.002048z"/></svg>
             </button>
             <p class="name">{{folder}}</p>
             <div class="f-1"></div>
-            <button
+            <!-- <button
                 v-if="selectedIndex > -1 || selectedIndex == -2"
                 class="btn-icon"
                 @mousedown="onSelectAll"
                 @blur="onUnSelectAll">
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M37.488 308.368l459.936 250.64c4.624 2.512 9.712 3.792 14.816 3.792 5.056 0 10.096-1.248 14.704-3.728l464.768-250.64c10.144-5.456 16.432-16.112 16.272-27.632-0.144-11.568-6.688-22.048-16.944-27.28L531.088 19.76c-8.768-4.448-19.12-4.48-27.952-0.064L38.384 253.456c-10.288 5.184-16.88 15.648-17.056 27.184C21.152 292.176 27.376 302.864 37.488 308.368zM516.992 82.128l393.2 199.84-397.856 214.56L119.104 282.24 516.992 82.128zM985.728 481.296l-91.936-46.704L827.424 470.4l77.44 39.36L507.008 724.32 113.776 510.032l82.592-41.536-66.192-36.096-97.12 48.832C22.784 486.416 16.192 496.896 16 508.432c-0.176 11.536 6.048 22.224 16.16 27.728l459.936 250.64c4.624 2.512 9.712 3.792 14.816 3.792 5.056 0 10.112-1.248 14.704-3.728L986.4 536.224c10.128-5.456 16.432-16.112 16.272-27.648C1002.528 497.008 995.984 486.528 985.728 481.296zM985.728 698.304l-87.104-42.832-66.368 35.808 72.608 35.488-397.856 214.56L113.776 727.04l76.784-34.752-66.192-36.096-91.312 42.048C22.784 703.424 16.192 713.904 16 725.44c-0.176 11.536 6.048 22.224 16.16 27.728l459.936 250.656c4.624 2.512 9.712 3.792 14.816 3.792 5.056 0 10.112-1.248 14.704-3.728L986.4 753.232c10.128-5.456 16.432-16.112 16.272-27.648C1002.528 714.016 995.984 703.552 985.728 698.304z" /></svg>
-            </button>
+            </button> -->
             <div class="box">
                 <button
                     v-if="selectedIndex > -1 || selectedIndex == -2"
@@ -28,17 +28,24 @@
                     'd-n': !showOptions
                     }">
                     <button
-                        @mousedown="onChooseRename"
-                        class="btn-icon btn-option">
+                        @mousedown="onBtnOpenClicked"
+                        class="btn-icon btn-option ta-s">
+                        Open
+                    </button>
+                    <div class="divider"></div>
+                    <button
+                        @mousedown="btnRenameClicked = true"
+                        class="btn-icon btn-option ta-s">
                         Rename
                     </button>
                     <div class="divider"></div>
                     <button
-                        @mousedown="onChooseDelete"
+                        @mousedown="btnDeleteClicked = true"
                         class="btn-icon btn-option ta-s">
                         Delete
                     </button>
                     <div class="divider"></div>
+                    <a href="" id="a_download" class="d-n"></a>
                     <button
                         @mousedown="onChooseDownload"
                         class="btn-icon btn-option ta-s">
@@ -46,74 +53,106 @@
                     </button>
                 </div>
             </div>
+            <input
+                type="file"
+                class="d-n"
+                id="input_file"
+                multiple
+                @input="onFileInput">
+            <span
+                @click="onAddClicked">
+                <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M279.272727 884.363636l279.272727 0c0-16.058182 2.048-31.650909 5.864727-46.545455L279.272727 837.818182 279.272727 884.363636z"  /><path d="M791.272727 1024 791.272727 930.909091 884.363636 930.909091 884.363636 837.818182 791.272727 837.818182 791.272727 744.727273 698.181818 744.727273 698.181818 837.818182 605.090909 837.818182 605.090909 930.909091 698.181818 930.909091 698.181818 1024Z"  /><path d="M744.727273 698.181818 279.272727 698.181818l0 46.545455 342.295273 0C654.382545 715.776 697.530182 698.181818 744.727273 698.181818z"  /><path d="M279.272727 279.272727l465.454545 0 0 46.545455-465.454545 0 0-46.545455Z"  /><path d="M279.272727 558.545455l465.454545 0 0 46.545455-465.454545 0 0-46.545455Z"  /><path d="M884.363636 204.8 681.239273 0 162.210909 0C162.210909 0 139.636364 0 139.636364 22.760727L139.636364 1001.192727C139.636364 1024 162.210909 1024 162.210909 1024l459.357091 0c-15.080727-13.312-27.973818-29.044364-38.120727-46.545455L186.181818 977.454545 186.181818 46.545455l465.454545 0 0 139.636364c0 46.545455 46.545455 46.545455 46.545455 46.545455l139.636364 0 0 490.356364c17.501091 10.146909 33.233455 23.04 46.545455 38.120727L884.363636 204.8z"  /><path d="M279.272727 139.636364l279.272727 0 0 46.545455-279.272727 0 0-46.545455Z"  /><path d="M279.272727 418.909091l465.454545 0 0 46.545455-465.454545 0 0-46.545455Z"  /></svg>
+            </span>
             <Input
                 placeholder="search..."
-                class="w-250 p-8"/>
-            <button @click="onSearch" class="btn-icon">
+                class="xs-d-n md-d-us input-search" />
+            <button @click="onSearch" class="btn-icon xs-d-n md-d-us">
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M875.264 855.872l-188.032-215.552C737.664 579.392 768 501.248 768 416 768 221.632 610.368 64 416 64 221.568 64 64 221.632 64 416S221.568 768 416 768c72.32 0 139.52-21.888 195.392-59.264l186.88 214.272c18.496 21.312 50.88 23.36 72 4.928C891.648 909.376 893.76 877.12 875.264 855.872zM160 416c0-141.184 114.816-256 256-256 141.184 0 256 114.816 256 256s-114.816 256-256 256C274.816 672 160 557.184 160 416z"  /></svg>
             </button>
         </div>
-        <File
-            v-for="location in json"
-            :key="location.index"
-            :name="location.name"
-            :link="location.link"
-            :file="location.file"
-            :index="location.index"
-            :selectedIndex="selectedIndex"
-            :last="(location.index == json.length - 1) || null"
-            @on-focus="onSelected"
-            @on-blur="onUnSelected"
-            />
-        <div
-            :class="{ 'backer': true, 'd-us': chooseRename || chooseDelete }"
-            @click="onCancel">
+        <svg v-if="processing" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
+        <div v-else>
+            <File
+                v-for="(file, index) in files"
+                :key="index"
+                :name="file.name"
+                :link="file.link"
+                :index="index"
+                :selectedIndex="selectedIndex"
+                :last="(index == files.length - 1) || null"
+                @on-focus="onSelected"
+                @on-blur="onUnSelected" />
+            <p
+                class="status"
+                v-if="files.length == 0">
+                You have no file.
+            </p>
         </div>
         <div
+            :class="{ 'backer': true, 'd-us': btnRenameClicked || btnDeleteClicked }"
+            @click="onCancel">
+        </div>
+        <form
+            id="form_rename"
+            @submit="onSubmit"
             @click="onBlocker"
             :class="{
                 'popup rename to-c ta-s': true,
-                'd-n': !chooseRename
+                'd-n': !btnRenameClicked
             }">
             <p class="pb-15">from: <span class="from-name">{{selectedName}}</span></p>
             <Label name="rename" text="to:" class="pr-5"/>
-            <Input :block="false" />
-            <Button 
-                @click="onBtnRenameClicked"
-                class="d-b xs-12 mt-15"
-                content="rename" />
-        </div>
+            <Input
+                id="input_rename"
+                class="d-b"
+                :login="!invalidName || null"
+                :invalid="invalidName || null"
+                :block="false"
+                :value="newName" @input="evt => newName = evt.target.value" />
+            <Button
+                class="d-b xs-12 mt-15" >
+                Rename
+            </Button>
+        </form>
         <div
             @click="onBlocker"
             :class="{
                 'popup delete to-c ta-c': true,
-                'd-n': !chooseDelete
+                'd-n': !btnDeleteClicked
             }">
             <p class="pb-15 delete-title">Confirmation!</p>
             <p class="pb-15">Are you sure to delete this file or dir?</p>
             <Button
                 @click="onBtnDeleteClicked"
-                class="d-b xs-12"
-                content="Yes" />
+                class="d-b xs-12">
+                Yes
+            </Button>
         </div>
 
     </div>
     <div
         v-else
-        class="not-login title-welcome flex fd-c ai-c jc-c xs-12">
-        <span>You are currently logout.</span>
-        <span>Please login again. <span class="im" @click="onLoginClicked">Login</span>.</span>
+        class="
+            not-login
+            title-welcome
+            xs-fs-18
+            sm-fs-20
+            md-fs-24
+        ">
+        <p class="simple">You did not login yet.</p>
+        <p class="simple">Please login again. <span class="im" @click="onLoginClicked">Login</span>.</p>
     </div>  
 </template>
 <script>
 import Input from "../Items/Input.vue";
 import File from "./File.vue";
-import packs from "../../assets/data/packs";
-import movies from "../../assets/data/movies";
 import Label from "../Items/Label.vue";
 import Button from "../Items/Button.vue";
-import { checkCookie } from "../../helpers/cookie";
-
+import { checkCookie, getCookie } from "../../helpers/cookie";
+import { base } from "../../constants/url";
+import { delete_, get, postFile, put } from "../../helpers/fetch_php";
+import {  convertStrToObj, convertArrStrToArrObj, fileListToList } from "../../helpers/convert";
+import { dataUrl } from '../../helpers/fetch_file';
 
 export default {
     components: {
@@ -127,12 +166,17 @@ export default {
         return {
             folder: folder ? `/${folder}/` : '/',
             selectedIndex: -1,
-            json: folder ? movies : packs,
-            checkCookie,
-            showOptions: false,
+            oldSelectedIndex: -1,
+            id: 0,
+            files: [],
+            newName: "",
             selectedName: "",
-            chooseRename: false,
-            chooseDelete: false
+            invalidName: false,
+            processing: true,
+            hasCredential: false,
+            showOptions: false,
+            btnRenameClicked: false,
+            btnDeleteClicked: false
         }
     },
     methods: {
@@ -154,6 +198,7 @@ export default {
         },
         onSelected(location) {
             this.selectedIndex = location.index;
+            this.oldSelectedIndex = location.index;
             this.selectedName = location.name;
         },
         onUnSelected() {
@@ -161,40 +206,105 @@ export default {
                 this.selectedIndex = -1;
             }
         },
-        onSelectAll() {
-            this.selectedIndex = -2;
-        },
-        onUnSelectAll() {
-            if (!this.showOptions) this.selectedIndex = -1;
-        },
+        // onSelectAll() {
+        //     this.selectedIndex = -2;
+        // },
+        // onUnSelectAll() {
+        //     if (!this.showOptions) this.selectedIndex = -1;
+        // },
         onCancel() {
-            this.chooseRename = false;
-            this.chooseDelete = false;
+            this.btnRenameClicked = false;
+            this.btnDeleteClicked = false;
+            this.invalidName = false;
+            this.newName = "";
         },
-        onBtnRenameClicked() {
-            this.onCancel();
+        async onSubmit(evt) {
+            evt.preventDefault();
+            if (this.newName && !this.files.find(f => f.name == this.newName)) {
+                const result = await put(
+                    base + `/users/${this.id}/files/${this.selectedName}`,
+                    {
+                        "newName": this.newName
+                    }
+                );
+                const text = await result.text();
+                const file = convertStrToObj(this.id, text);
+                this.files.splice(this.oldSelectedIndex, 1, file);
+                this.onCancel();
+            } else {
+                this.invalidName = true;
+                document.getElementById("input_rename").focus();
+            }
         },
-        onBtnDeleteClicked() {
-            this.onCancel();
+        async onBtnDeleteClicked() {
+            await delete_(
+                base + `/users/${this.id}/files/${this.selectedName}`
+            );
+            this.files.splice(this.oldSelectedIndex, 1);
+            this.onCancel()
         },
-        onChooseRename() {
-            this.chooseRename = true;
+        onBtnOpenClicked() {
+            window.open(
+                base + "/files/" + this.files[this.oldSelectedIndex].link,
+                "_self"
+            );
         },
-        onChooseDelete() {
-            this.chooseDelete = true;
-        },
-        onChooseDownload() {
-            alert("choose download");
+        async onChooseDownload() {
+            //alert("choose download");
+            const a = document.getElementById("a_download");
+            const url = await dataUrl(base + "/files/" + this.files[this.oldSelectedIndex].link);
+            a.href = url;
+            a.download = this.selectedName;
+            a.click();
         },
         onLoginClicked() {
             this.$router.push({ name: "Login" });
+        },
+        onAddClicked() {
+            document.getElementById("input_file").click();
+        },
+        async onFileInput(evt) {
+            const fileList = evt.target.files;
+            if (fileList.length > 0) {
+                const filesArray = fileListToList(fileList);
+                const result = await postFile(
+                    base + `/users/${this.id}/files`,
+                    filesArray
+                );
+                let files = await result.json();
+                files = convertArrStrToArrObj(this.id, files);
+                this.files.unshift(...files);
+            }
+        }
+    },
+    async created() {
+        if (this.id == 0) {
+            this.hasCredential = checkCookie("username") && checkCookie("password");
+            if (this.hasCredential) {
+                const username = getCookie("username");
+                const password = getCookie("password");
+                const result = await get(base + `/users/${username}/${password}`);
+                this.id = +await result.text();
+            }
+        }
+        if (this.id > 0) {
+            const result = await get(
+                base + `/users/${this.id}/files`
+            );
+            const files = await result.json();
+            this.files = convertArrStrToArrObj(this.id, files);
+        }
+        this.processing = false;
+    },
+    updated() {
+        if (this.btnRenameClicked) {
+            document.getElementById("input_rename").focus();
         }
     },
     watch: {
         $route(to) {
             if (to.fullPath.split("/").length > 1) {
                 const folder = this.$route.params.folder;
-                this.json = folder ? movies : packs;
                 this.folder = folder ? `/${folder}/` : "/";
             }
             this.selectedIndex = -1;
@@ -205,6 +315,24 @@ export default {
 <style scoped>
     p {
         font-weight: 500;
+    }
+    .simple {
+        font-weight: normal;
+    }
+    .wrapper {
+        background-color: #fff;
+        margin-top: 20px;
+        padding: 20px
+    }
+    .input-search {
+        max-width: 250px;
+        padding: 8px;
+    }
+    .status {
+        margin-top: 30px;
+        font-size: 20px;
+        font-weight: 400;
+        color: #6c7e90;
     }
     .from-name {
         border-bottom: solid 1px;
@@ -261,10 +389,23 @@ export default {
         align-items: center;
     }
     .title-welcome {
-        font-size: 24px;
         padding-bottom: 10px;
     }
     .im {
         cursor: default
+    }
+    .process-icon {
+        width: 40px;
+        fill: #8d8d8d;
+    }
+    .process-icon:hover {
+        filter: brightness(1);
+    }
+    .process-icon:active {
+        transform: scale(1, 1);
+    }
+    .process-icon {
+        margin-top: 30px;
+        animation: rotate 2000ms linear 0ms infinite normal both;
     }
 </style>

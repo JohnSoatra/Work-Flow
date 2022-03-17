@@ -1,5 +1,5 @@
 <template>
-    <form class="panel" id="form_reset" @submit="onSubmit">
+    <form class="panel xs-11" id="form_reset" @submit="onSubmit">
         <h2 class="ta-c title-login" v-if="!sent">Reset password</h2>
         <div v-if="!sent">
             <div class="input">
@@ -7,6 +7,7 @@
                 <Input
                     name="email"
                     type="email"
+                    class="d-b"
                     :login="!invalidEmail || null"
                     :invalid="invalidEmail || null"
                     :value="email" @input="evt => email = evt.target.value" />
@@ -88,7 +89,7 @@ export default {
         margin-top: 40px;
         box-shadow: 0px 0px 4px 2px rgba(100, 100, 100, 0.418);
         border-radius: 5px;
-        width: 320;
+        max-width: 320;
     }
     .title-login {
         font-weight: 400;

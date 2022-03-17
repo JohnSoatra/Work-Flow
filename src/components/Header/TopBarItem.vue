@@ -1,6 +1,6 @@
 <template>
-    <router-link :to="'/' + (item.toLowerCase() == 'home' ? '' : item)" class="fw-500">
-        <span v-if="(item.toLowerCase() != 'profile') || (src == '')">{{item}}</span>
+    <router-link :to="'/' + (item.toLowerCase() == 'home' ? '' : item)">
+        <span v-if="(item.toLowerCase() != 'profile') || (src == '')" class="fw-500">{{item}}</span>
         <img
             v-else
             class="image-profile"
@@ -36,7 +36,7 @@ export default {
                 const endPoint = base + `/users?username=${username}&password=${password}`;
                 const result = await get(endPoint);
                 const user = await result.json();
-                const url = await dataUrl(base + "/storage/" + user.image);
+                const url = await dataUrl(base + "/images/" + user.image);
                 sessionStorage.setItem("image", url);
                 this.src = url;
             }

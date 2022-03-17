@@ -1,11 +1,17 @@
 <template>
-    <div class="bgc-fbfbfb p-20 ta-c desScope fs-18 fw-400 mt-20">
-        <h2 class="ta-c td-u title">Sponsors</h2>
+    <div class="desScope">
+        <h2 class="
+            title
+            xs-fs-18
+            sm-fs-20
+            md-fs-23
+        ">Sponsors</h2>
         <div
-            class="container flex ai-c jc-se pt-40 pb-40"
+            class="container grid profile-wrapper jc-se"
             v-if="profiles.length">
             <Profile
                 v-for="profile in profiles"
+                class_p="xs-12 sm-4 md-4"
                 :key="profile.name"
                 :src="profile.src"
                 :name="profile.name" />
@@ -41,12 +47,23 @@ export default {
 </script>
 <style scoped>
     .desScope{
-        box-shadow: 0px 0px 4px 2px rgba(119, 119, 119, 0.288);
+        padding: 20px;
+        margin-top: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 400;
         line-height: 1.5;
+        background-color: #fbfbfb;
+        box-shadow: 0px 0px 4px 2px rgba(119, 119, 119, 0.288);
     }
     .title {
         color: #349e9c;
         font-weight: 500;
-        font-size: 30px;
+        text-align: center;
+        text-decoration: underline;
     }
+    /* .profile-wrapper {
+         padding-top: 40px;
+         padding-bottom: 40px;
+    } */
 </style>

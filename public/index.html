@@ -1,19 +1,30 @@
-<html lang="">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="shortcut icon" href="<%= BASE_URL %>favicon.ico">
+    <link rel="apple-touch-icon" href="<%= BASE_URL %>logo-100.png" />
+    
+    <title>Lab</title>
+    <meta name="description" content="Lab is a data storage that you can store your data very easily and faster. With Lab, you'll be safe. Get start now to know Lab." />
+    <meta name="keyword" content="Lab, lab, lab storage, lab storing, storer, lab.soatra.com, lab soatra" />
+    
+    <meta property="og:image" content="<%= BASE_URL %>cloud.png">
+    <meta property="og:title" content="Lab" />
+    <meta property="og:description" content="Lab is a data storage that you can store your data very easily and faster. With Lab, you'll be safe. Get start now to know Lab." />    
+    
+    <meta property="twitter:image" content="<%= BASE_URL %>cloud.png">
+    <meta property="twitter:title" content="Lab" />
+    <meta property="twitter:description" content="Lab is a data storage that you can store your data very easily and faster. With Lab, you'll be safe. Get start now to know Lab." />
+
     <link rel="stylesheet" href="<%= BASE_URL %>libraries/own-style-v2/all.css">
     <script src="<%= BASE_URL %>libraries/own-work-v1/jquery.js"></script>
     <script src="<%= BASE_URL %>libraries/own-work-v1/initializer.js"></script>
   </head>
   <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
