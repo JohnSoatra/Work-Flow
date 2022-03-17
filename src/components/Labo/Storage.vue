@@ -292,7 +292,12 @@ export default {
             );
             let files = await result.json();
             files = convertArrStrToArrObj(this.id, files);
-            this.files.unshift(...files);
+            for (const file of files) {
+                const found = this.files.find(fileIn => fileIn.name === file.name);
+                if (!found) {
+                    this.files.unshift(file);
+                }
+            }
             this.btnFormUploadClicked = false;
             this.onCancel();
         },
@@ -319,6 +324,7 @@ export default {
                 this.filesArray = fileListToList(fileList);
                 this.fileInputted = true;
             }
+            evt.target.value = "";
         }
     },
     async created() {
