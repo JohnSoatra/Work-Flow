@@ -34,7 +34,7 @@
                     </button>
                     <div class="divider"></div>
                     <button
-                        @mousedown="btnRenameClicked = true"
+                        @mousedown="onBtnRenameClicked"
                         class="btn-icon btn-option ta-s">
                         Rename
                     </button>
@@ -45,7 +45,7 @@
                         Delete
                     </button>
                     <div class="divider"></div>
-                    <a href="" id="a_download" class="d-n"></a>
+                    <a download href="" id="a_download" class="d-n"></a>
                     <button
                         @mousedown="onChooseDownload"
                         class="btn-icon btn-option ta-s">
@@ -70,7 +70,7 @@
                 <svg class="svg-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M875.264 855.872l-188.032-215.552C737.664 579.392 768 501.248 768 416 768 221.632 610.368 64 416 64 221.568 64 64 221.632 64 416S221.568 768 416 768c72.32 0 139.52-21.888 195.392-59.264l186.88 214.272c18.496 21.312 50.88 23.36 72 4.928C891.648 909.376 893.76 877.12 875.264 855.872zM160 416c0-141.184 114.816-256 256-256 141.184 0 256 114.816 256 256s-114.816 256-256 256C274.816 672 160 557.184 160 416z"  /></svg>
             </button>
         </div>
-        <svg v-if="processing" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
+        <svg v-if="processing" class="svg-icon process-icon process-icon-big" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
         <div v-else>
             <File
                 v-for="(file, index) in files"
@@ -89,7 +89,7 @@
             </p>
         </div>
         <div
-            :class="{ 'backer': true, 'd-us': btnRenameClicked || btnDeleteClicked }"
+            :class="{ 'backer': true, 'd-us': btnRenameClicked || btnDeleteClicked || fileInputted}"
             @click="onCancel">
         </div>
         <form
@@ -104,14 +104,15 @@
             <Label name="rename" text="to:" class="pr-5"/>
             <Input
                 id="input_rename"
-                class="d-b"
                 :login="!invalidName || null"
                 :invalid="invalidName || null"
                 :block="false"
                 :value="newName" @input="evt => newName = evt.target.value" />
             <Button
-                class="d-b xs-12 mt-15" >
-                Rename
+                class="xs-12 mt-15 flex jc-c ai-c"
+                :disabled="btnFormRenameClicked">
+                {{ btnFormRenameClicked ? 'Renaming' : 'Rename'}}
+                <svg v-if="btnFormRenameClicked" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
             </Button>
         </form>
         <div
@@ -123,9 +124,28 @@
             <p class="pb-15 delete-title">Confirmation!</p>
             <p class="pb-15">Are you sure to delete this file or dir?</p>
             <Button
-                @click="onBtnDeleteClicked"
-                class="d-b xs-12">
-                Yes
+                class="xs-12 flex jc-c ai-c"
+                background="cb3d3dfc"
+                :disabled="btnFormDeleteClicked"
+                @click="onBtnDeleteClicked">
+                {{ btnFormDeleteClicked ? 'Deleting' : 'Yes' }}
+                <svg v-if="btnFormDeleteClicked" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
+            </Button>
+        </div>
+        <div
+            @click="onBlocker"
+            :class="{
+                'popup upload to-c ta-c': true,
+                'd-n': !fileInputted
+            }">
+            <p class="pb-15 upload-title">Upload Info</p>
+            <p class="pb-15">You are going to upload {{filesArray.length}} files.</p>
+            <Button
+                class="xs-12 flex jc-c ai-c"
+                :disabled="btnFormUploadClicked"
+                @click="onBtnUploadClicked">
+                {{ btnFormUploadClicked ? 'Uploading' : 'Upload' }}
+                <svg v-if="btnFormUploadClicked" class="svg-icon process-icon" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
             </Button>
         </div>
 
@@ -152,7 +172,6 @@ import { checkCookie, getCookie } from "../../helpers/cookie";
 import { base } from "../../constants/url";
 import { delete_, get, postFile, put } from "../../helpers/fetch_php";
 import {  convertStrToObj, convertArrStrToArrObj, fileListToList } from "../../helpers/convert";
-import { dataUrl } from '../../helpers/fetch_file';
 
 export default {
     components: {
@@ -169,14 +188,20 @@ export default {
             oldSelectedIndex: -1,
             id: 0,
             files: [],
+            filesArray: [],
             newName: "",
             selectedName: "",
+            fileAmount: 0,
             invalidName: false,
             processing: true,
             hasCredential: false,
             showOptions: false,
+            fileInputted: false,
             btnRenameClicked: false,
-            btnDeleteClicked: false
+            btnDeleteClicked: false,
+            btnFormRenameClicked: false,
+            btnFormDeleteClicked: false,
+            btnFormUploadClicked: false,
         }
     },
     methods: {
@@ -213,13 +238,22 @@ export default {
         //     if (!this.showOptions) this.selectedIndex = -1;
         // },
         onCancel() {
-            this.btnRenameClicked = false;
-            this.btnDeleteClicked = false;
-            this.invalidName = false;
-            this.newName = "";
+            if (!(
+                this.btnFormRenameClicked ||
+                this.btnFormDeleteClicked ||
+                this.btnFormUploadClicked
+            )) {
+                this.btnRenameClicked = false;
+                this.btnDeleteClicked = false;
+                this.fileInputted = false;
+                this.invalidName = false;
+                this.filesArray = [];
+                this.newName = "";
+            }
         },
         async onSubmit(evt) {
             evt.preventDefault();
+            this.btnFormRenameClicked = true;
             if (this.newName && !this.files.find(f => f.name == this.newName)) {
                 const result = await put(
                     base + `/users/${this.id}/files/${this.selectedName}`,
@@ -230,6 +264,7 @@ export default {
                 const text = await result.text();
                 const file = convertStrToObj(this.id, text);
                 this.files.splice(this.oldSelectedIndex, 1, file);
+                this.btnFormRenameClicked = false;
                 this.onCancel();
             } else {
                 this.invalidName = true;
@@ -237,11 +272,29 @@ export default {
             }
         },
         async onBtnDeleteClicked() {
+            this.btnFormDeleteClicked = true;
             await delete_(
                 base + `/users/${this.id}/files/${this.selectedName}`
             );
             this.files.splice(this.oldSelectedIndex, 1);
+            this.btnFormDeleteClicked = false;
             this.onCancel()
+        },
+        onBtnRenameClicked() {
+            this.newName = this.selectedName;
+            this.btnRenameClicked = true
+        },
+        async onBtnUploadClicked() {
+            this.btnFormUploadClicked = true;
+            const result = await postFile(
+                base + `/users/${this.id}/files`,
+                this.filesArray
+            );
+            let files = await result.json();
+            files = convertArrStrToArrObj(this.id, files);
+            this.files.unshift(...files);
+            this.btnFormUploadClicked = false;
+            this.onCancel();
         },
         onBtnOpenClicked() {
             window.open(
@@ -250,11 +303,8 @@ export default {
             );
         },
         async onChooseDownload() {
-            //alert("choose download");
             const a = document.getElementById("a_download");
-            const url = await dataUrl(base + "/files/" + this.files[this.oldSelectedIndex].link);
-            a.href = url;
-            a.download = this.selectedName;
+            a.href = base + "/files/download/" + this.files[this.oldSelectedIndex].link;
             a.click();
         },
         onLoginClicked() {
@@ -263,17 +313,11 @@ export default {
         onAddClicked() {
             document.getElementById("input_file").click();
         },
-        async onFileInput(evt) {
+        onFileInput(evt) {
             const fileList = evt.target.files;
             if (fileList.length > 0) {
-                const filesArray = fileListToList(fileList);
-                const result = await postFile(
-                    base + `/users/${this.id}/files`,
-                    filesArray
-                );
-                let files = await result.json();
-                files = convertArrStrToArrObj(this.id, files);
-                this.files.unshift(...files);
+                this.filesArray = fileListToList(fileList);
+                this.fileInputted = true;
             }
         }
     },
@@ -341,13 +385,13 @@ export default {
     .options {
         border: solid 1px rgb(194, 194, 194);
     }
-    .rename, .delete{
+    .rename, .delete, .upload {
         padding: 15px;
         box-shadow: 0px 0px 4px 2px rgba(100, 100, 100, 0.418);
         border-radius: 5px;
         background-color: #fff;
     }
-    .delete-title {
+    .delete-title, .upload-title {
         font-size: 22px;
     }
     .btn-option {
@@ -395,8 +439,8 @@ export default {
         cursor: default
     }
     .process-icon {
-        width: 40px;
-        fill: #8d8d8d;
+        width: 18px;
+        fill: #fff;
     }
     .process-icon:hover {
         filter: brightness(1);
@@ -405,7 +449,12 @@ export default {
         transform: scale(1, 1);
     }
     .process-icon {
-        margin-top: 30px;
         animation: rotate 2000ms linear 0ms infinite normal both;
+    }
+    .process-icon-big {
+        width: 40px;
+        fill: #8d8d8d;
+        margin-top: 30px;
+        animation-duration: 1500ms;
     }
 </style>

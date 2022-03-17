@@ -1,6 +1,7 @@
 <template>
+    <svg v-if="!worked" class="svg-icon process-icon process-icon-big" viewBox="0 0 122.61 122.88" xmlns="http://www.w3.org/2000/svg"><path d="M111.9,61.57a5.36,5.36,0,0,1,10.71,0A61.3,61.3,0,0,1,17.54,104.48v12.35a5.36,5.36,0,0,1-10.72,0V89.31A5.36,5.36,0,0,1,12.18,84H40a5.36,5.36,0,1,1,0,10.71H23a50.6,50.6,0,0,0,88.87-33.1ZM106.6,5.36a5.36,5.36,0,1,1,10.71,0V33.14A5.36,5.36,0,0,1,112,38.49H84.44a5.36,5.36,0,1,1,0-10.71H99A50.6,50.6,0,0,0,10.71,61.57,5.36,5.36,0,1,1,0,61.57,61.31,61.31,0,0,1,91.07,8,61.83,61.83,0,0,1,106.6,20.27V5.36Z"/></svg>
     <div
-        v-if="notLogin && worked"
+        v-else-if="notLogin"
         class="
             not-login title-welcome flex fd-c jc-c
             xs-fs-18
@@ -9,8 +10,8 @@
         ">
         <p>You are currently logout.</p>
         <p>Please login again. <span class="im" @click="loginClicked">Login</span>.</p>
-    </div>  
-    <div v-else-if="worked" class="flex fd-c ai-c wrapper">
+    </div>
+    <div v-else class="flex fd-c ai-c wrapper">
         <p v-if="invalid" class="invalid">New <span class="fw-500">{{invalid}}</span> is invalid.</p>
         <p class="
             title-welcome
@@ -304,13 +305,15 @@ export default {
             this.btnSaveClicked = false;
         },
         resetData() {
+            const dataUrl = sessionStorage.getItem("image");
             this.username = this.user.username;
             this.email = this.user.email;
             this.password = "";
             this.gender = this.user.gender;
             this.contact_info = this.user.contact_info;
-            this.image = url.base + "/images/" + this.user.image;
             this.file = "";
+            if (dataUrl) this.image = dataUrl;
+            else this.image = url.base + "/images/" + this.user.image;
         },
         removeCookie() {
             setCookie("username", "", 0);
@@ -426,13 +429,11 @@ export default {
     .im {
         cursor: default
     }
-    .svg-icon {
-        width: 18px
-    }
     .invalid {
         color: #c92929;
     }
     .process-icon {
+        width: 18px;
         fill: #fff;
         animation: rotate 2000ms linear 0ms infinite normal both;
     }
@@ -441,5 +442,10 @@ export default {
     }
     .process-icon:active {
         transform: scale(1, 1);
+    }
+    .process-icon-big {
+        width: 40px;
+        fill: #8d8d8d;
+        animation-duration: 1300ms;
     }
 </style>
