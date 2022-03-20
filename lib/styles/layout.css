@@ -1,6 +1,11 @@
 .flex {
   display: flex;
 }
+
+.box {
+  position: relative;
+}
+
 .fd-r {
   flex-direction: row;
 }
@@ -67,61 +72,61 @@
   align-self: stretch;
 }
 
-/* box */
-.box {
-  position: relative;
-  overflow: hidden;
-}
-
-.box > * {
-  position: absolute;
-}
 
 .to-tl {
+  position: absolute;
   top: 0px;
   left: 0px;
 }
 
 .to-tr {
+  position: absolute;
   top: 0px;
   right: 0px;
 }
 
 .to-tc {
+  position: absolute;
   top: 0px;
   left: 50%;
   transform: translate(-50%, 0px);
 }
 
 .to-bl {
+  position: absolute;
   bottom: 0px;
   left: 0px;
 }
 
 .to-br {
+  position: absolute;
   bottom: 0px;
   right: 0px;
 }
 
 .to-bc {
+  position: absolute;
   bottom: 0px;
   left: 50%;
   transform: translate(-50%, 0px);
 }
 
 .to-lc {
+  position: absolute;
   top: 50%;
   left: 0px;
   transform: translate(0px, -50%);
 }
 
 .to-rc {
+  position: absolute;
   top: 50%;
   right: 0px;
   transform: translate(0px, -50%);
 }
 
 .to-c {
+  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

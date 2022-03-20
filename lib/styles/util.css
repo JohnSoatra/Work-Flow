@@ -93,16 +93,16 @@
   border-top-style: solid;
 }
 
-.cs-pointer {
+.cs-p {
   cursor: pointer;
 }
-.cs-text {
+.cs-t {
   cursor: text;
 }
-.cs-none {
+.cs-n {
   cursor: none;
 }
-.cs-default {
+.cs-d {
   cursor: default;
 }
 
@@ -117,6 +117,9 @@
 }
 .d-n {
   display: none;
+}
+.d-us {
+  display: unset;
 }
 
 .fw-bold {
@@ -181,16 +184,16 @@
   list-style: circle;
 }
 
-.ovf-a {
+.of-a {
   overflow: auto;
 }
-.ovf-s {
+.of-s {
   overflow: scroll;
 }
-.ovf-h {
+.of-h {
   overflow: hidden;
 }
-.ovf-v {
+.of-v {
   overflow: visible;
 }
 
@@ -220,13 +223,13 @@
   overflow-y: visible;
 }
 
-.pos-abs {
+.pos-a {
   position: absolute;
 }
-.pos-fix {
+.pos-f {
   position: fixed;
 }
-.pos-rel {
+.pos-r {
   position: relative;
 }
 .pos-sta {
@@ -263,6 +266,14 @@
 .tt-n {
   text-transform: none;
 }
+
+.tof-e {
+  text-overflow: ellipsis;
+}
+.tof-c {
+  text-overflow: clip;
+}
+
 .v-h {
   visibility: hidden;
 }
@@ -271,4 +282,11 @@
 }
 .v-c {
   visibility: collapse;
+}
+
+.ws-nw {
+  white-space: nowrap;
+}
+.ws-nm {
+  white-space: normal;
 }

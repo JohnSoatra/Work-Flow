@@ -1,0 +1,108 @@
+an-rotate {
+    animation-name: rotate;
+}
+
+adu-0 {
+    animation-duration: 0ms;
+}
+adu-500 {
+    animation-duration: 500ms;
+}
+adu-1000 {
+    animation-duration: 1000ms;
+}
+adu-1500 {
+    animation-duration: 1500ms;
+}
+adu-2000 {
+    animation-duration: 2000ms;
+}
+adu-2500 {
+    animation-duration: 2500ms;
+}
+adu-3000 {
+    animation-duration: 3000ms;
+}
+
+atf-linear {
+    animation-timing-function: linear;
+}
+atf-ease {
+    animation-timing-function: ease;
+}
+atf-ease-in {
+    animation-timing-function: ease-in;
+}
+atf-ease-out {
+    animation-timing-function: ease-out;
+}
+atf-ease-in-out {
+    animation-timing-function: ease-in-out;
+}
+
+ade-0 {
+    animation-delay: 0ms;
+}
+ade-500 {
+    animation-delay: 500ms;
+}
+ade-1000 {
+    animation-delay: 1000ms;
+}
+ade-1500 {
+    animation-delay: 1500ms;
+}
+ade-2000 {
+    animation-delay: 2000ms;
+}
+ade-2500 {
+    animation-delay: 2500ms;
+}
+ade-3000 {
+    animation-delay: 3000ms;
+}
+
+aic-0 {
+    animation-iteration-count: 0;
+}
+aic-1 {
+    animation-iteration-count: 1;
+}
+aic-2 {
+    animation-iteration-count: 2;
+}
+aic-inf {
+    animation-iteration-count: infinite;
+}
+
+adi-nm {
+    animation-direction: normal;
+}
+adi-rv {
+    animation-direction: reverse;
+}
+adi-alt {
+    animation-direction: alternate;
+}
+adi-alt-rv {
+    animation-direction: alternate-reverse;
+}
+
+
+afm-b {
+ animation-fill-mode: none;
+}
+afm-b {
+ animation-fill-mode: both;
+}
+afm-bw {
+ animation-fill-mode: backwards;
+}
+afm-fw {
+ animation-fill-mode: forwards;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

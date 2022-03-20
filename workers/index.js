@@ -10,6 +10,9 @@ $(".product-img").on("click", function(event) {
     case "paperpen":
       window.open("https://paperpen.soatra.com");
       break;
+    case "lab":
+      window.open("https://lab.soatra.com");
+      break;
   }
 });
 

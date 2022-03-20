@@ -8,15 +8,29 @@
 }
 .container {
   margin: 0px auto;
+  height: 100%;
 }
-.cover {
+.backer {
   position: fixed;
   top: 0px;
   left: 0px;
   width: 100%;
   height: 100%;
-  background: #fff;
   z-index: 1;
+  display: none;
+}
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: gray;
+}
+.popup {
+  position: absolute;
+  z-index: 1;
+  width: fit-content;
+  top: 100%;
+  left: 0px;
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 700px) {
@@ -34,5 +48,11 @@
 @media only screen and (min-width: 900px) {
   .container {
     width: 75%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
   }
 }
