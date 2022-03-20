@@ -33,8 +33,8 @@
             <p>Home page doesn't have many interesting things.</p>
             <p>In there, we just show you some introduction about us and main steps to start using our Lab.</p>
             <p>We also provide our contact that you can contact us or give us any feedback.</p>
-            <p>Top sponsors were shown there. If you have anything to tell them, please do not hesitate.</p>
-            <p>We always welcome you. From us Lab team.</p>
+            <p>Top sponsors were shown there. If you have anything to tell them, please do not be hesitate.</p>
+            <p>We always welcome you. From us Team Lab.</p>
         </div>
         <div class="flex jc-c">
             <h2 id="docs" class="
@@ -45,10 +45,10 @@
             ">2. Docs</h2>
         </div>
         <div class="ta-s desc">
-            <p>Docs page is a page that tells you all about how lab app works.</p>
+            <p>Docs page is a page that tells you all about how Lab app works.</p>
             <p>You can find solutions on Docs page when you have any problem.</p>
             <p>Docs contains documents about home page, labo page storage page...</p>
-            <p>If you meet any problem please come back to Docs page.</p>
+            <p>If you meet any problem please come back to the Docs page.</p>
         </div>
         <div class="flex jc-c">
             <h2 id="labo" class='
@@ -60,9 +60,9 @@
         </div>
         <div class="ta-s desc">
             <p>Labo page was designed to serve you about your data management.</p>
-            <p>In there, you can modify you data like create, delete update, download...</p>
-            <p>Labo provide you nice and simple ui, so you can use it easily.</p>
-            <p>We hope you like the way it was designed and can manage your data as you want.</p>
+            <p>In there, you can modify you data like creating, deleting, updating, downloading...</p>
+            <p>Labo provides you nice and simple user interface, so you can use it easily.</p>
+            <p>We hope you'll like the way it was designed and can manage your data as you want.</p>
         </div>
         <div class="flex jc-c">
             <h2 id="login" class='
@@ -74,10 +74,10 @@
         </div>
         <div class="ta-s desc pb-20">
             <p>Login page lets you sign in to identify who you are and we can provide the data of you.</p>
-            <p>If you don't have any account yet, you can create new one by clicking create new button.</p>
-            <p>And if you forget your password, you also can reset it as well by clicking on reset password button.</p>
-            <p>After you logged in in 24 hours inactive, we will log you out automatically because of security reason.</p>
-            <p>To work with Lab start login first.</p>
+            <p>If you don't have any account yet, you can create new one by clicking on create new button.</p>
+            <p>And if you forgot your password, you also can reset it as well by clicking on reset password button.</p>
+            <p>You will be logged out in 24 hours because of security reason.</p>
+            <p>To work with Lab, start logging in first.</p>
         </div>
     </div>
 </template>

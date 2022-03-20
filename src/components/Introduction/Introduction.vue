@@ -5,10 +5,10 @@
         xs-fs-17
         sm-fs-18
     ">
-        <p>Welcome to lab website. This website was made to serve you storing and accessing your data remotely.</p>
-        <p>You can upload your documents in this website from where anywhere anytime and when you want to download it, you can download it from anywhere anytime too.</p>
-        <p>Lab let you store you documents <span class="fw-500 tdc-005cb9e0">for free</span> until <span class="im">500MB</span>.</p>
-        <p>Lab was architected, designed and coded by Soatra, so means that this website is trustable.</p>
+        <p>Welcome to Lab. This website was made to serve you storing and accessing your data remotely.</p>
+        <p>You can upload your documents in this website from anywhere anytime and when you want to download it, you can download it from anywhere anytime too.</p>
+        <p>Lab lets you storing you documents <span class="fw-500 tdc-005cb9e0">for free</span> until <span class="im">500MB</span>.</p>
+        <p>Lab was architected, designed and coded by <span class="im">Soatra</span>, it means that this website is safe, secure and trustable.</p>
     </div>
 </template>
 
