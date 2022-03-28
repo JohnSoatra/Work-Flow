@@ -670,9 +670,11 @@ export default {
                         endPoint = base + `/folder/create/${this.id}/${this.folderName}`;
                     }
                     const result = await post(endPoint);
-                    const name = await result.text();
-                    const file = new FileObject(name, false);
-                    AddDocToFiles(this.files, file);
+                    if (result.ok) {
+                        const name = await result.text();
+                        const file = new FileObject(name, false);
+                        AddDocToFiles(this.files, file);
+                    }
                     this.btnFormCreateFolderClicked = false;
                     this.onBackerClick();
                 } else {
@@ -858,10 +860,8 @@ export default {
                     if (KeyBoard.containsControl() && joined !== "v") {
                         joined = "v";
                         if (page.copies.length) {
-                                                console.log("paste");
                             page.onBtnCopyClick(evt);
                         } else if (page.moves.length) {
-                                                console.log("paste");
                             page.onBtnMoveClick(evt);
                         }
                     }
