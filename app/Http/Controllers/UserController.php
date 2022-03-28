@@ -32,20 +32,16 @@ class UserController extends Controller
         $username = Request::post("username", "");
         $email = Request::post("email", "");
         $password = Request::post("password");
-        $foundUsernames = User::where("username", $username)
-            ->limit(1)
-            ->get();
-        $foundEmail = User::where("email", $email)
-            ->limit(1)
-            ->get();
+        $foundUsernames = User::where("username", $username)->first();
+        $foundEmail = User::where("email", $email)->first();
 
-        if (sizeof($foundUsernames) > 0) {
+        if ($foundUsernames) {
             return Response::json([
                 "msg" => "Username is token.",
                 "error" => "username"
             ], 400);
         } 
-        if (sizeof($foundEmail) > 0) {
+        if ($foundEmail) {
             return Response::json([
                 "msg" => "Email was used.",
                 "error" => "email"
@@ -102,7 +98,7 @@ class UserController extends Controller
         if ($users) {
             return $users->id;
         }
-        return -1;
+        return 0;
     }
     public function deleteUser($id) {
         $user = User::find($id);
