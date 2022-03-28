@@ -713,6 +713,17 @@ function initializeDataTitle() {
             title.style.opacity = 0;
           }
       });
+      e.addEventListener("mousedown", function(evt) {
+          const title = document.getElementById(id);
+          if (title) {
+            title.addEventListener("transitionend", function(evt) {
+              $(`span[id='${id}']`).each((i, e) => {
+                document.body.removeChild(e);
+              });
+            });
+            title.style.opacity = 0;
+          }
+      });
     });
   }
 }
