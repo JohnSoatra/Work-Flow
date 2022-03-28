@@ -5,9 +5,19 @@
 </template>
 
 <script>
+import KeyBoard from "./models/KeyBoard";
 
 export default {
-  name: 'App'
+  created() {
+    document.addEventListener("keydown", function(evt) {
+      if (KeyBoard.keys.indexOf(evt.key) == -1) {
+        KeyBoard.keys.push(evt.key);
+      }
+    });
+    document.addEventListener("keyup", function(evt) {
+      KeyBoard.keys.splice(KeyBoard.keys.indexOf(evt.key), 1);
+    });
+  }
 }
 </script>
 

@@ -7,8 +7,8 @@ import LaboPage from "../views/LaboPage";
 import DocumentPage from "../views/DocumentPage";
 import WelcomePage from "../views/WelcomePage";
 import TestPage from "../views/TestPage";
+import OpenPage from "../views/OpenPage";
 import Notfound from "../views/Notfound";
-import { checkCookie } from "../helpers/cookie";
 
 const routes = [
     {
@@ -42,9 +42,14 @@ const routes = [
         component: DocumentPage
     },
     {
-        path: "/labo/:folder",
+        path: "/labo/:folder+",
         name: "Labo folder",
         component: LaboPage
+    },
+    {
+        path: "/show/:folder+",
+        name: "Show",
+        component: OpenPage
     },
     {
         path: "/profile",

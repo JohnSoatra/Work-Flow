@@ -3,12 +3,6 @@
 </template>
 <script>
 export default {
-    props: {
-        block: {
-            type: Boolean,
-            default: true
-        },
-    },
     methods: {
         updateValue() {
             this.$emit('input', this.value);
