@@ -3,7 +3,7 @@ use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
 // header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Origin: https://lab.soatra.com");
+header("Access-Control-Allow-Origin: https://lab.soatra.com, http://lab.soatra.com");
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 
