@@ -11,7 +11,7 @@ class FolderController extends Controller
     public function list() {
         $id = Request::post("id");
         $folder = Request::post("folder");
-        return s3List("files/$id/$folder");
+        return s3List("files/$id/$folder", null);
     }
     public function create($path) {
         return s3CreateFolder("files/$path");

@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 
+function defaultName() {
+    return "0..";
+}
 function diskName() {
     return "s3";
     // return "local";
@@ -13,10 +16,14 @@ function s3List($folderName, $filter) {
     
     $dirs = $disk->directories($folderName);
     $files = $disk->files($folderName);
-    
+    foreach ($files as $index => $file) {
+        if (fileName($file) == defaultName()) {
+            unset($files[$index]);
+            break;
+        }
+    }
     $dirs = putType(false, $dirs);
     $files = putType(true, $files);
-
     return [...$dirs, ...$files];
 }
 function s3Upload($file, $folder = "", $preName = "") {
@@ -63,7 +70,12 @@ function s3Download($path) {
 }
 function s3CreateFolder($path) {
     $disk = Storage::disk(diskName());
-    $disk->makeDirectory("$path");
+    $file = tempnam(sys_get_temp_dir(), "ok");
+    $disk->putFileAs(
+        $path,
+        $file,
+        defaultName()
+    );
     return fileName($path);
 }
 function s3DeleteFolder($path) {
@@ -77,15 +89,17 @@ function s3CopyFolder($path, $newPath) {
     $files = $disk->allFiles($path);
 
     if (!$disk->exists($newPath)) {
-        $disk->makeDirectory($newPath);
+        s3CreateFolder($newPath);
     }
     foreach($dirs as $dir) {
         $newName = str_replace_first($path, $newPath, $dir);
-        $disk->makeDirectory($newName);
+        s3CreateFolder($newName);
     }
     foreach($files as $file) {
-        $newName = str_replace_first($path, $newPath, $file);
-        $disk->copy($file, $newName);
+        if (fileName($file) != defaultName()) {
+            $newName = str_replace_first($path, $newPath, $file);
+            $disk->copy($file, $newName);
+        }
     }
     return $newPath;
 }
@@ -109,11 +123,13 @@ function s3DownloadFolder($path) {
         if (!$added) $added = true;
     }
     foreach($files as $file) {
-        $zip->addFile(
-            $disk->path($file),
-            str_replace_first($path.$separator, "", $file)
-        );
-        if (!$added) $added = true;
+        if (fileName($file) != defaultName()) {
+            $zip->addFromString(
+                str_replace_first($path.$separator, "", $file),
+                $disk->get($file),
+            );
+            if (!$added) $added = true;
+        }
     }
     $zip->close();
     $content = $added ? File::get($temp_file) : File::get(public_path("emp.zip"));
