@@ -2,8 +2,14 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
-// header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Origin: https://lab.soatra.com, http://lab.soatra.com");
+$origin = $_SERVER["HTTP_ORIGIN"];
+$origins = [
+    "https://lab.soatra.com",
+    "http://lab.soatra.com",
+];
+if (in_array($origin, $origins)) {
+    header("Access-Control-Allow-Origin: $origin");
+}
 header("Access-Control-Allow-Headers: *");
 header("Access-Control-Allow-Methods: *");
 
