@@ -6,5 +6,5 @@ span[id*='popup-data-title'] {
     z-index: 100;
     color: #f2f2f2;
     background-color: #444444ef;
-    transition: all ease-in-out 200ms;
+    transition: opacity ease-in-out 200ms;
 }
