@@ -1,4 +1,3 @@
-import $ from "./jquery/jquery.js";
 import {
     classPairsCss,
     classPairsDataTitle,
@@ -31,13 +30,12 @@ initializer();
 
 function setRootHeight() {
     const windowHeight = window.innerHeight;
-    $(".root").css("minHeight", windowHeight);
+    document.querySelector(".root").style.minHeight = windowHeight + "px";
 }
   
 function applyCss(styles, short, nameDimen) {
-    $(`[class*='${short}']`).map((_, _e) => {
-        const e = $(_e);
-        const value = getClassValue(` ${e.attr("class")} `, ` ${short}`);
+    document.querySelectorAll(`[class*='${short}']`).forEach(e => {
+        const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
         if (value) {
             const style = combine(
                 "." + short + value,
@@ -60,25 +58,27 @@ function applyAllCss() {
         styleTag("modifier").innerHTML = newStyle;
     }
 }
-  
-function styleTag(id) {
-    let style = $(`head style[id='${id}']`);
-    if (style.length == 0) {
-        $("head").append(`<style type='text/css' id='${id}'></style>`);
-        style = $(`head style[id='${id}']`);
-    }
-    return style[0];
-}
-  
+
 function oldStyles(id) {
     return styleTag(id).innerHTML;
 }
+
+function styleTag(id) {
+    let style = document.querySelector(`head style[id='${id}']`);
+    if (!style) {
+        const child = document.createElement("style");
+        child.id = id;
+        child.setAttribute("type", "text/css");
+        document.querySelector("head").appendChild(child);
+        style = document.querySelector(`head style[id='${id}']`);
+    }
+    return style;
+}  
   
 function applyCssResponser(styles, short, nameDimen) {
     if (getSize().includes(short.split("-")[0])) {
-        $(`[class*='${short}']`).map((_, _e) => {
-            const e = $(_e);
-            const value = getClassValue(` ${e.attr("class")} `, ` ${short}`);
+        document.querySelectorAll(`[class*='${short}']`).forEach(e => {
+            const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
             if (value) {
                 const style = combine(
                     "." + short + value,
@@ -94,9 +94,8 @@ function applyCssResponser(styles, short, nameDimen) {
   
 function applyCssResponserDown(styles, short, nameDimen) {
     if (getSizeDown().includes(short.split("-")[1])) {
-        $(`[class*='${short}']`).map((_, _e) => {
-            const e = $(_e);
-            const value = getClassValue(` ${e.attr("class")} `, ` ${short}`);
+        document.querySelectorAll(`[class*='${short}']`).forEach(e => {
+            const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
             if (value) {
                 const style = combine(
                     "." + short + value,
@@ -111,9 +110,8 @@ function applyCssResponserDown(styles, short, nameDimen) {
 }
   
 function applyCssDataTitle(styles, short, nameDimen) {
-    $(`[id*='popup-data-title-'][title-class*='${short}']`).map((_, _e) => {
-        const e = $(_e);
-        const value = getClassValue(` ${e.attr("title-class")} `, ` ${short}`);
+    document.querySelectorAll(`[id*='popup-data-title-'][title-class*='${short}']`).forEach(e => {
+        const value = getClassValue(` ${e.getAttribute("title-class")} `, ` ${short}`);
         if (value) {
             const style = combine(
                 `[id*='popup-data-title-'][title-class~='${short}${value}']`,
@@ -164,10 +162,17 @@ function applyAllCssDataTitle() {
 }
   
 function initializeDataTitle() {
-    const titleCount = $("[data-title]").length;
-    const positionCount = $("[title-position]").length;
-    const titles = $("[data-title]").map((i, e) => e.getAttribute("title-position"));
-    const positions = $("[title-position]").map((i, e) => e.getAttribute("title-position"));
+    const titleCount = document.querySelectorAll("[data-title]").length;
+    const positionCount = document.querySelectorAll("[title-position]").length;
+    let titles = [];
+    let positions = [];
+    document.querySelectorAll("[data-title]").forEach(e => {
+        titles.push(e.getAttribute("title-position"));
+    });
+    document.querySelectorAll("[title-position]").forEach(e => {
+        positions.push(e.getAttribute("title-position"));
+    });
+
     if (!(
         titleCount === dataTitleCount &&
         positionCount === titlePositionCount &&
@@ -178,7 +183,7 @@ function initializeDataTitle() {
         titlePositionCount = positionCount;
         dataTitleArray = titles;
         positionArray = positions;
-        $("[data-title]").each((i, e) => {
+        document.querySelectorAll("[data-title]").forEach((e, i) => {
             const id = "popup-data-title-" + i;
             e.addEventListener("pointerenter", function(evt) {
                 if (evt.pointerType === "mouse") {
@@ -197,7 +202,7 @@ function initializeDataTitle() {
                         title.setAttribute("title-class", classes);
                         title.style.opacity = 0;
 
-                        $("span[id*='data-title']").each((i, e) => {
+                        document.querySelectorAll("span[id*='data-title']").forEach(e => {
                             document.body.removeChild(e);
                         });
                         document.body.appendChild(title);
@@ -240,8 +245,8 @@ function initializeDataTitle() {
                 if (evt.pointerType === "mouse") {
                     const title = document.getElementById(id);
                     if (title) {
-                        title.addEventListener("transitionend", function(evt) {
-                            $(`span[id='${id}']`).each((i, e) => {
+                        title.addEventListener("transitionend", function() {
+                            document.querySelectorAll(`span[id='${id}']`).forEach(e => {
                                 document.body.removeChild(e);
                             });
                         });
@@ -253,8 +258,8 @@ function initializeDataTitle() {
                 if (evt.pointerType === "mouse") {
                     const title = document.getElementById(id);
                     if (title) {
-                        title.addEventListener("transitionend", function(evt) {
-                            $(`span[id='${id}']`).each((i, e) => {
+                        title.addEventListener("transitionend", function() {
+                            document.querySelectorAll(`span[id='${id}']`).forEach(e => {
                                 document.body.removeChild(e);
                             });
                         });
