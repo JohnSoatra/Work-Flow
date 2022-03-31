@@ -11,11 +11,11 @@ const router = createRouter({
             name: "Home",
             component: HomePage
         },
-        {
-            path: "/:pathMatch(.*)*",
-            name: "notfound",
-            component: NotfoundPage
-        }
+        // {
+        //     path: "/:pathMatch(.*)*",
+        //     name: "notfound",
+        //     component: NotfoundPage
+        // }
     ],
     
 });
