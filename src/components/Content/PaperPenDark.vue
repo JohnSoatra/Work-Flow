@@ -126,7 +126,11 @@
 export default {
   methods: {
     onBtnDownloadClick() {
-      document.getElementById("a_download_paperpen1").click();
+      //document.getElementById("a_download_paperpen1").click();
+      const file = require("!file-loader!../../assets/files/PaperPen-Setup.exe");
+      const a = document.getElementById("a_download_paperpen1");
+      a.href = file.default;
+      a.click();
     }
   }
 }
