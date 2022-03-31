@@ -15,6 +15,7 @@ function s3List($folderName, $filter) {
     $disk = Storage::disk(diskName());
     
     $dirs = $disk->directories($folderName);
+    $dirs = removeMainFolder($folderName, $dirs);
     $files = $disk->files($folderName);
     foreach ($files as $index => $file) {
         if (fileName($file) == defaultName()) {
@@ -86,6 +87,7 @@ function s3DeleteFolder($path) {
 function s3CopyFolder($path, $newPath) {
     $disk = Storage::disk(diskName());
     $dirs = $disk->allDirectories($path);
+    $dirs = removeMainFolder($path, $dirs);
     $files = $disk->allFiles($path);
 
     if (!$disk->exists($newPath)) {
@@ -113,6 +115,7 @@ function s3DownloadFolder($path) {
     $zip->open($temp_file, ZipArchive::CREATE | ZipArchive::OVERWRITE);
 
     $dirs = $disk->allDirectories($path);
+    $dirs = removeMainFolder($path, $dirs);
     $files = $disk->allFiles($path);
     $added = false;
 
