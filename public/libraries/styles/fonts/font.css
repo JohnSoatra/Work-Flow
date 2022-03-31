@@ -1,0 +1,38 @@
+@font-face {
+    font-family: "bodoni mt";
+    src: url(./bodoni-mt/BOD_B.TTF),
+        url(./bodoni-mt/BOD_BI.TTF),
+        url(./bodoni-mt/BOD_I.TTF),
+        url(./bodoni-mt/BOD_R.TTF),
+        url(./bodoni-mt/BodoniMT.ttf);
+    font-weight: normal bold 400 100 500 bolder ;
+}
+@font-face {
+    font-family: "courier new";
+    src: url(./cour/cour.ttf);
+}
+@font-face {
+    font-family: "daun penh";
+    src: url(./daunpenh/DaunPenh.ttf);
+}
+@font-face {
+    font-family: "euro roman";
+    src: url(./euroroman/EuroRoman.ttf),
+        url(./euroroman/EuroRomanOblique.ttf);
+}
+@font-face {
+    font-family: "ever after";
+    src: url(./ever-after/EVERAFTE.TTF);
+}
+@font-face {
+    font-family: "sachiko";
+    src: url(./sachiko-cdnfonts/Sachiko.ttf);
+}
+@font-face {
+    font-family: "sail";
+    src: url(./sail/Sail-Regular.otf);
+}
+@font-face {
+    font-family: "roman d";
+    src: url(./romand/RomanD.ttf);
+}
