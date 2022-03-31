@@ -7,4 +7,6 @@
 @import url(layout.css);
 @import url(util.css);
 @import url(anims.css);
-@import url(sm/util.css);
+@import url(breakpoints/util.css);
+@import url(breakpoints/layout.css);
+@import url(attr.css);

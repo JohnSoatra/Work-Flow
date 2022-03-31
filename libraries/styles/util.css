@@ -122,6 +122,10 @@
   display: unset;
 }
 
+.f-1 {
+  flex: 1;
+}
+
 .fw-bold {
   font-weight: bold;
 }
@@ -248,6 +252,20 @@
 .ta-s {
   text-align: start;
 }
+
+.els {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  direction: rtl;
+}
+.ele {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .td-n {
   text-decoration: none;
 }

@@ -1,4 +1,4 @@
-$(".product-img").on("click", function(event) {
+document.querySelector(".product-img").addEventListener("click", function(event) {
   const alt = event.target.alt;
   switch (alt) {
     case "posyou":
@@ -16,6 +16,6 @@ $(".product-img").on("click", function(event) {
   }
 });
 
-$(".profile").on("click", function() {
+document.querySelector(".profile").addEventListener("click", function() {
   window.open("https://www.facebook.com/Soatra/")
 });
