@@ -123,15 +123,12 @@
       </div>
 </template>
 <script>
+import base from "../../constants/url";
+
 export default {
   methods: {
     onBtnDownloadClick() {
-      // document.getElementById("a_download_paperpen1").click();
-      // const file = require("!file-loader!../../assets/files/PaperPen-Setup.exe");
-      const iframe = document.createElement("iframe");
-      iframe.src = "/PaperPen-Setup.exe";
-      document.body.append(iframe);
-
+      window.open(base + "/files/download/1/PaperPen-Setup.exe", "_self");
     }
   }
 }
