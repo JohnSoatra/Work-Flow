@@ -17,5 +17,5 @@ document.querySelector(".product-img").addEventListener("click", function(event)
 });
 
 document.querySelector(".profile").addEventListener("click", function() {
-  window.open("https://www.facebook.com/Soatra/")
+  window.open("https://www.facebook.com/Soatra/");
 });
