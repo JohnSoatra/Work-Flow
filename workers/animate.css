@@ -1,0 +1,10 @@
+.name {
+    background-color: #404040cc;
+    backdrop-filter: blur(5px);
+    transform: translateX(-100%);
+}
+.bd { background-color: #85c2dc; }
+.bdl { transform: translateY(-100%); }
+.bdb { transform: translateX(-100%); }
+.bdr { transform: translateY(100%); }
+.bdt { transform: translateX(100%); }

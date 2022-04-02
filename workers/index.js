@@ -1,3 +1,5 @@
+import animatorName from "./animator.js";
+
 document.querySelector(".product-img").addEventListener("click", function(event) {
   const alt = event.target.alt;
   switch (alt) {
@@ -18,4 +20,8 @@ document.querySelector(".product-img").addEventListener("click", function(event)
 
 document.querySelector(".profile").addEventListener("click", function() {
   window.open("https://www.facebook.com/Soatra/");
+});
+
+window.addEventListener("load", function() {
+  setTimeout(animatorName, 2000);
 });

@@ -132,19 +132,15 @@ function combine(selector, pairs) {
 }
 
 function popupDataTitle(classes) {
-    if (classes) {
-        const result = [];
-        let slices = classes.split("\n");
-        slices = slices.join(" ").split(" ");
-        for(const slice of slices) {
-            if (slice.startsWith("dt-")) {
-                result.push(slice.trim());
-            }
+    const result = [];
+    let slices = classes.split("\n");
+    slices = slices.join(" ").split(" ");
+    for(const slice of slices) {
+        if (slice.startsWith("dt-")) {
+            result.push(slice.trim());
         }
-        return result.join(" ");
-    } else {
-        return "";
     }
+    return result.join(" ");
 }
 
 export default {

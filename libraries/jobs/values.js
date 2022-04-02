@@ -1,4 +1,33 @@
 const regHex = /^([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const excludePairs = [
+    // fontsize
+    "fs-16", "fs-17", "fs-18", "fs-19", "fs-20", "fs-21", "fs-22", "fs-23",
+    "fs-24", "fs-25", "fs-26", "fs-27", "fs-28", "fs-29", "fs-30",
+    
+    // flex
+    "f-1",
+
+    // z-index
+    "z-1",
+
+    // w, h, mxw, mxh
+    "w-0",
+    "w-100p",
+    "w-fc",
+
+    "h-0",
+    "h-100p",
+    "h-fc",
+    
+    "mxw-fc",
+    "mxh-fc",
+
+    // animation
+    "aic-1",
+    "aic-if",
+
+    "adu-1000"
+]
 const classPairsCss = {
   // size
     "w-": ["width", "px"],
@@ -80,7 +109,12 @@ const classPairsCss = {
     "mxh-": ["max-height", "px"],
 
     // z-index
-    "z-": ["z-index", ""]
+    "z-": ["z-index", ""],
+
+    // animation
+    "adu-": ["animation-duration", "ms"],
+    "ade-": ["animation-delay", "ms"],
+    "aic": ["animation-iteration-count"],
 };
 
 const classPairsDataTitle = {
@@ -161,7 +195,12 @@ const classPairsDataTitle = {
     "dt-mxh-": ["max-height", "px"],
 
     // z-index
-    "dt-z-": ["z-index", ""]
+    "dt-z-": ["z-index", ""],
+
+    // animation
+    "dt-adu-": ["animation-duration", "ms"],
+    "dt-ade-": ["animation-delay", "ms"],
+    "dt-aic": ["animation-iteration-count"],
 };
 
 const pairSize = {
@@ -439,7 +478,8 @@ export default {
     classPairsDataTitle,
     pairSize,
     pairSizeDown,
-    regHex
+    regHex,
+    excludePairs
 }
 
 export {
@@ -447,5 +487,6 @@ export {
     classPairsDataTitle,
     pairSize,
     pairSizeDown,
-    regHex
+    regHex,
+    excludePairs
 }

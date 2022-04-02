@@ -2,10 +2,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="favicon.ico" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="apple-touch-icon" href="logo-192.jpg" />
-    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="./favicon.ico" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="apple-touch-icon" href="./favicon.ico" />
+    <link rel="manifest" href="./manifest.json" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keyword" content="john soatra, soatra, atra, ចន សុអាត្រា, សុអាត្រា, អាត្រា">
 
@@ -14,11 +14,11 @@
     <meta name="revised" content="2022-03-31">
     <meta name="description" content="Soatra is a creative software engineer. He can build nice web, mobile and desktop application.">
     
-    <meta property="og:image" content="https://soatra.com/images/cover.jpg">
+    <meta property="og:image" content="./images/cover.jpg">
     <meta property="og:title" content="Soatra">
     <meta property="og:description" content="Soatra is a creative software engineer. He can build nice web, mobile and desktop application.">
 
-    <meta property="twitter:image" content="https://soatra.com/images/cover.jpg">
+    <meta property="twitter:image" content="./images/cover.jpg">
     <meta property="twitter:title" content="Soatra">
     <meta property="twitter:description" content="Soatra is a creative software engineer. He can build nice web, mobile and desktop application.">
 
@@ -32,6 +32,7 @@
   </head>
   <body>
     <div class="root">
+      
       <div class="header flex jc-c ai-c">
         <div class="container box mxw-800px">
           <img src="./images/soatra-white.svg" alt="icon" width="36px" class="to-lc">
@@ -55,7 +56,7 @@
         mxw-850px
       ">
         <div class="
-          flex jc-c ai-c
+          flex fd-c jc-c ai-c
           lg-gcs-2
           lg-grs-1
         ">
@@ -65,17 +66,63 @@
             sm-w-180
             md-w-190
             lg-w-210
-            lg-mt--20p
             dt-profile
             dt-mt-5px
             dt-bgc-efefef
             dt-c-505050
-          " data-title="Click to Visit my FB Profile!">
+          "
+            data-title="Click to visit FB Profile.">
+          <div class="
+            box w-100p of-h
+            xs-mxw-160
+            sm-mxw-190
+            md-mxw-210
+            lg-mxw-230  
+          "
+            id="name_box">
+            <!-- name -->
+            <div class="w-100p of-h">
+                <p id="a-n" class="
+                  name ws-nw ta-c anim v-h
+                  xs-fs-17px
+                  sm-fs-19px
+                  md-fs-22px
+                  lg-fs-25px
+
+                  xs-p-2px
+                  xs-pb-5px
+                  sm-p-3px
+                  sm-pb-6px
+                  md-p-4px
+                  md-pb-7px
+                  lg-p-5px
+                  lg-pb-8px
+                ">John Soatra</p>
+            </div>
+            <!-- border left -->
+            <div class="to-tl xs-w-2 md-w-3 h-100p anim atf-l adu-800">
+                <div id="a-bl" class="bd bdl s-100p anim adu-400 atf-ei"></div>
+            </div>
+            <!-- border bottom -->
+            <div class="to-bl xs-h-2 md-h-3 w-100p anim atf-l adu-800">
+                <div id="a-bb" class="bd bdb s-100p anim atf-ei"></div>
+            </div>
+            <!-- border right -->
+            <div class="to-br xs-w-2 md-w-3 h-100p anim atf-l adu-800">
+                <div id="a-br" class="bd bdr s-100p anim adu-400 atf-ei"></div>
+            </div>
+            <!-- border top -->
+            <div class="to-tr xs-h-2 md-h-3 w-100p h-3 anim atf-l adu-800">
+                <div id="a-bt" class="bd bdt s-100p anim atf-ei"></div>
+            </div>
+        </div>
+
         </div>
         <div class="
           flex jc-c
           lg-gcs-1
           lg-grs-1
+          mt-10px
         ">
           <span class="desc">
             <span class="starter xs-fs-19 sm-fs-22">I</span> am John Soatra, a Software Developer. I really like technology and developing.
@@ -102,7 +149,12 @@
             product-img
             xs-h-50
             sm-h-60
-          ">
+            dt-profile
+            dt-mt-5px
+            dt-bgc-efefef
+            dt-c-505050
+          "
+            data-title="Click to visit Lab.">
           <a class="product-name ta-c fw-400 cs-d" href="https://lab.soatra.com" target="_black">Lab</a>
         </span>
         <span class="
@@ -114,7 +166,12 @@
             product-img
             xs-h-50
             sm-h-60
-          ">
+            dt-profile
+            dt-mt-5px
+            dt-bgc-efefef
+            dt-c-505050
+          "
+            data-title="Click to visit PaperPen.">
           <a class="product-name ta-c fw-400 cs-d" href="https://paperpen.soatra.com" target="_black">PaperPen</a>
         </span>
         <span class="
@@ -126,7 +183,12 @@
             product-img
             xs-h-50
             sm-h-60
-          ">
+            dt-profile
+            dt-mt-5px
+            dt-bgc-efefef
+            dt-c-505050
+          "
+            data-title="Click to visit PosYou.">
           <a class="product-name ta-c fw-400 cs-d" href="https://youtube.com/PosYou" target="_black">PosYou</a>
         </span>
         <span class="
@@ -138,7 +200,12 @@
             product-img
             xs-h-50
             sm-h-60
-          ">
+            dt-profile
+            dt-mt-5px
+            dt-bgc-efefef
+            dt-c-505050
+          "
+            data-title="Click to visit Meka.">
           <a class="product-name ta-c fw-400 cs-d" href="https://meka.soatra.com" target="_black">Meka</a>
         </span>
       </div>
@@ -156,7 +223,7 @@
         </span>
       </div>
     </div>
-    <script src="./workers/index.js"></script>
+    <script src="./workers/index.js" type="module"></script>
     <script src="./app.js"></script>
   </body>
 </html>

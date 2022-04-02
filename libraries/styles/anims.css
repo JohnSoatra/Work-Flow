@@ -1,124 +1,362 @@
-an-rotate {
+/* default animation */
+.anim {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+}
+
+/* anim name fade */
+.an-fi {
+    animation-name: fade-in;
+}
+.an-fo {
+    animation-name: fade-out;
+}
+
+/* anim name rotate */
+.an-r {
     animation-name: rotate;
 }
+.an-rld {
+    animation-name: rotate-letter-down;
+}
+.an-rlu {
+    animation-name: rotate-letter-up;
+}
 
-adu-0 {
-    animation-duration: 0ms;
+/* anim name slide */
+.an-sft {
+    animation-name: slide-from-top;
 }
-adu-500 {
-    animation-duration: 500ms;
+.an-sfb {
+    animation-name: slide-from-bottom;
 }
-adu-1000 {
+.an-sfl {
+    animation-name: slide-from-left;
+}
+.an-sfr {
+    animation-name: slide-from-right;
+}
+
+.an-stt {
+    animation-name: slide-to-top;
+}
+.an-stb {
+    animation-name: slide-to-bottom;
+}
+.an-stl {
+    animation-name: slide-to-left;
+}
+.an-str {
+    animation-name: slide-to-right;
+}
+
+/* anim name scale */
+.an-scfb {
+    animation-name: scale-from-bigger;
+}
+.an-scfs {
+    animation-name: scale-from-smaller;
+}
+
+.an-sctb {
+    animation-name: scale-to-bigger;
+}
+.an-scts {
+    animation-name: scale-to-smaller;
+}
+
+/* anim name expand, collapse */
+.an-ev {
+    animation-name: expand-vertical;
+}
+.an-eh {
+    animation-name: expand-horizontal;
+}
+.an-cv {
+    animation-name: collapse-vertical;
+}
+.an-ch {
+    animation-name: collapse-horizontal;
+}
+
+/* anim name light */
+.an-ltu {
+    animation-name: light-to-up;
+}
+.an-ltd {
+    animation-name: light-to-down;
+}
+.an-lfu {
+    animation-name: light-from-up;
+}
+.an-lfd {
+    animation-name: light-from-down;
+}
+
+/* another */
+.adu-1000 {
     animation-duration: 1000ms;
 }
-adu-1500 {
-    animation-duration: 1500ms;
-}
-adu-2000 {
-    animation-duration: 2000ms;
-}
-adu-2500 {
-    animation-duration: 2500ms;
-}
-adu-3000 {
-    animation-duration: 3000ms;
-}
 
-atf-linear {
+.atf-l {
     animation-timing-function: linear;
 }
-atf-ease {
+.atf-e {
     animation-timing-function: ease;
 }
-atf-ease-in {
+.atf-ei {
     animation-timing-function: ease-in;
 }
-atf-ease-out {
+.atf-eo {
     animation-timing-function: ease-out;
 }
-atf-ease-in-out {
+.atf-eio {
     animation-timing-function: ease-in-out;
 }
 
-ade-0 {
-    animation-delay: 0ms;
-}
-ade-500 {
-    animation-delay: 500ms;
-}
-ade-1000 {
-    animation-delay: 1000ms;
-}
-ade-1500 {
-    animation-delay: 1500ms;
-}
-ade-2000 {
-    animation-delay: 2000ms;
-}
-ade-2500 {
-    animation-delay: 2500ms;
-}
-ade-3000 {
-    animation-delay: 3000ms;
-}
-
-aic-0 {
-    animation-iteration-count: 0;
-}
-aic-1 {
+.aic-1 {
     animation-iteration-count: 1;
 }
-aic-2 {
-    animation-iteration-count: 2;
-}
-aic-inf {
+.aic-if {
     animation-iteration-count: infinite;
 }
 
-adi-nm {
+.adr-nm {
     animation-direction: normal;
 }
-adi-rv {
+.adr-rv {
     animation-direction: reverse;
 }
-adi-alt {
+.adr-alt {
     animation-direction: alternate;
 }
-adi-alt-rv {
+.adr-alt-rv {
     animation-direction: alternate-reverse;
 }
 
-
-afm-b {
+.afm-b {
  animation-fill-mode: none;
 }
-afm-b {
+.afm-b {
  animation-fill-mode: both;
 }
-afm-bw {
+.afm-bw {
  animation-fill-mode: backwards;
 }
-afm-fw {
+.afm-fw {
  animation-fill-mode: forwards;
 }
 
+/* fade */
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* rotate */
 @keyframes rotate {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
-@keyframes nav-right {
+@keyframes rotate-letter-down {
     0% {
-        transform: translate(-100%, 0);
+        transform: rotate(-90deg);
     }
     100% {
-        transform: translate(100%, 0);
+        transform: rotate(0deg);
     }
 }
-@keyframes nav-left {
+@keyframes rotate-letter-up {
     0% {
-        transform: translate(100%, 0);
+        transform: rotate(90deg);
     }
     100% {
-        transform: translate(-100%, 0);
+        transform: rotate(0deg);
+    }
+}
+
+/* slide */
+@keyframes slide-from-top {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes slide-from-bottom {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes slide-from-left {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+@keyframes slide-from-right {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slide-to-top {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+@keyframes slide-to-bottom {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}
+@keyframes slide-to-left {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-to-right {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* scale */
+@keyframes scale-from-bigger {
+    0% {
+        transform: scale(1.5, 1.5);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+@keyframes scale-from-smaller {
+    0% {
+        transform: scale(0.5, 0.5);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes scale-to-bigger {
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(1.5, 1.5);
+    }
+}
+@keyframes scale-to-smaller {
+    0% {
+        transform: scale(1, 1);
+    }
+    100% {
+        transform: scale(0.5, 0.5);
+    }
+}
+
+/* expand, collapse */
+@keyframes expand-vertical {
+    0% {
+        height: 0%;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+@keyframes expand-horizontal {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+@keyframes collapse-vertical {
+    0% {
+        height: 100%;
+    }
+    100% {
+        height: 0%;
+    }
+}
+@keyframes collapse-horizontal {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0%;
+    }
+}
+@keyframes light-to-up {
+    0% {
+        filter: brightness(1);
+    }
+    100% {
+        filter: brightness(1.5);
+    }
+}
+@keyframes light-to-down {
+    0% {
+        filter: brightness(1);
+    }
+    100% {
+        filter: brightness(0.5);
+    }
+}
+@keyframes light-from-up {
+    0% {
+        filter: brightness(1.5);
+    }
+    100% {
+        filter: brightness(1);
+    }
+}
+@keyframes light-from-down {
+    0% {
+        filter: brightness(0.5);
+    }
+    100% {
+        filter: brightness(1);
     }
 }

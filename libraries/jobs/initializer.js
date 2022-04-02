@@ -2,7 +2,8 @@ import {
     classPairsCss,
     classPairsDataTitle,
     pairSize,
-    pairSizeDown
+    pairSizeDown,
+    excludePairs
 } from "./values.js";
 import {
     arrayToString,
@@ -37,10 +38,10 @@ function setRootHeight() {
     }
 }
   
-function applyCss(styles, short, nameDimen) {
+function applyCssAll(styles, short, nameDimen) {
     document.querySelectorAll(`[class*='${short}']`).forEach(e => {
         const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-        if (value) {
+        if (value && !excludePairs.includes(short + value)) {
             const style = combine(
                 "." + short + value,
                 { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -50,17 +51,6 @@ function applyCss(styles, short, nameDimen) {
             }
         }
     });
-}
-  
-function applyAllCss() {
-    const styles = [];
-    for (const short in classPairsCss) {
-        applyCss(styles, short, classPairsCss[short]);
-    }
-    const newStyle = arrayToString(styles);
-    if (oldStyles("modifier") !== newStyle) {
-        styleTag("modifier").innerHTML = newStyle;
-    }
 }
 
 function oldStyles(id) {
@@ -78,12 +68,23 @@ function styleTag(id) {
     }
     return style;
 }  
-  
+ 
+function applyAllCss() {
+    const styles = [];
+    for (const short in classPairsCss) {
+        applyCssAll(styles, short, classPairsCss[short]);
+    }
+    const newStyle = arrayToString(styles);
+    if (oldStyles("modifier") !== newStyle) {
+        styleTag("modifier").innerHTML = newStyle;
+    }
+}
+
 function applyCssResponser(styles, short, nameDimen) {
     if (getSize().includes(short.split("-")[0])) {
         document.querySelectorAll(`[class*='${short}']`).forEach(e => {
             const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-            if (value) {
+            if (value && !excludePairs.includes(short + value)) {
                 const style = combine(
                     "." + short + value,
                     { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -100,7 +101,7 @@ function applyCssResponserDown(styles, short, nameDimen) {
     if (getSizeDown().includes(short.split("-")[1])) {
         document.querySelectorAll(`[class*='${short}']`).forEach(e => {
             const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-            if (value) {
+            if (value && !excludePairs.includes(short + value)) {
                 const style = combine(
                     "." + short + value,
                     { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -116,7 +117,7 @@ function applyCssResponserDown(styles, short, nameDimen) {
 function applyCssDataTitle(styles, short, nameDimen) {
     document.querySelectorAll(`[id*='popup-data-title-'][title-class*='${short}']`).forEach(e => {
         const value = getClassValue(` ${e.getAttribute("title-class")} `, ` ${short}`);
-        if (value) {
+        if (value && !excludePairs.includes(short + value)) {
             const style = combine(
                 `[id*='popup-data-title-'][title-class~='${short}${value}']`,
                 { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -154,9 +155,9 @@ function applyAllCssDataTitle() {
     const styles = [];
     for (const short in classPairsDataTitle) {
         applyCssDataTitle(
-        styles,
-        short,
-        classPairsDataTitle[short]
+            styles,
+            short,
+            classPairsDataTitle[short]
         );
     }
     const newStyle = arrayToString(styles);
@@ -189,7 +190,7 @@ function initializeDataTitle() {
         positionArray = positions;
         document.querySelectorAll("[data-title]").forEach((e, i) => {
             const id = "popup-data-title-" + i;
-            e.addEventListener("pointerenter", function(evt) {
+            e.onpointerenter = evt => {
                 if (evt.pointerType === "mouse") {
                     const data_title = e.getAttribute("data-title");
                     if (data_title) {
@@ -244,8 +245,8 @@ function initializeDataTitle() {
                         title.style.opacity = 1;
                     }
                 }
-            });
-            e.addEventListener("pointerleave", function(evt) {
+            }
+            e.onpointerleave = evt => {
                 if (evt.pointerType === "mouse") {
                     const title = document.getElementById(id);
                     if (title) {
@@ -257,8 +258,8 @@ function initializeDataTitle() {
                         title.style.opacity = 0;
                     }
                 }
-            });
-            e.addEventListener("pointerdown", function(evt) {
+            }
+            e.onpointerdown = evt => {
                 if (evt.pointerType === "mouse") {
                     const title = document.getElementById(id);
                     if (title) {
@@ -270,7 +271,7 @@ function initializeDataTitle() {
                         title.style.opacity = 0;
                     }
                 }
-            });
+            }
         });
     }
 }
