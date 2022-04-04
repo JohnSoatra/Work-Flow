@@ -1,10 +1,6 @@
-.flex {
-  display: flex;
-}
+/* flex layout ----------------------- */
 
-.box {
-  position: relative;
-}
+.flex { display: flex; }
 
 .fd-r {
   flex-direction: row;
@@ -72,6 +68,10 @@
   align-self: stretch;
 }
 
+/* box layout */
+
+.box { position: relative; }
+
 
 .to-tl {
   position: absolute;
@@ -131,3 +131,116 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+/* grid layout -----------------------------*/
+.grid { display: grid; }
+
+.gtc-1 { grid-template-columns: auto; }
+.gtc-2 { grid-template-columns: auto auto; }
+.gtc-3 { grid-template-columns: auto auto auto; }
+.gtc-4 { grid-template-columns: auto auto auto auto; }
+.gtc-5 { grid-template-columns: auto auto auto auto auto; }
+.gtc-6 { grid-template-columns: auto auto auto auto auto auto; }
+.gtc-7 { grid-template-columns: auto auto auto auto auto auto auto; }
+.gtc-8 { grid-template-columns: auto auto auto auto auto auto auto auto; }
+.gtc-9 { grid-template-columns: auto auto auto auto auto auto auto auto auto; }
+.gtc-10 { grid-template-columns: auto auto auto auto auto auto auto auto auto auto; }
+.gtc-11 { grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto; }
+.gtc-12 { grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto; }
+
+.gtr-1 { grid-template-rows: auto; }
+.gtr-2 { grid-template-rows: auto auto; }
+.gtr-3 { grid-template-rows: auto auto auto; }
+.gtr-4 { grid-template-rows: auto auto auto auto; }
+.gtr-5 { grid-template-rows: auto auto auto auto auto; }
+.gtr-6 { grid-template-rows: auto auto auto auto auto auto; }
+.gtr-7 { grid-template-rows: auto auto auto auto auto auto auto; }
+.gtr-8 { grid-template-rows: auto auto auto auto auto auto auto auto; }
+.gtr-9 { grid-template-rows: auto auto auto auto auto auto auto auto auto; }
+.gtr-10 { grid-template-rows: auto auto auto auto auto auto auto auto auto auto; }
+.gtr-11 { grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto; }
+.gtr-12 { grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto; }
+
+.gcs-a { grid-column-start: auto; }
+.gcs-1 { grid-column-start: 1; }
+.gcs-2 { grid-column-start: 2; }
+.gcs-3 { grid-column-start: 3; }
+.gcs-4 { grid-column-start: 4; }
+.gcs-5 { grid-column-start: 5; }
+.gcs-6 { grid-column-start: 6; }
+.gcs-7 { grid-column-start: 7; }
+.gcs-8 { grid-column-start: 8; }
+.gcs-9 { grid-column-start: 9; }
+.gcs-10 { grid-column-start: 10; }
+.gcs-11 { grid-column-start: 11; }
+.gcs-12 { grid-column-start: 12; }
+
+.gce-a { grid-column-end: auto; }
+.gce-1 { grid-column-end: 1; }
+.gce-2 { grid-column-end: 2; }
+.gce-3 { grid-column-end: 3; }
+.gce-4 { grid-column-end: 4; }
+.gce-5 { grid-column-end: 5; }
+.gce-6 { grid-column-end: 6; }
+.gce-7 { grid-column-end: 7; }
+.gce-8 { grid-column-end: 8; }
+.gce-9 { grid-column-end: 9; }
+.gce-10 { grid-column-end: 10; }
+.gce-11 { grid-column-end: 11; }
+.gce-12 { grid-column-end: 12; }
+
+.gces-a { grid-column-end: span auto; }
+.gces-1 { grid-column-end: span 1; }
+.gces-2 { grid-column-end: span 2; }
+.gces-3 { grid-column-end: span 3; }
+.gces-4 { grid-column-end: span 4; }
+.gces-5 { grid-column-end: span 5; }
+.gces-6 { grid-column-end: span 6; }
+.gces-7 { grid-column-end: span 7; }
+.gces-8 { grid-column-end: span 8; }
+.gces-9 { grid-column-end: span 9; }
+.gces-10 { grid-column-end: span 10; }
+.gces-11 { grid-column-end: span 11; }
+.gces-12 { grid-column-end: span 12; }
+
+.grs-a { grid-row-start: auto; }
+.grs-1 { grid-row-start: 1; }
+.grs-2 { grid-row-start: 2; }
+.grs-3 { grid-row-start: 3; }
+.grs-4 { grid-row-start: 4; }
+.grs-5 { grid-row-start: 5; }
+.grs-6 { grid-row-start: 6; }
+.grs-7 { grid-row-start: 7; }
+.grs-8 { grid-row-start: 8; }
+.grs-9 { grid-row-start: 9; }
+.grs-10 { grid-row-start: 10; }
+.grs-11 { grid-row-start: 11; }
+.grs-12 { grid-row-start: 12; }
+
+.gre-a { grid-row-end: auto; }
+.gre-1 { grid-row-end: 1; }
+.gre-2 { grid-row-end: 2; }
+.gre-3 { grid-row-end: 3; }
+.gre-4 { grid-row-end: 4; }
+.gre-5 { grid-row-end: 5; }
+.gre-6 { grid-row-end: 6; }
+.gre-7 { grid-row-end: 7; }
+.gre-8 { grid-row-end: 8; }
+.gre-9 { grid-row-end: 9; }
+.gre-10 { grid-row-end: 10; }
+.gre-11 { grid-row-end: 11; }
+.gre-12 { grid-row-end: 12; }
+
+.gres-a { grid-row-end: span auto; }
+.gres-1 { grid-row-end: span 1; }
+.gres-2 { grid-row-end: span 2; }
+.gres-3 { grid-row-end: span 3; }
+.gres-4 { grid-row-end: span 4; }
+.gres-5 { grid-row-end: span 5; }
+.gres-6 { grid-row-end: span 6; }
+.gres-7 { grid-row-end: span 7; }
+.gres-8 { grid-row-end: span 8; }
+.gres-9 { grid-row-end: span 9; }
+.gres-10 { grid-row-end: span 10; }
+.gres-11 { grid-row-end: span 11; }
+.gres-12 { grid-row-end: span 12; }

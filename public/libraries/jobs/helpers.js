@@ -59,9 +59,27 @@ function filterShort(short) {
     }
 }
 
+function isGrid(short) {
+    return short.endsWith("gtc-") || short.endsWith("gtr-");
+}
+
 function validateValue(short, value, dimen) {
     let result;
-    if (isColor(short)) {
+    if (isGrid(short)) {
+        const values = value.split("-");
+        const newSlices = [];
+        for (let each of values) {
+            let eachIn = checkPercentage(each);
+            eachIn = + eachIn || eachIn;
+            if (typeof(eachIn) === "number") {
+                eachIn = eachIn + dimen;
+            } else if (eachIn === "a") {
+                eachIn = "auto";
+            }
+            newSlices.push(eachIn);
+        }
+        result = newSlices.join(" ");
+    } else if (isColor(short)) {
         if(isHex(value)) {
             result = dimen + value;
         } else {
@@ -131,6 +149,18 @@ function combine(selector, pairs) {
     return selector + objectToString(pairs);
 }
 
+function popupDataTitle(classes) {
+    const result = [];
+    let slices = classes.split("\n");
+    slices = slices.join(" ").split(" ");
+    for(const slice of slices) {
+        if (slice.startsWith("dt-")) {
+            result.push(slice.trim());
+        }
+    }
+    return result.join(" ");
+}
+
 export default {
     arrayToString,
     checkPercentage,
@@ -143,7 +173,8 @@ export default {
     isColor,
     isHex,
     objectToString,
-    validateValue
+    validateValue,
+    popupDataTitle
 }
 
 export {
@@ -158,5 +189,6 @@ export {
     isColor,
     isHex,
     objectToString,
-    validateValue
+    validateValue,
+    popupDataTitle
 }

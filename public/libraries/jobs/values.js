@@ -1,8 +1,48 @@
 const regHex = /^([0-9a-fA-F]{3,4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const excludePairs = [
+    // fontsize
+    "fs-16", "fs-17", "fs-18", "fs-19", "fs-20", "fs-21", "fs-22", "fs-23",
+    "fs-24", "fs-25", "fs-26", "fs-27", "fs-28", "fs-29", "fs-30",
+    
+    // flex
+    "f-1",
+
+    // z-index
+    "z-1",
+
+    // w, h, mxw, mxh
+    "w-0",
+    "w-100p",
+    "w-fc",
+
+    "h-0",
+    "h-100p",
+    "h-fc",
+    
+    "mxw-fc",
+    "mxh-fc",
+
+    // animation
+    "aic-1",
+    "aic-if",
+
+    "adu-1000",
+
+    // grid
+    "gtc-1", "gtc-2", "gtc-3", "gtc-4", "gtc-5", "gtc-6",
+    "gtc-7", "gtc-8", "gtc-9", "gtc-10", "gtc-11", "gtc-12",
+
+    "gtr-1", "gtr-2", "gtr-3", "gtr-4", "gtr-5", "gtr-6",
+    "gtr-7", "gtr-8", "gtr-9", "gtr-10", "gtr-11", "gtr-12",
+
+]
 const classPairsCss = {
   // size
     "w-": ["width", "px"],
     "h-": ["height", "px"],
+    "gap-": ["gap", "px"],
+    "cg-": ["column-gap", "px"],
+    "rg-": ["row-gap", "px"],
 
     // position
     "t-": ["top", "px"],
@@ -77,7 +117,16 @@ const classPairsCss = {
     "mxh-": ["max-height", "px"],
 
     // z-index
-    "z-": ["z-index", ""]
+    "z-": ["z-index", ""],
+
+    // animation
+    "adu-": ["animation-duration", "ms"],
+    "ade-": ["animation-delay", "ms"],
+    "aic": ["animation-iteration-count"],
+
+    // grid
+    "gtc-": ["grid-template-columns", "fr"],
+    "gtr-": ["grid-template-rows", "fr"],
 };
 
 const classPairsDataTitle = {
@@ -158,7 +207,16 @@ const classPairsDataTitle = {
     "dt-mxh-": ["max-height", "px"],
 
     // z-index
-    "dt-z-": ["z-index", ""]
+    "dt-z-": ["z-index", ""],
+
+    // animation
+    "dt-adu-": ["animation-duration", "ms"],
+    "dt-ade-": ["animation-delay", "ms"],
+    "dt-aic": ["animation-iteration-count"],
+
+    // grid
+    "dt-gtc-": ["grid-template-columns", "fr"],
+    "dt-gtr-": ["grid-template-rows", "fr"],
 };
 
 const pairSize = {
@@ -168,6 +226,13 @@ const pairSize = {
     "md-fs-": ["font-size", "px"],
     "lg-fs-": ["font-size", "px"],
     "xl-fs-": ["font-size", "px"],
+
+    //flex
+    "xs-f-": ["flex", ""],
+    "sm-f-": ["flex", ""],
+    "md-f-": ["flex", ""],
+    "lg-f-": ["flex", ""],
+    "xl-f-": ["flex", ""],
 
     // size
     "xs-w-": ["width", "px"],
@@ -275,6 +340,38 @@ const pairSize = {
     
     "xl-mxw-": ["max-width", "px"],
     "xl-mxh-": ["max-height", "px"],
+
+    // gap
+    "xs-gap-": ["gap", "px"],
+    "sm-gap-": ["gap", "px"],
+    "md-gap-": ["gap", "px"],
+    "lg-gap-": ["gap", "px"],
+    "xl-gap-": ["gap", "px"],
+    
+    "xs-cg-": ["column-gap", "px"],
+    "sm-cg-": ["column-gap", "px"],
+    "md-cg-": ["column-gap", "px"],
+    "lg-cg-": ["column-gap", "px"],
+    "xl-cg-": ["column-gap", "px"],
+
+    "xs-rg-": ["row-gap", "px"],
+    "sm-rg-": ["row-gap", "px"],
+    "md-rg-": ["row-gap", "px"],
+    "lg-rg-": ["row-gap", "px"],
+    "xl-rg-": ["row-gap", "px"],
+
+    // grid
+    "xs-gtc-": ["grid-template-columns", "fr"],
+    "sm-gtc-": ["grid-template-columns", "fr"],
+    "md-gtc-": ["grid-template-columns", "fr"],
+    "lg-gtc-": ["grid-template-columns", "fr"],
+    "xl-gtc-": ["grid-template-columns", "fr"],
+    
+    "xs-gtr-": ["grid-template-rows", "fr"],
+    "sm-gtr-": ["grid-template-rows", "fr"],
+    "md-gtr-": ["grid-template-rows", "fr"],
+    "lg-gtr-": ["grid-template-rows", "fr"],
+    "xl-gtr-": ["grid-template-rows", "fr"],
 }
 
 const pairSizeDown = {
@@ -284,7 +381,14 @@ const pairSizeDown = {
     "d-md-fs-": ["font-size", "px"],
     "d-lg-fs-": ["font-size", "px"],
     "d-xl-fs-": ["font-size", "px"],
-
+    
+    //flex
+    "d-xs-f-": ["flex", ""],
+    "d-sm-f-": ["flex", ""],
+    "d-md-f-": ["flex", ""],
+    "d-lg-f-": ["flex", ""],
+    "d-xl-f-": ["flex", ""],
+    
     // size
     "d-xs-w-": ["width", "px"],
     "d-sm-w-": ["width", "px"],
@@ -391,6 +495,38 @@ const pairSizeDown = {
     
     "d-xl-mxw-": ["max-width", "px"],
     "d-xl-mxh-": ["max-height", "px"],
+    
+    // gap
+    "d-xs-gap-": ["gap", "px"],
+    "d-sm-gap-": ["gap", "px"],
+    "d-md-gap-": ["gap", "px"],
+    "d-lg-gap-": ["gap", "px"],
+    "d-xl-gap-": ["gap", "px"],
+
+    "d-xs-cg-": ["column-gap", "px"],
+    "d-sm-cg-": ["column-gap", "px"],
+    "d-md-cg-": ["column-gap", "px"],
+    "d-lg-cg-": ["column-gap", "px"],
+    "d-xl-cg-": ["column-gap", "px"],
+
+    "d-xs-rg-": ["row-gap", "px"],
+    "d-sm-rg-": ["row-gap", "px"],
+    "d-md-rg-": ["row-gap", "px"],
+    "d-lg-rg-": ["row-gap", "px"],
+    "d-xl-rg-": ["row-gap", "px"],
+
+    // grid
+    "d-xs-gtc-": ["grid-template-columns", "fr"],
+    "d-sm-gtc-": ["grid-template-columns", "fr"],
+    "d-md-gtc-": ["grid-template-columns", "fr"],
+    "d-lg-gtc-": ["grid-template-columns", "fr"],
+    "d-xl-gtc-": ["grid-template-columns", "fr"],
+    
+    "d-xs-gtr-": ["grid-template-rows", "fr"],
+    "d-sm-gtr-": ["grid-template-rows", "fr"],
+    "d-md-gtr-": ["grid-template-rows", "fr"],
+    "d-lg-gtr-": ["grid-template-rows", "fr"],
+    "d-xl-gtr-": ["grid-template-rows", "fr"],
 }
 
 export default {
@@ -398,7 +534,8 @@ export default {
     classPairsDataTitle,
     pairSize,
     pairSizeDown,
-    regHex
+    regHex,
+    excludePairs
 }
 
 export {
@@ -406,5 +543,6 @@ export {
     classPairsDataTitle,
     pairSize,
     pairSizeDown,
-    regHex
+    regHex,
+    excludePairs
 }

@@ -1,5 +1,4 @@
-.grid {
-  display: block;
+.wrap {
   width: 100%;
   display: flex;
   flex-direction: row;

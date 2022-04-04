@@ -1,3 +1,79 @@
 --------------old
 <img src="images/paperpen.svg" alt="paperpen" class="img">
 <span>PaperPen is Window application for noting <a href="file/PaperPen-Setup.exe">install</a>.</span>
+----------------- translate
+PaperPen គឺជា Software មួយដែលបង្កើតឡើងដើម្បីអោយអ្នកប្រើប្រាស់អាចរក្សាទុកទិន្នន័យ រឺ ព័ត៌មានរបស់ពួកគេបានយ៉ាងងាយស្រួលដោយការ Note ទុកនៅក្នុងកម្មវីធី ។ មិនត្រឹមតែប៉ុណ្ណោះ ពួកគេក៏អាច Add, Delete, Edit, Search នៅក្នុងនោះផងដែរ ព្រមទាំងអាចកំណត់ Note នោះជា Simple Note ក៏បាន និង Important Note ក៏បាន ។
+=
+PaperPen is a Software build for saving data or information easily by noting in the app. You can also Add, Delete Edit, Search, etc. in the PaperPen. PaperPen lets you set kind of note as Simple or Important note.
+
+-------------
+
+Home page នៃ PaperPen System មានមុខងារដូចជា៖
+
+– Button Search សម្រាប់ស្វែងរក Note ។
+
+– សញ្ញា + តំណាងអោយការ Add Note ។
+
+=
+
+Home page of PaperPen System has functions:
+
+– Button Search for searching any notes.
+
+– + used to presets for Adding Note.
+
+----------
+ដំណើរការនៃការ Add Note ដំបូងយើងចុចលើសញ្ញា + នោះវានឹងបង្ហាញ Form មួយដែលអាចអោយយើងសរសេរអំពីអ្វីដែលយើងចង់ Note ទុក ដែលក្នុងនោះមានដូចជា៖
+
+– Title : ជាចំណងជើងនៃ Note របស់យើង
+
+– Content : ជាកម្រងអត្ថបទដែលតម្រូវអោយយើងសរសេររបាយការណ៍ រឺ សំណេរផ្សេងៗដែលយើងចង់ Note ទុក ។
+
+– Date : ជាថ្ងៃខែ ពេលវេលា សម្រាប់អោយយើងកត់ចំណាំនៅលើ Note របស់យើង ។
+
+– Important : ជាពាក្យមួយដែលអាចអោយយើងជ្រើសយក ប្រសិនបើយើងចង់បញ្ជាក់ថា Note របស់យើងជា Note Important ។ រាល់ Note ដែល important វានឹងលោតមកនៅខាងមុខ Simple Note ទាំងអស់ ទោះបីជា Important Note បានសរសេរក្រោយគេក៏ដោយ ។
+
+Note:
+
+– Important Note បញ្ជាក់ដោយពណ៌បៃតងចាស់
+– Simple Note បញ្ជាក់ដោយពណ៌ផ្ទៃមេឃ
+=
+Steps ot add note first click on + sign then it will popup a form that contains the textbox that you want to note and those are:
+
+– Title : is the name of your note.
+
+– Content : is the body part of your note. It describe full information of your note.
+
+– Date : is the date that you note is create for.
+
+– Important : is kind of your note. Check it, if your note is Important another wise is Simple.
+
+Note:
+
+– Important Note has Green Background
+
+– Simple Note has Cyan Background
+----------------------
+នៅពេលដែលយើងចង់ Edit Note របស់យើង ដោយហេតុផលចង់កែទិន្នន័យ រឺ ចង់សរសេរបន្ថែមទៀត នោះយើងគ្រាន់តែ Click on Note ហើយយើងអាចកែទិន្នន័យ រឺ សរសេរបន្ថែមបានហើយ ។ បន្ទាប់មក ចុចលើ Button Edit ដើម្បី Save ទិន្នន័យដែលបានកែប្រែរួច ។
+=
+When you want to edit note you can do that by just clicking on that note then it will popup the editing panel for you. Click edit to save your new information.
+---------------
+ប្រសិនបើ យើងចង់ Delete Note របស់យើងណាមួយ នោះយើងគ្រាន់តែ Long Click on left Mouse អោយយូរ នៅលើ Note នោះ វានឹងបង្ហាញ Message alert មួយដែលសួរយើងបញ្ជាក់ថា ចង់លុប Note នេះដែររឺទេ?
+
+– បើយើងចង់លុប នោះយើងត្រូវចុចលើ Button Yes
+
+– បើយើងមិនចង់លុប នោះយើងត្រួវចុចលើ Button No ។
+=
+To delete any note, just long click with left mouse button on that note then it will alert the confirmation dialog asks you that you are sure to delete it.
+– You really want to delete click on button Yes.
+
+– You don't want to delete click on button No.
+-----
+នៅក្នុងករណីមួយដែលយើងមាន Note ច្រើនពេកដែលធ្វើអោយយើងពិបាកស្វែងរក ដំណោះស្រាយពេលនោះ ដោយយើងគ្រាន់តែចងចាំចំណងជើងរបស់ Note (Title) នោះយើងក៏នឺងអាច Search រក Note ដែលយើងចង់រកបានហើយ ព្រោះកម្មវិធីនឹង Hide Notes ទាំងអស់ដែលយើងមិនត្រូវការ ដែលបង្ហាញជំនួសវិញដោយ Note ដែលយើងបាន Search ។
+
+ជាលទ្ធផលយើងទទួលបាន៖
+=
+In case you have alot of notes and dificult to find your looking note you will find it faster with searching. To search you can use textbox search on the window.
+=
+As the result you'll get:
+--------- end transtation

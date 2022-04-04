@@ -2,7 +2,8 @@ import {
     classPairsCss,
     classPairsDataTitle,
     pairSize,
-    pairSizeDown
+    pairSizeDown,
+    excludePairs
 } from "./values.js";
 import {
     arrayToString,
@@ -10,7 +11,8 @@ import {
     getClassValue,
     getSize,
     getSizeDown,
-    validateValue
+    validateValue,
+    popupDataTitle
 } from "./helpers.js";
 
 let dataTitleCount = 0;
@@ -30,33 +32,26 @@ initializer();
 
 function setRootHeight() {
     const windowHeight = window.innerHeight;
-    document.querySelector(".root").style.minHeight = windowHeight + "px";
+    const root = document.querySelector(".root");
+    if (root) {
+        root.style.minHeight = windowHeight + "px";
+    }
 }
   
-function applyCss(styles, short, nameDimen) {
+function applyCssAll(styles, short, nameDimen) {
     document.querySelectorAll(`[class*='${short}']`).forEach(e => {
         const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-        if (value) {
+        if (value && !excludePairs.includes(short + value)) {
+            const validatedValue = validateValue(short, value.trim(), nameDimen[1]);
             const style = combine(
                 "." + short + value,
-                { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
+                { [nameDimen[0]]: validatedValue }
             );
             if (!styles.includes(style)) {
                 styles.push(style);
             }
         }
     });
-}
-  
-function applyAllCss() {
-    const styles = [];
-    for (const short in classPairsCss) {
-        applyCss(styles, short, classPairsCss[short]);
-    }
-    const newStyle = arrayToString(styles);
-    if (oldStyles("modifier") !== newStyle) {
-        styleTag("modifier").innerHTML = newStyle;
-    }
 }
 
 function oldStyles(id) {
@@ -74,15 +69,27 @@ function styleTag(id) {
     }
     return style;
 }  
-  
+ 
+function applyAllCss() {
+    const styles = [];
+    for (const short in classPairsCss) {
+        applyCssAll(styles, short, classPairsCss[short]);
+    }
+    const newStyle = arrayToString(styles);
+    if (oldStyles("modifier") !== newStyle) {
+        styleTag("modifier").innerHTML = newStyle;
+    }
+}
+
 function applyCssResponser(styles, short, nameDimen) {
     if (getSize().includes(short.split("-")[0])) {
         document.querySelectorAll(`[class*='${short}']`).forEach(e => {
             const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-            if (value) {
+            if (value && !excludePairs.includes(short + value)) {
+                const validatedValue = validateValue(short, value.trim(), nameDimen[1]);
                 const style = combine(
                     "." + short + value,
-                    { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
+                    { [nameDimen[0]]:  validatedValue }
                 );
                 if (!styles.includes(style)) {
                     styles.push(style);
@@ -96,7 +103,7 @@ function applyCssResponserDown(styles, short, nameDimen) {
     if (getSizeDown().includes(short.split("-")[1])) {
         document.querySelectorAll(`[class*='${short}']`).forEach(e => {
             const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
-            if (value) {
+            if (value && !excludePairs.includes(short + value)) {
                 const style = combine(
                     "." + short + value,
                     { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -112,7 +119,7 @@ function applyCssResponserDown(styles, short, nameDimen) {
 function applyCssDataTitle(styles, short, nameDimen) {
     document.querySelectorAll(`[id*='popup-data-title-'][title-class*='${short}']`).forEach(e => {
         const value = getClassValue(` ${e.getAttribute("title-class")} `, ` ${short}`);
-        if (value) {
+        if (value && !excludePairs.includes(short + value)) {
             const style = combine(
                 `[id*='popup-data-title-'][title-class~='${short}${value}']`,
                 { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
@@ -128,16 +135,16 @@ function applyAllCssResponser() {
     const styles = [];
     for (const short in pairSize) {
         applyCssResponser(
-        styles,
-        short,
-        pairSize[short]
+            styles,
+            short,
+            pairSize[short]
         );
     }
     for (const short in pairSizeDown) {
         applyCssResponserDown(
-        styles,
-        short,
-        pairSizeDown[short]
+            styles,
+            short,
+            pairSizeDown[short]
         );
     }
     const newStyle = arrayToString(styles);
@@ -150,9 +157,9 @@ function applyAllCssDataTitle() {
     const styles = [];
     for (const short in classPairsDataTitle) {
         applyCssDataTitle(
-        styles,
-        short,
-        classPairsDataTitle[short]
+            styles,
+            short,
+            classPairsDataTitle[short]
         );
     }
     const newStyle = arrayToString(styles);
@@ -199,7 +206,7 @@ function initializeDataTitle() {
                         
                         title.id = id;
                         title.innerHTML = data_title;
-                        title.setAttribute("title-class", classes);
+                        title.setAttribute("title-class", popupDataTitle(classes));
                         title.style.opacity = 0;
 
                         document.querySelectorAll("span[id*='data-title']").forEach(e => {
