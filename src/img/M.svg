@@ -1,8 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="117" height="96" viewBox="0 0 117 96">
-  <g transform="translate(-513 -245)">
-    <rect width="20" height="96" rx="10" transform="translate(513 245)" fill="#008093" />
-    <rect width="20" height="96" rx="10" transform="translate(610 245)" fill="#008093" />
-    <path d="M674.356,659.718l-6.816-6.959.025-.041-3.153-3.153-37.763-38.556A9.724,9.724,0,1,1,640.2,597.071l41.3,41.3,41.3-41.3a9.725,9.725,0,1,1,13.553,13.938L698.558,649.6l-3.121,3.122.024.041-6.817,6.96a10,10,0,0,1-14.288,0Z" transform="translate(-110 -349.012)" fill="#008093" />
-    <path d="M662,673.9h-7a4,4,0,0,1-2.177-7.356,10.029,10.029,0,0,0,11.354,0h-.005l.009,0A4,4,0,0,1,662,673.9Z" transform="translate(-87 -382.9)" fill="#008093"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="117" height="125.675" viewBox="0 0 117 125.675">
+  <g id="meka" transform="translate(-513 -749.392)">
+    <g id="Group_4" data-name="Group 4" transform="translate(0 509.525)">
+      <path id="Path_2" data-name="Path 2" d="M10,0S35.2-5.133,59-5.133,107,0,107,0a10,10,0,0,1,10,10V86a10,10,0,0,1-10,10S83.25,77.4,59,77.4,10,96,10,96A10,10,0,0,1,0,86V10A10,10,0,0,1,10,0Z" transform="translate(513 245)" fill="none"/>
+      <g id="M">
+        <rect id="Rectangle_9" data-name="Rectangle 9" width="20" height="96" rx="10" transform="translate(513 245)" fill="#ff008b"/>
+        <rect id="Rectangle_13" data-name="Rectangle 13" width="20" height="96" rx="10" transform="translate(610 245)" fill="#ff008b"/>
+        <path id="Intersection_1" data-name="Intersection 1" d="M674.356,659.718l-6.816-6.959.025-.041-3.153-3.153-37.763-38.556A9.724,9.724,0,1,1,640.2,597.071l41.3,41.3,41.3-41.3a9.725,9.725,0,1,1,13.553,13.938L698.558,649.6l-3.121,3.122.024.041-6.817,6.96a10,10,0,0,1-14.288,0Z" transform="translate(-110 -349.012)" fill="#ff008b"/>
+        <path id="Subtraction_1" data-name="Subtraction 1" d="M662,673.9h-7a4,4,0,0,1-2.177-7.356,10.029,10.029,0,0,0,11.354,0h-.005l.009,0A4,4,0,0,1,662,673.9Z" transform="translate(-87 -382.9)" fill="#ff008b"/>
+      </g>
+    </g>
+    <g id="Group_10" data-name="Group 10" transform="translate(513 773.933)">
+      <path id="Path_2-2" data-name="Path 2" d="M10,90.867S35.2,96,59,96s48-5.133,48-5.133a10,10,0,0,0,10-10v-76a10,10,0,0,0-10-10s-23.75,18.6-48,18.6-49-18.6-49-18.6a10,10,0,0,0-10,10v76A10,10,0,0,0,10,90.867Z" transform="translate(0 5.133)" fill="none"/>
+      <g id="M-2" data-name="M">
+        <rect id="Rectangle_9-2" data-name="Rectangle 9" width="20" height="96" rx="10" fill="#ff008b"/>
+        <rect id="Rectangle_13-2" data-name="Rectangle 13" width="20" height="96" rx="10" transform="translate(97 0)" fill="#ff008b"/>
+        <path id="Intersection_1-2" data-name="Intersection 1" d="M99.027,65.65l-41.3-41.3-41.3,41.3a9.987,9.987,0,0,1-8.893,2.763,10.015,10.015,0,0,1-4.66-16.7L40.63,13.165,43.792,10l-.025-.041L50.584,3A10,10,0,0,1,64.872,3l6.816,6.959L71.663,10l3.162,3.162L112.58,51.711A9.724,9.724,0,1,1,99.027,65.65Z" transform="translate(0.772 27.291)" fill="#ff008b"/>
+        <path id="Subtraction_1-2" data-name="Subtraction 1" d="M13.183,7.361h0l-.006,0a10.013,10.013,0,0,0-11.35,0A4,4,0,0,1,4,0h7a4,4,0,0,1,2.177,7.356l0,0Z" transform="translate(51 50.001)" fill="#ff008b"/>
+      </g>
+    </g>
   </g>
 </svg>
