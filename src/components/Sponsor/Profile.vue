@@ -31,6 +31,10 @@ export default {
 }
 </script>
 <style scoped>
+    @font-face {
+        font-family: "ever after";
+        src: url("~@/assets/fonts/ever-after/EVERAFTE.TTF");
+    }
     .profile {
         width: 100%;
         margin-top: 20px;
