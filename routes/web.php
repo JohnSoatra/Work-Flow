@@ -9,6 +9,11 @@ $userController = UserController::class;
 $fileController = FileController::class;
 $folderController = FolderController::class;
 
+
+Route::get("/", function() {
+    return "homepage";
+});
+
 Route::get("/files/download/{path}", [$fileController, "downloadFile"])->where("path", ".*");
 Route::get("/files/{path}", [$fileController, "getFile"])->where("path", ".*");
 

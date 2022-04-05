@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 $origin = $_SERVER["HTTP_ORIGIN"];
 $origins = [
     "https://lab.soatra.com",
-    "https://paperpen.soatra.com",
+    "https://paperpen.soatra.com"
 ];
 if (in_array($origin, $origins)) {
     header("Access-Control-Allow-Origin: $origin");
