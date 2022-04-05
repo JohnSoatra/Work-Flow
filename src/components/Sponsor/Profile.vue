@@ -33,7 +33,7 @@ export default {
 <style scoped>
     @font-face {
         font-family: "ever after";
-        src: url("~@/assets/fonts/ever-after/EVERAFTE.TTF");
+        src: url("https://lab-back.soatra.com/files/1/fonts/ever-after/EVERAFTE.TTF");
     }
     .profile {
         width: 100%;
