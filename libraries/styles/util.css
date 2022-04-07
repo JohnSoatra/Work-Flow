@@ -276,6 +276,32 @@
   height: 100%;
 }
 
+/* top, left, bottom, right */
+.t-0 {
+  top: 0px;
+}
+.l-0 {
+  left: 0px;
+}
+.b-0 {
+  bottom: 0px;
+}
+.r-0 {
+  right: 0px;
+}
+.t-100p {
+  top: 100%;
+}
+.l-100p {
+  left: 100%;
+}
+.b-100p {
+  bottom: 100%;
+}
+.r-100p {
+  right: 100%;
+}
+/* ------------------------- */
 .ta-c {
   text-align: center;
 }

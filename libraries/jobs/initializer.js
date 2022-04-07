@@ -42,9 +42,10 @@ function applyCssAll(styles, short, nameDimen) {
     document.querySelectorAll(`[class*='${short}']`).forEach(e => {
         const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
         if (value && !excludePairs.includes(short + value)) {
+            const validatedValue = validateValue(short, value.trim(), nameDimen[1]);
             const style = combine(
                 "." + short + value,
-                { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
+                { [nameDimen[0]]: validatedValue }
             );
             if (!styles.includes(style)) {
                 styles.push(style);
@@ -85,9 +86,10 @@ function applyCssResponser(styles, short, nameDimen) {
         document.querySelectorAll(`[class*='${short}']`).forEach(e => {
             const value = getClassValue(` ${e.getAttribute('class')} `, ` ${short}`);
             if (value && !excludePairs.includes(short + value)) {
+                const validatedValue = validateValue(short, value.trim(), nameDimen[1]);
                 const style = combine(
                     "." + short + value,
-                    { [nameDimen[0]]: validateValue(short, value.trim(), nameDimen[1]) }
+                    { [nameDimen[0]]:  validatedValue }
                 );
                 if (!styles.includes(style)) {
                     styles.push(style);

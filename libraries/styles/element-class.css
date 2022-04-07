@@ -24,6 +24,12 @@
   height: 0.5px;
   background-color: rgb(109, 109, 109);
 }
+.en {
+  font-family: var(--ff);
+}
+.kh {
+  font-family: var(--ffkh);
+}
 .popup {
   position: absolute;
   z-index: 1;

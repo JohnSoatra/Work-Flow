@@ -333,7 +333,7 @@
         filter: brightness(1);
     }
     100% {
-        filter: brightness(1.5);
+        filter: brightness(1.2);
     }
 }
 @keyframes light-to-down {
@@ -341,12 +341,12 @@
         filter: brightness(1);
     }
     100% {
-        filter: brightness(0.5);
+        filter: brightness(0.8);
     }
 }
 @keyframes light-from-up {
     0% {
-        filter: brightness(1.5);
+        filter: brightness(1.2);
     }
     100% {
         filter: brightness(1);
@@ -354,7 +354,7 @@
 }
 @keyframes light-from-down {
     0% {
-        filter: brightness(0.5);
+        filter: brightness(0.8);
     }
     100% {
         filter: brightness(1);

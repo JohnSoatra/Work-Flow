@@ -26,7 +26,19 @@ const excludePairs = [
     "aic-1",
     "aic-if",
 
-    "adu-1000"
+    "adu-1000",
+
+    // grid
+    "gtc-1", "gtc-2", "gtc-3", "gtc-4", "gtc-5", "gtc-6",
+    "gtc-7", "gtc-8", "gtc-9", "gtc-10", "gtc-11", "gtc-12",
+
+    "gtr-1", "gtr-2", "gtr-3", "gtr-4", "gtr-5", "gtr-6",
+    "gtr-7", "gtr-8", "gtr-9", "gtr-10", "gtr-11", "gtr-12",
+    
+    // top, left, bottom, right
+    "t-0", "t-100p", "l-0", "l-100p",
+    "b-0", "b-100p", "r-0", "r-100p",
+
 ]
 const classPairsCss = {
   // size
@@ -115,6 +127,10 @@ const classPairsCss = {
     "adu-": ["animation-duration", "ms"],
     "ade-": ["animation-delay", "ms"],
     "aic": ["animation-iteration-count"],
+
+    // grid
+    "gtc-": ["grid-template-columns", "fr"],
+    "gtr-": ["grid-template-rows", "fr"],
 };
 
 const classPairsDataTitle = {
@@ -201,6 +217,10 @@ const classPairsDataTitle = {
     "dt-adu-": ["animation-duration", "ms"],
     "dt-ade-": ["animation-delay", "ms"],
     "dt-aic": ["animation-iteration-count"],
+
+    // grid
+    "dt-gtc-": ["grid-template-columns", "fr"],
+    "dt-gtr-": ["grid-template-rows", "fr"],
 };
 
 const pairSize = {
@@ -210,6 +230,13 @@ const pairSize = {
     "md-fs-": ["font-size", "px"],
     "lg-fs-": ["font-size", "px"],
     "xl-fs-": ["font-size", "px"],
+
+    //flex
+    "xs-f-": ["flex", ""],
+    "sm-f-": ["flex", ""],
+    "md-f-": ["flex", ""],
+    "lg-f-": ["flex", ""],
+    "xl-f-": ["flex", ""],
 
     // size
     "xs-w-": ["width", "px"],
@@ -336,6 +363,19 @@ const pairSize = {
     "md-rg-": ["row-gap", "px"],
     "lg-rg-": ["row-gap", "px"],
     "xl-rg-": ["row-gap", "px"],
+
+    // grid
+    "xs-gtc-": ["grid-template-columns", "fr"],
+    "sm-gtc-": ["grid-template-columns", "fr"],
+    "md-gtc-": ["grid-template-columns", "fr"],
+    "lg-gtc-": ["grid-template-columns", "fr"],
+    "xl-gtc-": ["grid-template-columns", "fr"],
+    
+    "xs-gtr-": ["grid-template-rows", "fr"],
+    "sm-gtr-": ["grid-template-rows", "fr"],
+    "md-gtr-": ["grid-template-rows", "fr"],
+    "lg-gtr-": ["grid-template-rows", "fr"],
+    "xl-gtr-": ["grid-template-rows", "fr"],
 }
 
 const pairSizeDown = {
@@ -345,7 +385,14 @@ const pairSizeDown = {
     "d-md-fs-": ["font-size", "px"],
     "d-lg-fs-": ["font-size", "px"],
     "d-xl-fs-": ["font-size", "px"],
-
+    
+    //flex
+    "d-xs-f-": ["flex", ""],
+    "d-sm-f-": ["flex", ""],
+    "d-md-f-": ["flex", ""],
+    "d-lg-f-": ["flex", ""],
+    "d-xl-f-": ["flex", ""],
+    
     // size
     "d-xs-w-": ["width", "px"],
     "d-sm-w-": ["width", "px"],
@@ -471,6 +518,19 @@ const pairSizeDown = {
     "d-md-rg-": ["row-gap", "px"],
     "d-lg-rg-": ["row-gap", "px"],
     "d-xl-rg-": ["row-gap", "px"],
+
+    // grid
+    "d-xs-gtc-": ["grid-template-columns", "fr"],
+    "d-sm-gtc-": ["grid-template-columns", "fr"],
+    "d-md-gtc-": ["grid-template-columns", "fr"],
+    "d-lg-gtc-": ["grid-template-columns", "fr"],
+    "d-xl-gtc-": ["grid-template-columns", "fr"],
+    
+    "d-xs-gtr-": ["grid-template-rows", "fr"],
+    "d-sm-gtr-": ["grid-template-rows", "fr"],
+    "d-md-gtr-": ["grid-template-rows", "fr"],
+    "d-lg-gtr-": ["grid-template-rows", "fr"],
+    "d-xl-gtr-": ["grid-template-rows", "fr"],
 }
 
 export default {

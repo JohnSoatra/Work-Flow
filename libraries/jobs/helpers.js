@@ -59,9 +59,27 @@ function filterShort(short) {
     }
 }
 
+function isGrid(short) {
+    return short.endsWith("gtc-") || short.endsWith("gtr-");
+}
+
 function validateValue(short, value, dimen) {
     let result;
-    if (isColor(short)) {
+    if (isGrid(short)) {
+        const values = value.split("-");
+        const newSlices = [];
+        for (let each of values) {
+            let eachIn = checkPercentage(each);
+            eachIn = + eachIn || eachIn;
+            if (typeof(eachIn) === "number") {
+                eachIn = eachIn + dimen;
+            } else if (eachIn === "a") {
+                eachIn = "auto";
+            }
+            newSlices.push(eachIn);
+        }
+        result = newSlices.join(" ");
+    } else if (isColor(short)) {
         if(isHex(value)) {
             result = dimen + value;
         } else {

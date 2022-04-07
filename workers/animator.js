@@ -1,29 +1,65 @@
-const nameBox = document.getElementById("name_box");
-const a_n = document.getElementById("a-n");
-const a_bl = document.getElementById("a-bl");
-const a_bb = document.getElementById("a-bb");
-const a_br = document.getElementById("a-br");
-const a_bt = document.getElementById("a-bt");
+import {
+    nameBox,
+    a_n,
+    a_bl,
+    a_bb,
+    a_br,
+    a_bt,
+    d_e,
+    d_k,
+    desc,
+    btn_lang
+} from "./elements.js";
+import {
+    changeBtnLang,
+    changeAnim,
+    removeClasses,
+    removeAnimateListener,
+    flasher,
+    changeDescHeight,
+} from "./funs.js";
+let animating = false;
 
-function toggleAnim(element, from, to) {
-    if (element.classList.contains(from)) {
-        element.classList.remove(from);
-        element.classList.add(to);
-    } else {
-        element.classList.remove(to);
-        element.classList.add(from);
-    }
-}
-function changeAnim(element, from, to) {
-    element.classList.remove(from);
-    element.classList.add(to);
-}
-function removeClasses(element, ...anims) {
-    element.classList.remove(...anims);
-}
-function removeAnimateListener(...elements) {
-    for (let element of elements) {
-        element.onanimationend = null;
+function animatorDesc() {
+    if (!animating) {
+        animating = true;
+        if (btn_lang.classList.contains("btn-lang-kh")) {
+            d_k.classList.add("pos-a", "t-0", "l-0");
+            d_k.classList.remove("d-n");
+            changeAnim(d_e, "an-fi", "an-fo");
+            changeAnim(d_k, "an-fo", "an-fi");
+            changeDescHeight(
+                d_e.clientHeight + "px",
+                d_k.clientHeight + "px"
+            );
+            d_k.onanimationend = () => {
+                d_k.onanimationend = null;
+                d_k.classList.remove("pos-a", "t-0", "l-0");
+                d_e.classList.add("d-n");
+                desc.style.height = null;
+                changeBtnLang();
+                localStorage.setItem("lang", "kh");
+                animating = false;
+            }
+        } else {
+            d_e.classList.add("pos-a", "t-0", "l-0");
+            d_e.classList.remove("d-n");
+            changeAnim(d_k, "an-fi", "an-fo");
+            changeAnim(d_e, "an-fo", "an-fi");
+            changeDescHeight(
+                d_k.clientHeight + "px",
+                d_e.clientHeight + "px"
+            );
+            d_e.onanimationend = () => {
+                d_e.onanimationend = null;
+                d_e.classList.remove("pos-a", "t-0", "l-0");
+                d_k.classList.add("d-n");
+                changeBtnLang();
+                localStorage.setItem("lang", "en");
+                desc.style.height = null;
+                animating = false;
+            }
+        }
     }
 }
 
@@ -91,27 +127,12 @@ function animatorName() {
         }
     }
 }
-function flasher(element, time, callback = null, starter = 0) {
-    if (starter < time) {
-        toggleAnim(element, "an-ltu", "an-lfu");
-        element.onanimationend = () => {
-            flasher(element, time, callback, starter + 1);
-        }
-    } else {
-        if (element.classList.contains("an-ltu")) {
-            element.classList.add("an-lfu");
-            element.onanimationend = () => {
-                removeClasses(element, "an-lfu");
-                if (callback) callback();
-            }
-        } else {
-            removeClasses(element, "an-lfu");
-            if (callback) callback();
-        }
-    }
-}
 
-export default animatorName;
+export default {
+    animatorName,
+    animatorDesc
+};
 export {
-    animatorName
+    animatorName,
+    animatorDesc
 }

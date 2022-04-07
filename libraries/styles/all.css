@@ -3,8 +3,8 @@
 @import url(khmer-fonts/font.css);
 @import url(layout.css);
 @import url(responser.css);
-@import url(breakpoints/util.css);
-@import url(breakpoints/layout.css);
+@import url(responser/layout.css);
+@import url(responser/util.css);
 @import url(element-class.css);
 @import url(element-tag.css);
 @import url(anims.css);

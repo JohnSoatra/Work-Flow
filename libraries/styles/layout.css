@@ -133,8 +133,7 @@
 }
 
 /* grid layout -----------------------------*/
-
-.grid {display: grid; }
+.grid { display: grid; }
 
 .gtc-1 { grid-template-columns: auto; }
 .gtc-2 { grid-template-columns: auto auto; }
@@ -162,7 +161,7 @@
 .gtr-11 { grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto; }
 .gtr-12 { grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto; }
 
-.gcs-auto { grid-column-start: auto; }
+.gcs-a { grid-column-start: auto; }
 .gcs-1 { grid-column-start: 1; }
 .gcs-2 { grid-column-start: 2; }
 .gcs-3 { grid-column-start: 3; }
@@ -176,7 +175,7 @@
 .gcs-11 { grid-column-start: 11; }
 .gcs-12 { grid-column-start: 12; }
 
-.gce-auto { grid-column-end: auto; }
+.gce-a { grid-column-end: auto; }
 .gce-1 { grid-column-end: 1; }
 .gce-2 { grid-column-end: 2; }
 .gce-3 { grid-column-end: 3; }
@@ -190,7 +189,21 @@
 .gce-11 { grid-column-end: 11; }
 .gce-12 { grid-column-end: 12; }
 
-.grs-auto { grid-row-start: auto; }
+.gces-a { grid-column-end: span auto; }
+.gces-1 { grid-column-end: span 1; }
+.gces-2 { grid-column-end: span 2; }
+.gces-3 { grid-column-end: span 3; }
+.gces-4 { grid-column-end: span 4; }
+.gces-5 { grid-column-end: span 5; }
+.gces-6 { grid-column-end: span 6; }
+.gces-7 { grid-column-end: span 7; }
+.gces-8 { grid-column-end: span 8; }
+.gces-9 { grid-column-end: span 9; }
+.gces-10 { grid-column-end: span 10; }
+.gces-11 { grid-column-end: span 11; }
+.gces-12 { grid-column-end: span 12; }
+
+.grs-a { grid-row-start: auto; }
 .grs-1 { grid-row-start: 1; }
 .grs-2 { grid-row-start: 2; }
 .grs-3 { grid-row-start: 3; }
@@ -204,7 +217,7 @@
 .grs-11 { grid-row-start: 11; }
 .grs-12 { grid-row-start: 12; }
 
-.gre-auto { grid-row-end: auto; }
+.gre-a { grid-row-end: auto; }
 .gre-1 { grid-row-end: 1; }
 .gre-2 { grid-row-end: 2; }
 .gre-3 { grid-row-end: 3; }
@@ -217,3 +230,17 @@
 .gre-10 { grid-row-end: 10; }
 .gre-11 { grid-row-end: 11; }
 .gre-12 { grid-row-end: 12; }
+
+.gres-a { grid-row-end: span auto; }
+.gres-1 { grid-row-end: span 1; }
+.gres-2 { grid-row-end: span 2; }
+.gres-3 { grid-row-end: span 3; }
+.gres-4 { grid-row-end: span 4; }
+.gres-5 { grid-row-end: span 5; }
+.gres-6 { grid-row-end: span 6; }
+.gres-7 { grid-row-end: span 7; }
+.gres-8 { grid-row-end: span 8; }
+.gres-9 { grid-row-end: span 9; }
+.gres-10 { grid-row-end: span 10; }
+.gres-11 { grid-row-end: span 11; }
+.gres-12 { grid-row-end: span 12; }

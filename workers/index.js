@@ -1,4 +1,16 @@
-import animatorName from "./animator.js";
+import {
+  animatorName,
+  animatorDesc
+} from "./animator.js";
+import { 
+  btn_lang 
+} from "./elements.js";
+import { 
+  checkLang 
+} from "./funs.js";
+
+checkLang();
+btn_lang.onclick = animatorDesc;
 
 document.querySelectorAll(".product-img").forEach(e => {
   e.addEventListener("click", function(event) {
