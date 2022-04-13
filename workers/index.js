@@ -1,13 +1,12 @@
 import {
   animatorName,
-  animatorDesc
+  animatorDesc,
+  animatorTitle,
+  startAnimateBalloon
 } from "./animator.js";
-import { 
-  btn_lang 
-} from "./elements.js";
-import { 
-  checkLang 
-} from "./funs.js";
+import { btn_lang } from "./elements.js";
+import { checkLang } from "./funs.js";
+import { createKeyframes, createPopperKeyframes } from "./modifier.js";
 
 checkLang();
 btn_lang.onclick = animatorDesc;
@@ -37,5 +36,16 @@ document.querySelector(".profile").addEventListener("click", function() {
 });
 
 window.addEventListener("load", function() {
+  // setTimeout(animatorName, 2000);
+  // new-year {
+  createPopperKeyframes();
+  createKeyframes();
+  setTimeout(() => animatorTitle("kh"), 4000);
   setTimeout(animatorName, 2000);
+  setTimeout(startAnimateBalloon, 11500);
+  // new-year }
 });
+
+// document.addEventListener("click", function() {
+//   startAnimateBalloon();
+// });

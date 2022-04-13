@@ -251,6 +251,13 @@
   overflow-y: visible;
 }
 
+.pe-n {
+  pointer-events: none;
+}
+.pe-u {
+  pointer-events: unset;
+}
+
 .pos-a {
   position: absolute;
 }
