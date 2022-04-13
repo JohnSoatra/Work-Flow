@@ -8,6 +8,8 @@ body {
   font-size: 16px;
   color: #f2f2f2;
 }
+.profile { width: 160px; }
+.status-img { width: 35px; }
 
 .header, .footer {
   z-index: 1;
