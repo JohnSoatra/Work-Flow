@@ -164,19 +164,22 @@ function deleteKeyframe(name) {
 
 function createBalloonElement(balloon, onLoad) {
     const old = document.getElementById("img-bw");
+    const div_wrapper = document.createElement("div");
     const div = document.createElement("div");
     const img = document.createElement("img");
     
     if (old) root.removeChild(old);
-    div.id = "img-bw";
-    div.className = "img-bw container to-bc anim flex v-h " + balloon.divClass;
+    div_wrapper.id = "img-bw";
+    div_wrapper.className = "img-bw anim v-h ";
+    div.className = "container flex "+ balloon.divClass;
     img.id = "img-b";
-    img.className = "img-b anim xs-w-95 sm-w-100 md-w-110 lg-w-115 " + balloon.imgClass;
-    img.src = balloon.imgSrc;
     img.alt = "balloons";
+    img.src = balloon.imgSrc;
+    img.className = "img-b anim xs-w-95 sm-w-100 md-w-110 lg-w-115 " + balloon.imgClass;
     div.appendChild(img);
-    root.appendChild(div);
-    img.onload = () => onLoad(div);
+    div_wrapper.appendChild(div);
+    root.appendChild(div_wrapper);
+    img.onload = () => onLoad(div_wrapper);
 }
 
 function random(length) {
@@ -185,8 +188,10 @@ function random(length) {
 function randomBalloon() {
     const divClasses = ["", "jc-c", "jc-e"];
     const imgClasses = [
-        "xs-pr-160 sm-pr-180 md-pr-190 lg-pr-210",
-        "xs-pl-160 sm-pl-180 md-pl-190 lg-pl-210",
+        // "xs-pr-160 sm-pr-180 md-pr-190 lg-pr-210",
+        // "xs-pl-160 sm-pl-180 md-pl-190 lg-pl-210",
+        "xs-mr-160 sm-mr-180 md-mr-190 lg-mr-210",
+        "xs-ml-160 sm-ml-180 md-ml-190 lg-ml-210",
     ];
     const srcs = [
         "./images/newyear/balloon-blue.png",
@@ -199,8 +204,8 @@ function randomBalloon() {
     let ranDiv = random(3);
     while (ranImg === ranImgSrc) { ranImg = random(5); }
     while (ranDiv === ranImgPos) { ranDiv = random(3); }
-    const divClass = divClasses[ranDiv] + (ranDiv === 1 ? " " + imgClasses[random(2)] : "");
-    const imgClass =  ranImg === 4 ? BigBallonClasses : "";
+    const divClass = divClasses[ranDiv];
+    const imgClass =  (ranImg === 4 ? BigBallonClasses : "") + (ranDiv === 1 ? " " + imgClasses[random(2)] : "");
     const imgSrc = srcs[ranImg];
     ranImgSrc = ranImg;
     ranImgPos = ranDiv;
