@@ -1,14 +1,9 @@
-import { BalloonDown, BalloonFromDown, BalloonFromUp, BalloonUp, BigBallonClasses } from "./constants.js";
 import { 
     desc,
     d_e,
     d_k,
     btn_lang,
-    root,
 } from "./elements.js";
-import Balloon from "./models.js";
-let ranImgSrc = null;
-let ranImgPos = null;
 
 function changeDescHeight(oldHeight, newHeight) {
     desc.style.height = oldHeight;
@@ -83,166 +78,6 @@ function flasher(element, time, callback = null, starter = 0) {
         }
     }
 }
-// new year {
-function createObject(style) {
-    const obj = {};
-    let content =  style.slice(1, style.length -1);
-    if (content.includes("{")) {
-        do {
-            const name = content.slice(0, content.indexOf("{"));
-            const start = content.indexOf("{");
-            const end = content.indexOf("}");
-            const newContent = content.slice(start, end + 1);
-            obj[name.trim()] = createObject(newContent);
-            content = content.slice(end + 1);
-        } while (content.includes("{"));
-    } else {
-        const slices = content.split(";");
-        for (let slice of slices) {
-            if (slice.length) {
-                const prop = slice.split(":");
-                obj[prop[0].trim()] = +prop[1] || prop[1].trim();
-            }
-        }
-    }
-    return obj;
-}
-function createStyle(object) {
-    let result = "{";
-    for (let key in object) {
-        const value = object[key];
-        if (typeof(value) === "object") {
-            const newValue = createStyle(value);
-            result += key + newValue;
-        } else {
-            result += `${key}:${value};`;
-        }
-    }
-    return result + "}";
-}
-function createKeyframeObject(string) {
-    const frames = string.split("@keyframes ").slice(1);
-    const newFrames = {};
-    for (let frame of frames) {
-        const name = frame.slice(0, frame.indexOf("{"));
-        const content = frame.slice(frame.indexOf("{"));
-        newFrames[name] = createObject(content);
-    }
-    return newFrames;
-}
-function createKeyframeStyle(object) {
-    let string = "";
-    for (let name in object) {
-        string += `@keyframes ${name}` + createStyle(object[name]);
-    }
-    return string;
-}
-function addKeyframe(name, props) {
-    let style = document.querySelector("style[id='keyframe']");
-    if (!style) {
-        style = document.createElement("style");
-        style.id = "keyframe";
-        document.querySelector("head").appendChild(style);
-    }
-    const frames = createKeyframeObject(style.innerHTML);
-    frames[name] = props;
-    style.innerHTML = createKeyframeStyle(frames);
-    return name;
-}
-function deleteKeyframe(name) {
-    let style = document.querySelector("style[id='keyframe']");
-    if (!style) {
-        style = document.createElement("style");
-        style.id = "keyframe";
-        document.querySelector("head").appendChild(style);
-    }
-    const frames = createKeyframeObject(style.innerHTML);
-    delete frames[name];
-    style.innerHTML = createKeyframeStyle(frames);
-    return name;
-}
-
-function createBalloonElement(balloon, onLoad) {
-    const old = document.getElementById("img-bw");
-    const div_wrapper = document.createElement("div");
-    const div = document.createElement("div");
-    const img = document.createElement("img");
-    
-    if (old) root.removeChild(old);
-    div_wrapper.id = "img-bw";
-    div_wrapper.className = "img-bw anim v-h ";
-    div.className = "container flex "+ balloon.divClass;
-    img.id = "img-b";
-    img.alt = "balloons";
-    img.src = balloon.imgSrc;
-    img.className = "img-b anim xs-w-95 sm-w-100 md-w-110 lg-w-115 " + balloon.imgClass;
-    div.appendChild(img);
-    div_wrapper.appendChild(div);
-    root.appendChild(div_wrapper);
-    img.onload = () => onLoad(div_wrapper);
-}
-
-function random(length) {
-    return Math.floor(Math.random() * length);
-}
-function randomBalloon() {
-    const divClasses = ["", "jc-c", "jc-e"];
-    const imgClasses = [
-        // "xs-pr-160 sm-pr-180 md-pr-190 lg-pr-210",
-        // "xs-pl-160 sm-pl-180 md-pl-190 lg-pl-210",
-        "xs-mr-160 sm-mr-180 md-mr-190 lg-mr-210",
-        "xs-ml-160 sm-ml-180 md-ml-190 lg-ml-210",
-    ];
-    const srcs = [
-        "./images/newyear/balloon-blue.png",
-        "./images/newyear/balloon-pink.png",
-        "./images/newyear/balloon-purple.png",
-        "./images/newyear/balloon-red.png",
-        "./images/newyear/balloons.png",
-    ];
-    let ranImg = random(5);
-    let ranDiv = random(3);
-    while (ranImg === ranImgSrc) { ranImg = random(5); }
-    while (ranDiv === ranImgPos) { ranDiv = random(3); }
-    const divClass = divClasses[ranDiv];
-    const imgClass =  (ranImg === 4 ? BigBallonClasses : "") + (ranDiv === 1 ? " " + imgClasses[random(2)] : "");
-    const imgSrc = srcs[ranImg];
-    ranImgSrc = ranImg;
-    ranImgPos = ranDiv;
-    return new Balloon(divClass, imgClass, imgSrc);
-}
-function rotateBalloon(balloon, starter = 0) {
-    let i = starter;
-    const keys = [
-        BalloonUp,
-        BalloonFromUp,
-        BalloonDown,
-        BalloonFromDown
-    ];
-    balloon.classList.remove("atf-ei");
-    balloon.style.animationName = keys[i];
-    balloon.onanimationend = (evt) => {
-        evt.stopPropagation();
-        i ++;
-        if (i >= keys.length) i = 0;
-        if (keys[i] === BalloonDown || keys[i] === BalloonUp) {
-            balloon.classList.remove("atf-ei");
-        } else {
-            balloon.classList.add("atf-ei");
-        }
-        balloon.style.animationName = keys[i];
-    }
-}
-function getSize() {
-    let size = ["xs"];
-    const width = window.innerWidth;
-    if (width > 1200) size.push("xl");
-    if (width > 992) size.push("lg");
-    if (width > 768) size.push("md");
-    if (width > 576) size.push("sm");
-    return size;
-}
-// new year }
 export default {
     checkLang,
     changeBtnLang,
@@ -251,15 +86,7 @@ export default {
     removeClasses,
     removeAnimateListener,
     flasher,
-    changeDescHeight,
-    // new-year {
-    addKeyframe,
-    deleteKeyframe,
-    createBalloonElement,
-    randomBalloon,
-    rotateBalloon,
-    getSize,
-    // new-year }
+    changeDescHeight
 }
 export {
     checkLang,
@@ -269,13 +96,5 @@ export {
     removeClasses,
     removeAnimateListener,
     flasher,
-    changeDescHeight,
-    // new-year {
-    addKeyframe,
-    deleteKeyframe,
-    createBalloonElement,
-    randomBalloon,
-    rotateBalloon,
-    getSize,
-    // new-year }
+    changeDescHeight
 }

@@ -1,4 +1,3 @@
-import { BalloonUp, BalloonFromUp, BalloonDown, BalloonFromDown } from "./constants.js";
 import {
     nameBox,
     a_n,
@@ -9,14 +8,7 @@ import {
     d_e,
     d_k,
     desc,
-    btn_lang,
-    t_n,
-    t_h,
-    t_he,
-    t_y,
-    t_ye,
-    pp,
-    pp_p,
+    btn_lang
 } from "./elements.js";
 import {
     changeBtnLang,
@@ -24,17 +16,9 @@ import {
     removeClasses,
     removeAnimateListener,
     flasher,
-    changeDescHeight,
-    createBalloonElement,
-    randomBalloon,
-    deleteKeyframe,
-    addKeyframe,
-    rotateBalloon,
-    getSize,
+    changeDescHeight
 } from "./funs.js";
 let animating = false;
-let starter = 0;
-let duration = 0;
 
 function animatorDesc() {
     if (!animating) {
@@ -144,182 +128,12 @@ function animatorName() {
     }
 }
 
-// new-year {
-function animatorTitle(lang) {
-    const group = lang === "kh" ? [t_n, t_h, t_y] : [t_n, t_he, t_ye];
-    changeAnim(group[0], "an-sft", "an-stb");
-    changeAnim(group[1], "an-stb", "an-sft");
-    group[1].onanimationend = () => {
-        setTimeout(animatorPopper, 600);
-        setTimeout(() => {
-            group[1].onanimationend = null;
-            changeAnim(group[1], "an-sft", "an-stb");
-            changeAnim(group[2], "an-stb", "an-sft");
-            group[2].onanimationend = () => {
-                setTimeout(() => {
-                    group[2].onanimationend = null;
-                    changeAnim(group[2], "an-sft", "an-stb");
-                    changeAnim(group[0], "an-stb", "an-sft");
-                    group[0].onanimationend = () => {
-                        setTimeout(() => {
-                            group[0].onanimationend = null;
-                            const newLang = lang === "kh" ? "en" : "kh";
-                            animatorTitle(newLang);
-                        }, 4000);
-                    }
-                }, 6500);
-            }
-        }, 6500);
-    }
-}
-function startAnimateBalloon() {
-    createBalloonElement(randomBalloon(), (div) => {
-        const end = desc.offsetTop - div.clientHeight + 20;
-        animatorBalloons(
-            div,
-            window.innerHeight + "px",
-            (end >= 0 ? end : 0)+ "px"
-        );
-    });
-    setTimeout(startAnimateBalloon, 17000);
-}
-function animatorBalloons(balloon, start, end, step = 0) {
-    const anim = { "0%": { "top": start }, "100%": { "top": end } }
-    const img = document.getElementById("img-b");    
-    deleteKeyframe("balloons" + (step - 1));
-    balloon.style.animationName = addKeyframe("balloons" + step, anim);
-    if (step === 0) {
-        balloon.onanimationstart = () => {
-            balloon.onanimationstart = null;
-            rotateBalloon(img);
-            if (balloon.classList.contains("v-h")) {
-                balloon.classList.remove("v-h");
-            }
-        }
-        balloon.onanimationend = () => {
-            const name = img.style.animationName;
-            balloon.onanimationend = null;
-            if (name === BalloonUp) {
-                img.onanimationend = (evt) => {
-                    evt.stopPropagation();
-                    starter = 2;
-                    img.classList.remove("atf-ei");
-                    img.style.animationName = BalloonFromUp;
-                    img.onanimationend = (evt) => {
-                        evt.stopPropagation();
-                        img.style.animationName = null;
-                    }
-                }
-            } else if (name === BalloonDown) {
-                img.onanimationend = (evt) => {
-                    evt.stopPropagation();
-                    starter = 0;
-                    img.classList.remove("atf-ei");
-                    img.style.animationName = BalloonFromDown;
-                    img.onanimationend = (evt) => {
-                        evt.stopPropagation();
-                        img.style.animationName = null;
-                    }
-                }
-            } else {
-                starter = img.style.animationName === BalloonFromDown ? 2 : 0;
-                const direction = img.style.animationName === BalloonFromDown ?
-                    "rotate(5deg)" : "rotate(-5deg)";
-                const anim1 = {
-                    "0%": { "transform": "rotate(0deg)" },
-                    "100%": { "transform": direction }
-                }
-                const anim2 = {
-                    "0%": { "transform": direction },
-                    "100%": { "transform": "rotate(0dg)" }
-                }
-                addKeyframe("balloonSlow1", anim1);
-                addKeyframe("balloonSlow2", anim2);
-                img.onanimationend = (evt) => {
-                    evt.stopPropagation();
-                    img.classList.remove("atf-ei");
-                    img.style.animationName = "balloonSlow1";
-                    img.onanimationend = (evt) => {
-                        evt.stopPropagation();
-                        img.style.animationName = "balloonSlow2";
-                        img.onanimationend = (evt) => {
-                            evt.stopPropagation();
-                            img.style.animationName = null;
-                        }
-                    }
-                }
-            }
-            setTimeout(() => {
-                const size = getSize();
-                if (size.includes("xs")) {
-                    duration = 3500;
-                }
-                if (size.includes("sm")) {
-                    duration = 3000;
-                }
-                if (size.includes("md")) {
-                    duration = 2500;
-                }
-                if (size.includes("lg")) {
-                    duration = 2000;
-                }
-                balloon.classList.add("atf-ei");
-                balloon.classList.add(`adu-${duration}`);
-                animatorBalloons(
-                    balloon,
-                    balloon.offsetTop + "px",
-                    -balloon.clientHeight + "px",
-                    step + 1
-                );
-            }, 5000);
-        }
-    } else {
-        rotateBalloon(img, starter);
-        balloon.onanimationend = () => {
-            balloon.onanimationend = null;
-            balloon.classList.remove("atf-ei");
-            balloon.classList.remove(`adu-${duration}`);
-            balloon.style.animationName = null;
-            balloon.classList.add("v-h");
-            img.style.animationName = null;
-        }
-    }
-}
-function animatorPopper() {
-    pp.style.animationName = "pp-scd";
-    pp.onanimationend = (evt) => {
-        evt.stopPropagation();
-        pp.onanimationend = null;
-        pp_p.style.animationName = null;
-        pp.style.animationName = "pp-scu";
-        pp.onanimationstart = (evt) => {
-            evt.stopPropagation();
-            pp.onanimationstart = null;
-            if (pp_p.classList.contains("v-h")) {
-                pp_p.classList.remove("v-h");
-            }
-        }
-        pp.onanimationend = (evt) => {
-            evt.stopPropagation();
-            pp.onanimationend = null;
-            pp.style.animationName = null;
-            pp_p.style.animationName = "pp-slr";
-        }
-    }
-}
-// new-year }
 
 export default {
     animatorName,
-    animatorDesc,
-    animatorTitle,
-    startAnimateBalloon,
-    animatorPopper,
+    animatorDesc
 };
 export {
     animatorName,
-    animatorDesc,
-    animatorTitle,
-    startAnimateBalloon,
-    animatorPopper,
+    animatorDesc
 }

@@ -8,14 +8,6 @@ const desc = document.getElementById("desc");
 const d_e = document.getElementById("desc-en");
 const d_k = document.getElementById("desc-kh");
 const btn_lang = document.getElementById("btn-lang");
-const t_n = document.getElementById("title-n");
-const t_h = document.getElementById("title-h");
-const t_y = document.getElementById("title-y");
-const t_he = document.getElementById("title-he");
-const t_ye = document.getElementById("title-ye");
-const root = document.querySelector(".root");
-const pp = document.getElementById("img-pp");
-const pp_p = pp.parentElement;
 
 export default {
     nameBox,
@@ -27,15 +19,7 @@ export default {
     desc,
     d_e,
     d_k,
-    btn_lang,
-    t_n,
-    t_h,
-    t_y,
-    t_he,
-    t_ye,
-    root,
-    pp,
-    pp_p
+    btn_lang
 }
 export {
     nameBox,
@@ -47,13 +31,5 @@ export {
     desc,
     d_e,
     d_k,
-    btn_lang,
-    t_n,
-    t_h,
-    t_y,
-    t_he,
-    t_ye,
-    root,
-    pp,
-    pp_p
+    btn_lang
 }

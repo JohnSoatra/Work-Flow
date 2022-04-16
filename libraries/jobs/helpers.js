@@ -52,11 +52,7 @@ function isColor(short) {
 }
 
 function filterShort(short) {
-    switch (short) {
-        case "bfb-":
-        case "dt-bfb-": return true;
-        default: return false;
-    }
+    return short.endsWith("bfb-");
 }
 
 function isGrid(short) {
@@ -119,7 +115,7 @@ function arrayToString(array) {
 function objectToString(pairs) {
     let result = "{";
     for (const key in pairs) {
-        result += `${key}: ${pairs[key]};`
+        result += `${key}:${pairs[key]};`
     }
     return result + "}";
 }
