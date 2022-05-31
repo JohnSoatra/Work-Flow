@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="249" height="249" viewBox="0 0 249 249">
+  <g id="Group_11" data-name="Group 11" transform="translate(-1054 -1145)">
+    <rect id="Rectangle_28" data-name="Rectangle 28" width="249" height="249" rx="46" transform="translate(1054 1145)" fill="#fefefe"/>
+    <g id="library_books_black_48dp" transform="translate(1086 1176)">
+      <path id="Path_13" data-name="Path 13" d="M0,0H186.2V186.2H0Z" fill="none"/>
+      <path id="Path_14" data-name="Path 14" d="M20.183,38.367H2V165.651a18.237,18.237,0,0,0,18.183,18.183H147.467V165.651H20.183ZM165.651,2H56.55A18.237,18.237,0,0,0,38.367,20.183v109.1A18.237,18.237,0,0,0,56.55,147.467h109.1a18.237,18.237,0,0,0,18.183-18.183V20.183A18.237,18.237,0,0,0,165.651,2Zm-9.092,81.825H65.642V65.642h90.917Zm-36.367,36.367H65.642V102.009h54.55Zm36.367-72.734H65.642V29.275h90.917Z" transform="translate(0.183 0.183)" fill="#202020"/>
+    </g>
+  </g>
+</svg>

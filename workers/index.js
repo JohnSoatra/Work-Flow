@@ -18,6 +18,9 @@ document.querySelectorAll(".product-img").forEach(e => {
       case "lab":
         window.open("https://lab.soatra.com");
         break;
+      case "book-library":
+        window.open("https://booklibrary.soatra.com");
+        break;
     }
   });
 });
