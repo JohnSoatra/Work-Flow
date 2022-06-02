@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 @include "Helpers/s3.php";
 
+use Illuminate\Support\Facades\Bus;
 use Illuminate\Support\Facades\Request;
 
 class FileController extends Controller

@@ -2,6 +2,9 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+//header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: *");
+header("Access-Control-Allow-Methods: *");
 $origin = $_SERVER["HTTP_ORIGIN"];
 $origins = [
     "https://lab.soatra.com",
@@ -10,9 +13,6 @@ $origins = [
 if (in_array($origin, $origins)) {
     header("Access-Control-Allow-Origin: $origin");
 }
-// header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
-header("Access-Control-Allow-Methods: *");
 
 define('LARAVEL_START', microtime(true));
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
