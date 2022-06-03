@@ -15,8 +15,8 @@
     <title>BookLibrary</title>
     <!-- <link rel="stylesheet" href="http://localhost/saved-files/web/lib/css/all.css">
     <script src="http://localhost/saved-files/web/lib/js/refresher.js" type="module"></script> -->
-    <link rel="stylesheet" href="https://refresh.soatra.com/css/all.css">
-    <script src="https://refresh.soatra.com/js/refresher.js" type="module"></script>
+    <link rel="stylesheet" href="https://refresh.soatra.com/v1.1.0/css/all.css">
+    <script src="https://refresh.soatra.com/v1.1.0/js/refresher.js" type="module"></script>
 </head>
 <body class="bgc-333">
     <p class="pos-a to-tc pt-15 c-e0e0e0 w-fc ta-c">
@@ -37,9 +37,18 @@
             <p>BookLibrary uses database to store data on your phone, </p>
             <p>so your data will be available permanently. </p>
         </div>
-        <a href="app-release.apk" download="BookLibrary">
-            <button class="br-2 c-202020 td-u">Download</button>
+        <a
+            href="app-release.apk"
+            download="BookLibrary"
+            id="download">
+            <button class="br-3 c-202020">Download</button>
         </a>
+        <div 
+            class="title"
+            for="download"
+            arrow>
+            Click to download!
+        </div>
     </div>
 </body>
 </html>
