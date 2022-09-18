@@ -3,6 +3,8 @@ import {
     d_e,
     d_k,
     btn_lang,
+    footer_en,
+    footer_kh,
 } from "./elements.js";
 
 function changeDescHeight(oldHeight, newHeight) {
@@ -23,13 +25,15 @@ function changeBtnLang() {
 }
 
 function checkLang() {
-    if (localStorage.getItem("lang") === "kh") {
-        d_k.classList.remove("d-n");
-    } else {
+    if (localStorage.getItem("lang") === "en") {
         btn_lang.classList.add("btn-lang-kh", "dt-ff-kh", "kh");
         btn_lang.setAttribute("data-title", "ការពិពណ៌នាជាភាសារខ្មែរ!");
         btn_lang.innerHTML = "ខ្មែរ";
         d_e.classList.remove("d-n");
+        footer_en.classList.remove("d-n");
+    } else {
+        d_k.classList.remove("d-n");
+        footer_kh.classList.remove("d-n");
     }
     btn_lang.classList.remove("d-n");
 }

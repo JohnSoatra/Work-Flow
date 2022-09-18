@@ -8,6 +8,8 @@ const desc = document.getElementById("desc");
 const d_e = document.getElementById("desc-en");
 const d_k = document.getElementById("desc-kh");
 const btn_lang = document.getElementById("btn-lang");
+const footer_en = document.getElementById('footer-en');
+const footer_kh = document.getElementById('footer-kh');
 
 export default {
     nameBox,
@@ -19,7 +21,9 @@ export default {
     desc,
     d_e,
     d_k,
-    btn_lang
+    btn_lang,
+    footer_en,
+    footer_kh
 }
 export {
     nameBox,
@@ -31,5 +35,7 @@ export {
     desc,
     d_e,
     d_k,
-    btn_lang
+    btn_lang,
+    footer_en,
+    footer_kh
 }

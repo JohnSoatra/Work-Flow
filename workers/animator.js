@@ -8,7 +8,9 @@ import {
     d_e,
     d_k,
     desc,
-    btn_lang
+    btn_lang,
+    footer_en,
+    footer_kh
 } from "./elements.js";
 import {
     changeBtnLang,
@@ -26,6 +28,10 @@ function animatorDesc() {
         if (btn_lang.classList.contains("btn-lang-kh")) {
             d_k.classList.add("pos-a", "t-0", "l-0");
             d_k.classList.remove("d-n");
+            
+            footer_en.classList.toggle("d-n");
+            footer_kh.classList.toggle("d-n");
+
             changeAnim(d_e, "an-fi", "an-fo");
             changeAnim(d_k, "an-fo", "an-fi");
             changeDescHeight(
@@ -44,6 +50,10 @@ function animatorDesc() {
         } else {
             d_e.classList.add("pos-a", "t-0", "l-0");
             d_e.classList.remove("d-n");
+            
+            footer_en.classList.toggle("d-n");
+            footer_kh.classList.toggle("d-n");
+
             changeAnim(d_k, "an-fi", "an-fo");
             changeAnim(d_e, "an-fo", "an-fi");
             changeDescHeight(
