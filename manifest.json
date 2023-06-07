@@ -1,0 +1,18 @@
+{
+  "short_name": "Temp",
+  "name": "Temp",
+  "description": "Temp App",
+  "start_url": "/",
+  "background_color": "#333",
+  "theme_color": "#333",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "256x256 192x192 128x128 96x96 64x64 48x48 32x32 24x24 16x16",
+      "purpose": "any maskable"
+    }
+  ]
+}
